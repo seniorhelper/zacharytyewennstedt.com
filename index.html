@@ -1618,168 +1618,172 @@
       #music-bar { gap: 10px; padding: 0 12px; }
     }
 
-    /* ============ MAZE SECTIONS ============ */
-    .maze-section {
-      padding: 100px 20px;
+
+    /* ============ BACKGROUND MAZE SECTIONS ============ */
+    .bg-maze-section {
       position: relative;
       overflow: hidden;
+      min-height: 600px;
     }
-    .maze-section-1 { background: linear-gradient(180deg, #030510 0%, #000d20 100%); }
-    .maze-section-2 { background: linear-gradient(180deg, #08001a 0%, #010820 100%); }
-    .maze-section-3 { background: linear-gradient(180deg, #000820 0%, #030510 100%); }
-    .maze-section-4 { background: linear-gradient(180deg, #010820 0%, #08001a 100%); }
-
-    .maze-section::before {
-      content: '';
+    .bg-maze-section canvas.maze-bg {
       position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--maze-accent, var(--neon-cyan)), transparent);
-    }
-
-    .maze-wrap {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    .maze-header {
-      text-align: center;
-      margin-bottom: 48px;
-    }
-    .maze-header h2 {
-      font-family: 'Bebas Neue', cursive;
-      font-size: clamp(38px, 5vw, 60px);
-      color: #fff;
-      margin-bottom: 10px;
-    }
-    .maze-header p {
-      color: var(--text-muted);
-      font-size: 15px;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* Maze canvas container */
-    .maze-canvas-wrap {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
-    .maze-canvas-container {
-      position: relative;
-    }
-    #maze-canvas-1, #maze-canvas-2, #maze-canvas-3, #maze-canvas-4 {
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       display: block;
-      border-radius: 8px;
-      border: 1px solid rgba(0,245,255,0.15);
-      box-shadow: 0 0 40px rgba(0,245,255,0.08);
     }
-
-    /* Maze sidebar info */
-    .maze-sidebar {
-      width: 260px;
-      flex-shrink: 0;
+    .bg-maze-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
     }
-    .maze-stat {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 10px;
-      padding: 16px 20px;
-      margin-bottom: 12px;
+    .bg-maze-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 80px 32px;
+      text-align: center;
     }
-    .maze-stat-label {
-      font-size: 10px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-      font-weight: 700;
-    }
-    .maze-stat-val {
+    .bg-maze-content h2 {
       font-family: 'Bebas Neue', cursive;
-      font-size: 28px;
+      font-size: clamp(40px, 5.5vw, 68px);
       color: #fff;
-    }
-    .maze-riddle-box {
-      background: rgba(255,229,0,0.05);
-      border: 1px solid rgba(255,229,0,0.2);
-      border-radius: 10px;
-      padding: 20px;
-      margin-top: 16px;
-    }
-    .maze-riddle-box h4 {
-      font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--neon-yellow);
-      margin-bottom: 10px;
-      font-weight: 700;
-    }
-    .maze-riddle-box p {
-      font-size: 14px;
-      color: rgba(232,234,246,0.8);
-      line-height: 1.6;
       margin-bottom: 12px;
-      font-style: italic;
+      line-height: 0.95;
     }
-    .riddle-input {
-      width: 100%;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,229,0,0.3);
-      border-radius: 6px;
-      padding: 10px 12px;
-      color: #fff;
-      font-family: 'Outfit', sans-serif;
-      font-size: 13px;
-      outline: none;
-    }
-    .riddle-input:focus { border-color: var(--neon-yellow); }
-    .riddle-submit {
-      margin-top: 8px;
-      width: 100%;
-      background: var(--neon-yellow);
-      color: #000;
-      border: none;
-      border-radius: 6px;
-      padding: 8px;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    .riddle-submit:hover { box-shadow: 0 0 20px rgba(255,229,0,0.5); }
-    .riddle-result {
-      margin-top: 8px;
-      font-size: 13px;
-      font-weight: 700;
-      min-height: 20px;
+    .bg-maze-content p {
+      color: rgba(232,234,246,0.75);
+      font-size: 16px;
+      max-width: 560px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
     }
 
-    .maze-controls {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      margin-top: 16px;
-      flex-wrap: wrap;
+    /* Touch D-pad for mobile maze play */
+    .dpad-wrap {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      margin: 16px auto 0;
     }
-    .maze-btn {
-      background: transparent;
-      border: 1.5px solid rgba(0,245,255,0.4);
+    @media (max-width: 768px) { .dpad-wrap { display: flex; } }
+    .dpad-row { display: flex; gap: 4px; }
+    .dpad-btn {
+      width: 52px; height: 52px;
+      background: rgba(0,245,255,0.1);
+      border: 1.5px solid rgba(0,245,255,0.3);
+      border-radius: 8px;
       color: var(--neon-cyan);
-      padding: 9px 20px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
+      font-size: 20px;
       cursor: pointer;
-      transition: all 0.3s;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.15s;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
     }
-    .maze-btn:hover { background: rgba(0,245,255,0.1); box-shadow: 0 0 14px rgba(0,245,255,0.3); }
-    .maze-btn.active { background: var(--neon-cyan); color: #000; }
+    .dpad-btn:active { background: rgba(0,245,255,0.3); transform: scale(0.92); }
+
+    .maze-mode-btns {
+      display: flex; gap: 10px; justify-content: center;
+      flex-wrap: wrap; margin-bottom: 12px;
+    }
+    .maze-mode-btn {
+      background: rgba(0,0,0,0.5);
+      border: 1.5px solid rgba(255,255,255,0.2);
+      color: rgba(232,234,246,0.7);
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      cursor: pointer; transition: all 0.25s;
+    }
+    .maze-mode-btn.active,
+    .maze-mode-btn:hover {
+      border-color: var(--neon-cyan);
+      color: var(--neon-cyan);
+      background: rgba(0,245,255,0.08);
+      box-shadow: 0 0 14px rgba(0,245,255,0.2);
+    }
+    .maze-score-strip {
+      display: flex; justify-content: center; gap: 32px;
+      margin: 0 auto 24px; flex-wrap: wrap;
+    }
+    .maze-score-item { text-align: center; }
+    .maze-score-num {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 36px; color: #fff; line-height: 1;
+    }
+    .maze-score-lbl {
+      font-size: 10px; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+
+    /* Mega maze (combined) */
+    #mega-maze-section {
+      position: relative; overflow: hidden;
+      background: #010614;
+    }
+    #mega-maze-section canvas {
+      display: block; width: 100%;
+    }
+    .mega-maze-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(180deg,
+        rgba(1,6,20,0.92) 0%,
+        rgba(1,6,20,0.4) 15%,
+        rgba(1,6,20,0.4) 85%,
+        rgba(1,6,20,0.92) 100%);
+      pointer-events: none;
+    }
+    .mega-maze-title {
+      position: absolute; top: 40px; left: 50%; transform: translateX(-50%);
+      z-index: 2; text-align: center; white-space: nowrap;
+    }
+    .mega-maze-title h2 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(32px, 4vw, 56px); color: #fff;
+    }
+    .mega-maze-title h2 span { color: var(--neon-yellow); }
+
+    /* ── RIDDLE PANEL ── */
+    .riddle-panel {
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,229,0,0.25);
+      border-radius: 12px;
+      padding: 24px 28px;
+      max-width: 480px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .riddle-panel h4 {
+      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--neon-yellow); font-weight: 700; margin-bottom: 10px;
+    }
+    .riddle-panel p {
+      font-size: 15px; color: rgba(232,234,246,0.85);
+      line-height: 1.6; font-style: italic; margin-bottom: 14px;
+    }
+    .riddle-row { display: flex; gap: 8px; }
+    .riddle-inp {
+      flex: 1; background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,229,0,0.3);
+      border-radius: 6px; padding: 10px 14px;
+      color: #fff; font-family: 'Outfit', sans-serif;
+      font-size: 14px; outline: none;
+    }
+    .riddle-inp:focus { border-color: var(--neon-yellow); }
+    .riddle-go {
+      background: var(--neon-yellow); color: #000;
+      border: none; border-radius: 6px;
+      padding: 10px 18px; font-size: 13px;
+      font-weight: 800; cursor: pointer; transition: all 0.25s;
+      white-space: nowrap;
+    }
+    .riddle-go:hover { box-shadow: 0 0 20px rgba(255,229,0,0.5); }
+    .riddle-fb { margin-top: 8px; font-size: 13px; font-weight: 700; min-height: 18px; }
 
     /* ============ FAQ ============ */
     #faq-section {
@@ -2380,284 +2384,130 @@
   </section>
 
 
-  <!-- ============ MAZE SECTION 1 — NEON WORM DEMO ============ -->
-  <div class="slant-divider" style="background:#030510;">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="0,60 1440,0 1440,60" fill="#030510" />
-    </svg>
-  </div>
-  <section class="maze-section maze-section-1" style="--maze-accent:var(--neon-cyan);">
-    <div class="maze-wrap">
-      <div class="maze-header fade-in">
-        <div class="section-label" style="color:var(--neon-cyan);">Interactive Experience</div>
-        <h2>THE <span style="color:var(--neon-cyan);">NEON MAZE</span></h2>
-        <p>Watch the AI worm navigate. Or take control yourself. Solve the riddle to unlock the next level.</p>
+
+  <!-- ======================================================= -->
+  <!-- BG MAZE 1 — CYAN WORM — after credentials/philosophy    -->
+  <!-- ======================================================= -->
+  <section class="bg-maze-section" style="background:#010a1e;">
+    <div class="bg-maze-overlay" style="background:linear-gradient(180deg,rgba(1,10,30,0.88)0%,rgba(1,10,30,0.5)40%,rgba(1,10,30,0.5)60%,rgba(1,10,30,0.88)100%);"></div>
+    <canvas id="bgMaze1" class="maze-bg"></canvas>
+    <div class="bg-maze-content fade-in">
+      <div class="section-label" style="color:var(--neon-cyan);">Navigate the Unknown</div>
+      <h2>EVERY DEAD END<br/><span style="color:var(--neon-cyan);">IS A REDIRECT</span></h2>
+      <p>In business and in life — the path is never a straight line. The winners are the ones who keep moving.</p>
+      <div class="maze-mode-btns">
+        <button class="maze-mode-btn active" id="bg1-ai-btn" onclick="bgMaze1.setAI()">🤖 Watch AI Navigate</button>
+        <button class="maze-mode-btn" id="bg1-play-btn" onclick="bgMaze1.setPlayer()">🕹️ Take Control</button>
+        <button class="maze-mode-btn" onclick="bgMaze1.reset()">↺ New Maze</button>
       </div>
-      <div class="maze-canvas-wrap">
-        <div class="maze-canvas-container">
-          <canvas id="maze-canvas-1" width="560" height="480"></canvas>
-          <div class="maze-controls">
-            <button class="maze-btn active" id="maze1-auto-btn" onclick="maze1ToggleAuto()">🤖 AI Mode</button>
-            <button class="maze-btn" id="maze1-play-btn" onclick="maze1PlayerMode()">🕹️ Play Mode</button>
-            <button class="maze-btn" onclick="maze1Reset()">↺ Reset</button>
-          </div>
-          <div style="text-align:center;margin-top:10px;font-size:12px;color:var(--text-muted);" id="maze1-hint">
-            Arrow keys / WASD to move in Play Mode
-          </div>
+      <div class="maze-score-strip">
+        <div class="maze-score-item"><div class="maze-score-num" id="bg1-moves">0</div><div class="maze-score-lbl">Moves</div></div>
+        <div class="maze-score-item"><div class="maze-score-num" id="bg1-solved">0</div><div class="maze-score-lbl">Solved</div></div>
+        <div class="maze-score-item"><div class="maze-score-num" id="bg1-status" style="font-size:16px;color:var(--neon-cyan);padding-top:8px;">AI RUNNING</div><div class="maze-score-lbl">Status</div></div>
+      </div>
+      <div class="dpad-wrap" id="dpad1">
+        <div class="dpad-row"><button class="dpad-btn" ontouchstart="bgMaze1.move(-1,0)">▲</button></div>
+        <div class="dpad-row">
+          <button class="dpad-btn" ontouchstart="bgMaze1.move(0,-1)">◀</button>
+          <button class="dpad-btn" style="opacity:0.2;pointer-events:none;">·</button>
+          <button class="dpad-btn" ontouchstart="bgMaze1.move(0,1)">▶</button>
         </div>
-        <div class="maze-sidebar fade-in-right">
-          <div class="maze-stat">
-            <div class="maze-stat-label">Level</div>
-            <div class="maze-stat-val" id="maze1-level">1</div>
-          </div>
-          <div class="maze-stat">
-            <div class="maze-stat-label">Moves</div>
-            <div class="maze-stat-val" id="maze1-moves">0</div>
-          </div>
-          <div class="maze-stat">
-            <div class="maze-stat-label">Status</div>
-            <div class="maze-stat-val" id="maze1-status" style="font-size:16px;color:var(--neon-cyan);">AI SOLVING</div>
-          </div>
-          <div class="maze-riddle-box">
-            <h4>🧩 Riddle to Unlock Level 2</h4>
-            <p>"I have cities, but no houses live there. I have mountains, but no trees grow. I have water, but no fish swim. I have roads, but no cars drive. What am I?"</p>
-            <input type="text" class="riddle-input" id="riddle1-input" placeholder="Your answer..." />
-            <button class="riddle-submit" onclick="checkRiddle1()">Submit Answer</button>
-            <div class="riddle-result" id="riddle1-result"></div>
-          </div>
-        </div>
+        <div class="dpad-row"><button class="dpad-btn" ontouchstart="bgMaze1.move(1,0)">▼</button></div>
       </div>
     </div>
   </section>
 
-  <!-- ============ MAZE SECTION 2 — ROTATING PUZZLE ============ -->
-  <div class="slant-divider" style="background:#000d20;">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="0,0 1440,60 0,60" fill="#08001a" />
-    </svg>
-  </div>
-  <section class="maze-section maze-section-2" style="--maze-accent:var(--neon-pink);">
-    <div class="maze-wrap">
-      <div class="maze-header fade-in">
-        <div class="section-label" style="color:var(--neon-pink);">Level 2 — Shifting Walls</div>
-        <h2>THE <span style="color:var(--neon-pink);">SHIFTING</span> MAZE</h2>
-        <p>Walls rotate every 8 seconds. Adapt or get trapped. Solve the riddle to unlock the final level.</p>
+  <!-- ======================================================= -->
+  <!-- BG MAZE 2 — PINK SHIFTING MAZE — mid page              -->
+  <!-- ======================================================= -->
+  <section class="bg-maze-section" style="background:#0d0018;min-height:650px;">
+    <div class="bg-maze-overlay" style="background:linear-gradient(180deg,rgba(13,0,24,0.88)0%,rgba(13,0,24,0.45)40%,rgba(13,0,24,0.45)60%,rgba(13,0,24,0.88)100%);"></div>
+    <canvas id="bgMaze2" class="maze-bg"></canvas>
+    <div class="bg-maze-content fade-in">
+      <div class="section-label" style="color:var(--neon-pink);">Shifting Walls · Rotating Paths</div>
+      <h2>THE MAZE <span style="color:var(--neon-pink);">SHIFTS</span><br/>SO MUST YOU</h2>
+      <p>Markets change overnight. Algorithms update. The rules rotate. Stay adaptable — or get trapped.</p>
+      <div class="maze-mode-btns">
+        <button class="maze-mode-btn active" id="bg2-ai-btn" onclick="bgMaze2.setAI()" style="border-color:rgba(255,45,120,0.4);color:var(--neon-pink);">🤖 Watch AI</button>
+        <button class="maze-mode-btn" id="bg2-play-btn" onclick="bgMaze2.setPlayer()" style="border-color:rgba(255,45,120,0.4);color:var(--neon-pink);">🕹️ Play</button>
+        <button class="maze-mode-btn" onclick="bgMaze2.shiftNow()" style="border-color:rgba(255,45,120,0.4);color:var(--neon-pink);">⟳ Shift Now</button>
       </div>
-      <div class="maze-canvas-wrap">
-        <div class="maze-canvas-container">
-          <canvas id="maze-canvas-2" width="560" height="480"></canvas>
-          <div class="maze-controls">
-            <button class="maze-btn active" id="maze2-auto-btn" onclick="maze2ToggleAuto()">🤖 AI Mode</button>
-            <button class="maze-btn" id="maze2-play-btn" onclick="maze2PlayerMode()">🕹️ Play Mode</button>
-            <button class="maze-btn" onclick="maze2Reset()">↺ Reset</button>
-            <button class="maze-btn" id="maze2-rotate-btn" onclick="maze2RotateNow()" style="border-color:var(--neon-pink);color:var(--neon-pink);">⟳ Rotate Now</button>
-          </div>
+      <div class="maze-score-strip">
+        <div class="maze-score-item"><div class="maze-score-num" id="bg2-countdown" style="color:var(--neon-pink);">10</div><div class="maze-score-lbl">Shift In (s)</div></div>
+        <div class="maze-score-item"><div class="maze-score-num" id="bg2-shifts">0</div><div class="maze-score-lbl">Shifts</div></div>
+        <div class="maze-score-item"><div class="maze-score-num" id="bg2-solved">0</div><div class="maze-score-lbl">Solved</div></div>
+      </div>
+      <div class="riddle-panel" style="border-color:rgba(255,45,120,0.25);margin-top:8px;">
+        <h4 style="color:var(--neon-pink);">🧩 Riddle — Prove Your Mind</h4>
+        <p>"The more you take, the more you leave behind. What am I?"</p>
+        <div class="riddle-row">
+          <input type="text" class="riddle-inp" id="r2-inp" placeholder="Answer..." style="border-color:rgba(255,45,120,0.3);" />
+          <button class="riddle-go" onclick="checkR2()" style="background:var(--neon-pink);color:#fff;">→</button>
         </div>
-        <div class="maze-sidebar fade-in-right">
-          <div class="maze-stat">
-            <div class="maze-stat-label">Rotation In</div>
-            <div class="maze-stat-val" id="maze2-timer" style="color:var(--neon-pink);">8s</div>
-          </div>
-          <div class="maze-stat">
-            <div class="maze-stat-label">Rotations</div>
-            <div class="maze-stat-val" id="maze2-rotations">0</div>
-          </div>
-          <div class="maze-stat">
-            <div class="maze-stat-label">Status</div>
-            <div class="maze-stat-val" id="maze2-status" style="font-size:16px;color:var(--neon-pink);">AI SOLVING</div>
-          </div>
-          <div class="maze-riddle-box" style="border-color:rgba(255,45,120,0.3);background:rgba(255,45,120,0.05);">
-            <h4 style="color:var(--neon-pink);">🧩 Riddle to Unlock Level 3</h4>
-            <p>"The more you take, the more you leave behind. What am I?"</p>
-            <input type="text" class="riddle-input" id="riddle2-input" placeholder="Your answer..." style="border-color:rgba(255,45,120,0.3);" />
-            <button class="riddle-submit" onclick="checkRiddle2()" style="background:var(--neon-pink);">Submit Answer</button>
-            <div class="riddle-result" id="riddle2-result"></div>
-          </div>
+        <div class="riddle-fb" id="r2-fb"></div>
+      </div>
+      <div class="dpad-wrap" id="dpad2">
+        <div class="dpad-row"><button class="dpad-btn" style="border-color:rgba(255,45,120,0.4);color:var(--neon-pink);" ontouchstart="bgMaze2.move(-1,0)">▲</button></div>
+        <div class="dpad-row">
+          <button class="dpad-btn" style="border-color:rgba(255,45,120,0.4);color:var(--neon-pink);" ontouchstart="bgMaze2.move(0,-1)">◀</button>
+          <button class="dpad-btn" style="opacity:0.2;pointer-events:none;">·</button>
+          <button class="dpad-btn" style="border-color:rgba(255,45,120,0.4);color:var(--neon-pink);" ontouchstart="bgMaze2.move(0,1)">▶</button>
         </div>
+        <div class="dpad-row"><button class="dpad-btn" style="border-color:rgba(255,45,120,0.4);color:var(--neon-pink);" ontouchstart="bgMaze2.move(1,0)">▼</button></div>
       </div>
     </div>
   </section>
 
-  <!-- ============ MAZE SECTION 3 — SPEED MAZE ============ -->
-  <div class="slant-divider" style="background:#08001a;">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="0,0 1440,0 1440,60" fill="#000820" />
-    </svg>
-  </div>
-  <section class="maze-section maze-section-3" style="--maze-accent:var(--neon-green);">
-    <div class="maze-wrap">
-      <div class="maze-header fade-in">
-        <div class="section-label" style="color:var(--neon-green);">Level 3 — Speed Run</div>
-        <h2>THE <span style="color:var(--neon-green);">LIGHTNING</span> MAZE</h2>
-        <p>Race against time. Multiple paths. Only one leads out fastest. The AI worm learns the optimal route.</p>
+  <!-- ======================================================= -->
+  <!-- BG MAZE 3 — GOLD SPEED MAZE — lower page               -->
+  <!-- ======================================================= -->
+  <section class="bg-maze-section" style="background:#0a0700;min-height:620px;">
+    <div class="bg-maze-overlay" style="background:linear-gradient(180deg,rgba(10,7,0,0.9)0%,rgba(10,7,0,0.45)40%,rgba(10,7,0,0.45)60%,rgba(10,7,0,0.9)100%);"></div>
+    <canvas id="bgMaze3" class="maze-bg"></canvas>
+    <div class="bg-maze-content fade-in">
+      <div class="section-label" style="color:var(--neon-yellow);">Speed. Precision. Execution.</div>
+      <h2>FIND THE <span style="color:var(--neon-yellow);">FASTEST</span><br/>PATH FORWARD</h2>
+      <p>Speed matters. In a maze and in business. The fastest path to results isn't always obvious — but it's always findable.</p>
+      <div class="maze-mode-btns">
+        <button class="maze-mode-btn active" id="bg3-ai-btn" onclick="bgMaze3.setAI()" style="border-color:rgba(255,229,0,0.4);color:var(--neon-yellow);">🤖 AI Speed Run</button>
+        <button class="maze-mode-btn" id="bg3-play-btn" onclick="bgMaze3.setPlayer()" style="border-color:rgba(255,229,0,0.4);color:var(--neon-yellow);">🕹️ Beat the AI</button>
       </div>
-      <div class="maze-canvas-wrap">
-        <div class="maze-canvas-container">
-          <canvas id="maze-canvas-3" width="560" height="480"></canvas>
-          <div class="maze-controls">
-            <button class="maze-btn active" id="maze3-auto-btn" onclick="maze3ToggleAuto()" style="border-color:var(--neon-green);color:var(--neon-green);">🤖 AI Mode</button>
-            <button class="maze-btn" id="maze3-play-btn" onclick="maze3PlayerMode()" style="border-color:var(--neon-green);color:var(--neon-green);">🕹️ Play Mode</button>
-            <button class="maze-btn" onclick="maze3Reset()" style="border-color:var(--neon-green);color:var(--neon-green);">↺ Reset</button>
-          </div>
+      <div class="maze-score-strip">
+        <div class="maze-score-item"><div class="maze-score-num" id="bg3-time" style="color:var(--neon-yellow);">0.0s</div><div class="maze-score-lbl">Time</div></div>
+        <div class="maze-score-item"><div class="maze-score-num" id="bg3-best">--</div><div class="maze-score-lbl">Best</div></div>
+        <div class="maze-score-item"><div class="maze-score-num" id="bg3-solved">0</div><div class="maze-score-lbl">Solved</div></div>
+      </div>
+      <div class="riddle-panel" style="border-color:rgba(255,229,0,0.25);margin-top:8px;">
+        <h4>🏆 Master Riddle</h4>
+        <p>"I speak without a mouth and hear without ears. I have no body, but come alive with the wind."</p>
+        <div class="riddle-row">
+          <input type="text" class="riddle-inp" id="r3-inp" placeholder="Answer..." />
+          <button class="riddle-go" onclick="checkR3()">→</button>
         </div>
-        <div class="maze-sidebar fade-in-right">
-          <div class="maze-stat">
-            <div class="maze-stat-label">Time</div>
-            <div class="maze-stat-val" id="maze3-time" style="color:var(--neon-green);">0.0s</div>
-          </div>
-          <div class="maze-stat">
-            <div class="maze-stat-label">Best Time</div>
-            <div class="maze-stat-val" id="maze3-best" style="color:var(--neon-green);">--</div>
-          </div>
-          <div class="maze-stat">
-            <div class="maze-stat-label">Paths Tried</div>
-            <div class="maze-stat-val" id="maze3-paths">0</div>
-          </div>
-          <div class="maze-riddle-box" style="border-color:rgba(57,255,20,0.3);background:rgba(57,255,20,0.04);">
-            <h4 style="color:var(--neon-green);">🧩 Final Riddle — Master Challenge</h4>
-            <p>"I speak without a mouth and hear without ears. I have no body, but I come alive with the wind. What am I?"</p>
-            <input type="text" class="riddle-input" id="riddle3-input" placeholder="Your answer..." style="border-color:rgba(57,255,20,0.3);" />
-            <button class="riddle-submit" onclick="checkRiddle3()" style="background:var(--neon-green);color:#000;">Submit Answer</button>
-            <div class="riddle-result" id="riddle3-result"></div>
-          </div>
+        <div class="riddle-fb" id="r3-fb"></div>
+      </div>
+      <div class="dpad-wrap" id="dpad3">
+        <div class="dpad-row"><button class="dpad-btn" style="border-color:rgba(255,229,0,0.4);color:var(--neon-yellow);" ontouchstart="bgMaze3.move(-1,0)">▲</button></div>
+        <div class="dpad-row">
+          <button class="dpad-btn" style="border-color:rgba(255,229,0,0.4);color:var(--neon-yellow);" ontouchstart="bgMaze3.move(0,-1)">◀</button>
+          <button class="dpad-btn" style="opacity:0.2;pointer-events:none;">·</button>
+          <button class="dpad-btn" style="border-color:rgba(255,229,0,0.4);color:var(--neon-yellow);" ontouchstart="bgMaze3.move(0,1)">▶</button>
         </div>
+        <div class="dpad-row"><button class="dpad-btn" style="border-color:rgba(255,229,0,0.4);color:var(--neon-yellow);" ontouchstart="bgMaze3.move(1,0)">▼</button></div>
       </div>
     </div>
   </section>
 
-  <!-- ============ FAQ SECTION ============ -->
-  <div class="slant-divider" style="background:#000820;">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="0,60 1440,0 0,0" fill="#030510" />
-    </svg>
-  </div>
-  <section id="faq-section">
-    <div class="faq-wrap">
-      <div class="section-header fade-in">
-        <div class="section-label" style="color:var(--neon-cyan);">Got Questions?</div>
-        <h2 style="font-family:'Bebas Neue',cursive;font-size:clamp(42px,5vw,64px);color:#fff;">FREQUENTLY ASKED<br /><span style="color:var(--neon-cyan);">QUESTIONS</span></h2>
-      </div>
-
-      <div class="faq-category">About Zach & His Work</div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>Who is Zachary Tye Wennstedt and what does he do?</span>
-          <i class="faq-icon">+</i>
-        </button>
-        <div class="faq-answer"><p>Zachary Tye Wennstedt is a Colorado-based <strong>CEO, digital marketing expert, SEO/AIO consultant, full-stack developer, and business strategist</strong>. He is the founder of Eye To Ad Media, Search Converts, and Aging Safely Baths. With over a decade of experience building first-page Google rankings, multi-million dollar sales teams, and conversion-optimized web properties, Zach is available for consulting, executive advisory, and digital marketing partnerships.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>What is AIO and why does it matter for my business?</span>
-          <i class="faq-icon">+</i>
-        </button>
-        <div class="faq-answer"><p><strong>AIO stands for AI/Agentic Search Optimization</strong> — the practice of optimizing your content to appear in AI-generated answers from ChatGPT, Claude, Perplexity, Google AI Overviews, and other AI engines. As more people search through AI assistants instead of traditional search, businesses that aren't optimized for AI answers lose massive visibility. Zach is one of the few consultants actively building and ranking for AIO at scale.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>What is Generative Engine Optimization (GEO)?</span>
-          <i class="faq-icon">+</i>
-        </button>
-        <div class="faq-answer"><p><strong>Generative Engine Optimization (GEO)</strong> is the next evolution beyond SEO. It involves structuring your content, schema markup, and entity relationships so that AI language models cite your business, your name, or your brand when answering relevant questions. Zach has achieved GEO citations for multiple brands in competitive verticals — something most agencies don't even know exists yet.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>How does Zachary Tye Wennstedt approach lead generation?</span>
-          <i class="faq-icon">+</i>
-        </button>
-        <div class="faq-answer"><p>Zach builds <strong>end-to-end lead generation systems</strong> — not just traffic. That means SEO-driven organic discovery, PPC campaigns for immediate traffic, conversion-optimized landing pages, spam-protected contact forms, CRM integration, and nurture sequences. Every element is designed to turn browsers into buyers. He's deployed these systems across industries from home improvement to real estate to medical services.</p></div>
-      </div>
-
-      <div class="faq-category">Consulting & Hiring</div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>How do I hire Zachary Tye Wennstedt as a marketing consultant?</span>
-          <i class="faq-icon">+</i>
-        </button>
-        <div class="faq-answer"><p>It's simple. Fill out the consulting form on this page or email <strong>zach@eyetoad.com</strong> directly. Describe what you're working on, where you're stuck, and what you're trying to achieve. Zach responds personally and will schedule a discovery call to assess fit. He takes on select clients to ensure quality — so the earlier you reach out, the better.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>What types of companies does Zach consult for?</span>
-          <i class="faq-icon">+</i>
-        </button>
-        <div class="faq-answer"><p>Zach works with <strong>startups, SMBs, and large corporations</strong> alike. He's particularly effective for companies that need to build or rebuild their digital marketing foundation — SEO, web strategy, lead generation, and sales systems. Industries he's worked in include home services, real estate, medical/aesthetics, restaurants, legal, and e-commerce. He also consults for agencies looking to expand their service offerings.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>Can Zach serve as a Fractional CMO for my company?</span>
-          <i class="faq-icon">+</i>
-        </button>
-        <div class="faq-answer"><p>Yes. Zach is available as a <strong>Fractional CMO (Chief Marketing Officer)</strong> for companies that need executive-level marketing leadership without a full-time hire. This includes building your marketing strategy, managing agencies and vendors, analyzing KPIs, overseeing content and SEO, and driving revenue growth — all at a fraction of what a full-time CMO costs.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>Does Zachary Tye Wennstedt work with clients outside of Colorado?</span>
-          <i class="faq-icon">+</i>
-        </button>
-        <div class="faq-answer"><p>Absolutely. While Zach is based in Colorado, he works with clients <strong>across the United States and internationally</strong>, including in the Dominican Republic, Mexico, and beyond. All consulting can be done remotely via video call, with on-site visits available for larger engagements.</p></div>
-      </div>
-
-      <div class="faq-category">SEO, Rankings & Digital Strategy</div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>How does Zach get first-page Google rankings?</span>
-          <i class="faq-icon">+</i>
-        </button>
-        <div class="faq-answer"><p>Through a combination of <strong>technical SEO, content authority, schema markup, internal linking, and conversion optimization</strong>. Zach doesn't use shortcuts or black-hat tactics. He builds topical authority through comprehensive content strategies, optimizes page speed and Core Web Vitals, structures data for featured snippets, and builds entities that Google trusts. This approach produces durable, long-term rankings.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>What long-tail SEO keywords can you rank a website for?</span>
-          <i class="faq-icon">+</i>
-        </button>
-        <div class="faq-answer"><p>Long-tail keyword strategy is one of Zach's specialties. Examples of rankable long-tail terms include: <strong>hire digital marketing consultant Colorado, conversion rate optimization expert for hire, fractional CMO for small business, lead generation strategy consultant, AI search optimization expert, sales team building consultant, generative engine optimization expert</strong>, and many more. These terms have strong commercial intent and lower competition than generic terms.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>What is conversion rate optimization and why does it matter?</span>
-          <i class="faq-icon">+</i>
-        </button>
-        <div class="faq-answer"><p><strong>Conversion Rate Optimization (CRO)</strong> is the process of improving your website so more visitors take action — call, fill out a form, buy, sign up. Most businesses obsess over traffic while ignoring conversions. Doubling your conversion rate from 2% to 4% is the same as doubling your traffic — for zero extra ad spend. Zach applies CRO principles to every website and funnel he builds.</p></div>
-      </div>
-
-      <div class="faq-category">Sales Teams & Business Building</div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>Has Zachary Tye Wennstedt built national sales teams?</span>
-          <i class="faq-icon">+</i>
-        </button>
-        <div class="faq-answer"><p>Yes. Zach has built and managed <strong>multi-million dollar national sales teams</strong> from the ground up. This includes recruiting, onboarding systems, sales scripts, CRM setup, KPI dashboards, call tracking, performance coaching, and compensation structure design. He understands what makes sales teams fail — and exactly how to fix it.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>What KPIs does Zach focus on when consulting for businesses?</span>
-          <i class="faq-icon">+</i>
-        </button>
-        <div class="faq-answer"><p>The KPIs that matter most: <strong>cost per lead (CPL), cost per acquisition (CPA), conversion rate by funnel stage, lead-to-close ratio, customer lifetime value (CLV), organic search traffic and ranking positions, click-through rate (CTR), and revenue per rep</strong>. Zach builds custom dashboards so leadership can see exactly what's working and where to invest next.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>How quickly can Zach deliver results for a business?</span>
-          <i class="faq-icon">+</i>
-        </button>
-        <div class="faq-answer"><p>It depends on the channel. <strong>PPC and paid ads</strong> can generate leads within days of launch. <strong>SEO and AIO</strong> typically show meaningful movement in 60–120 days, with compounding returns over time. <strong>Sales team development</strong> usually shows measurable revenue improvement within 30–60 days of implementing new systems and training. Zach is transparent about timelines from day one.</p></div>
-      </div>
-
+  <!-- ======================================================= -->
+  <!-- MEGA MAZE — all 3 combined, full depth                  -->
+  <!-- ======================================================= -->
+  <section id="mega-maze-section">
+    <canvas id="megaMazeCanvas"></canvas>
+    <div class="mega-maze-overlay"></div>
+    <div class="mega-maze-title fade-in">
+      <div class="section-label" style="color:var(--neon-yellow);">The Full Journey</div>
+      <h2>THE <span>COMPLETE</span> MAZE</h2>
+      <p style="color:var(--text-muted);font-size:14px;margin-top:6px;">Three beams. One path. All connected.</p>
     </div>
   </section>
 
@@ -3496,554 +3346,473 @@
   </script>
 
 
-
-  <!-- ============ MAZE ENGINE ============ -->
+  <!-- ============ BACKGROUND MAZE ENGINE ============ -->
   <script>
-  // ================================================================
-  // MAZE ENGINE — shared utilities
-  // ================================================================
-  const CELL = 32;
+  (function(){
+  'use strict';
 
-  function buildMaze(cols, rows, seed) {
-    // Wilson's algorithm for perfect maze generation
-    const grid = Array.from({length: rows}, () => Array(cols).fill(0));
-    // Walls: bit flags N=1 E=2 S=4 W=8
-    const walls = Array.from({length: rows}, () => Array(cols).fill(15));
-    const visited = Array.from({length: rows}, () => Array(cols).fill(false));
-    let rng = seed || 42;
-    function rand(n) { rng = (rng * 1664525 + 1013904223) & 0xffffffff; return Math.abs(rng) % n; }
-    const dirs = [{r:-1,c:0,b:1,o:4},{r:0,c:1,b:2,o:8},{r:1,c:0,b:4,o:1},{r:0,c:-1,b:8,o:2}];
-    function inBounds(r,c) { return r>=0&&r<rows&&c>=0&&c<cols; }
-    function carve(r1,c1,r2,c2,d) {
-      walls[r1][c1] &= ~d.b;
-      walls[r2][c2] &= ~d.o;
-    }
-    // Recursive backtracker
-    visited[0][0] = true;
-    const stack = [{r:0,c:0}];
-    while(stack.length) {
-      const cur = stack[stack.length-1];
-      const shuffled = [...dirs].sort(()=>rand(3)-1);
-      let moved = false;
-      for(const d of shuffled) {
-        const nr=cur.r+d.r, nc=cur.c+d.c;
-        if(inBounds(nr,nc)&&!visited[nr][nc]) {
-          visited[nr][nc]=true;
-          carve(cur.r,cur.c,nr,nc,d);
-          stack.push({r:nr,c:nc});
-          moved=true; break;
+  // ──────────────────────────────────────────────
+  // CORE MAZE GENERATOR (recursive backtracker)
+  // ──────────────────────────────────────────────
+  function genMaze(cols, rows, seed) {
+    let s = (seed || Date.now()) >>> 0;
+    function rnd(n){ s=Math.imul(s^s>>>13,1540483477)^s>>>15; return (s>>>0)%n; }
+    // walls[r][c] bits: N=1 E=2 S=4 W=8
+    const W = Array.from({length:rows},()=>new Uint8Array(cols).fill(15));
+    const vis = Array.from({length:rows},()=>new Uint8Array(cols));
+    const D=[{r:-1,c:0,b:1,o:4},{r:0,c:1,b:2,o:8},{r:1,c:0,b:4,o:1},{r:0,c:-1,b:8,o:2}];
+    function ok(r,c){return r>=0&&r<rows&&c>=0&&c<cols;}
+    vis[0][0]=1;
+    const stk=[{r:0,c:0}];
+    while(stk.length){
+      const cur=stk[stk.length-1];
+      const sh=[...D].sort(()=>rnd(3)-1);
+      let moved=false;
+      for(const d of sh){
+        const nr=cur.r+d.r,nc=cur.c+d.c;
+        if(ok(nr,nc)&&!vis[nr][nc]){
+          vis[nr][nc]=1;
+          W[cur.r][cur.c]&=~d.b;
+          W[nr][nc]&=~d.o;
+          stk.push({r:nr,c:nc});
+          moved=true;break;
         }
       }
-      if(!moved) stack.pop();
+      if(!moved)stk.pop();
     }
-    return walls;
+    return W;
   }
 
-  function drawMaze(ctx, walls, cols, rows, offsetX, offsetY, color) {
-    ctx.strokeStyle = color || '#00F5FF';
-    ctx.lineWidth = 2;
-    for(let r=0;r<rows;r++) {
-      for(let c=0;c<cols;c++) {
-        const x=offsetX+c*CELL, y=offsetY+r*CELL;
-        if(walls[r][c]&1){ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+CELL,y);ctx.stroke();}
-        if(walls[r][c]&2){ctx.beginPath();ctx.moveTo(x+CELL,y);ctx.lineTo(x+CELL,y+CELL);ctx.stroke();}
-        if(walls[r][c]&4){ctx.beginPath();ctx.moveTo(x,y+CELL);ctx.lineTo(x+CELL,y+CELL);ctx.stroke();}
-        if(walls[r][c]&8){ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x,y+CELL);ctx.stroke();}
-      }
-    }
-  }
-
-  // BFS solver — returns path array [{r,c}]
-  function solveMaze(walls, cols, rows, startR, startC, endR, endC) {
-    const visited = Array.from({length:rows},()=>Array(cols).fill(false));
-    const parent = Array.from({length:rows},()=>Array(cols).fill(null));
-    const dirs = [{r:-1,c:0,b:1},{r:0,c:1,b:2},{r:1,c:0,b:4},{r:0,c:-1,b:8}];
-    const q = [{r:startR,c:startC}];
-    visited[startR][startC]=true;
-    while(q.length) {
+  // BFS solver → path [{r,c}]
+  function solveBFS(W,cols,rows,sr,sc,er,ec){
+    const vis=Array.from({length:rows},()=>new Uint8Array(cols));
+    const par=Array.from({length:rows},()=>Array(cols).fill(null));
+    const D=[{r:-1,c:0,b:1},{r:0,c:1,b:2},{r:1,c:0,b:4},{r:0,c:-1,b:8}];
+    vis[sr][sc]=1;
+    const q=[{r:sr,c:sc}];
+    while(q.length){
       const cur=q.shift();
-      if(cur.r===endR&&cur.c===endC) {
-        const path=[];
-        let node=cur;
-        while(node){path.unshift(node);node=parent[node.r][node.c];}
+      if(cur.r===er&&cur.c===ec){
+        const path=[];let n=cur;
+        while(n){path.unshift(n);n=par[n.r][n.c];}
         return path;
       }
-      for(const d of dirs) {
+      for(const d of D){
         const nr=cur.r+d.r,nc=cur.c+d.c;
-        if(nr>=0&&nr<rows&&nc>=0&&nc<cols&&!visited[nr][nc]&&!(walls[cur.r][cur.c]&d.b)) {
-          visited[nr][nc]=true;
-          parent[nr][nc]=cur;
-          q.push({r:nr,c:nc});
+        if(nr>=0&&nr<rows&&nc>=0&&nc<cols&&!vis[nr][nc]&&!(W[cur.r][cur.c]&d.b)){
+          vis[nr][nc]=1;par[nr][nc]=cur;q.push({r:nr,c:nc});
         }
       }
     }
     return [];
   }
 
-  // Draw neon worm with trail
-  function drawWorm(ctx, trail, color, glowColor, offsetX, offsetY) {
-    if(!trail.length) return;
-    for(let i=0;i<trail.length;i++) {
-      const t=trail[i];
-      const alpha=0.15+(i/trail.length)*0.85;
-      const size=3+(i/trail.length)*6;
-      ctx.beginPath();
-      ctx.arc(offsetX+t.c*CELL+CELL/2, offsetY+t.r*CELL+CELL/2, size, 0, Math.PI*2);
-      ctx.fillStyle=glowColor||color;
-      ctx.globalAlpha=alpha*0.3;
-      ctx.fill();
-      ctx.globalAlpha=1;
+  // ──────────────────────────────────────────────
+  // DRAW UTILITIES
+  // ──────────────────────────────────────────────
+  function drawWalls(ctx,W,cols,rows,ox,oy,cs,color,glow){
+    ctx.save();
+    ctx.strokeStyle=color;
+    ctx.lineWidth=1.5;
+    ctx.shadowColor=glow||color;
+    ctx.shadowBlur=4;
+    for(let r=0;r<rows;r++){
+      for(let c=0;c<cols;c++){
+        const x=ox+c*cs,y=oy+r*cs;
+        if(W[r][c]&1){ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+cs,y);ctx.stroke();}
+        if(W[r][c]&2){ctx.beginPath();ctx.moveTo(x+cs,y);ctx.lineTo(x+cs,y+cs);ctx.stroke();}
+        if(W[r][c]&4){ctx.beginPath();ctx.moveTo(x,y+cs);ctx.lineTo(x+cs,y+cs);ctx.stroke();}
+        if(W[r][c]&8){ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x,y+cs);ctx.stroke();}
+      }
     }
-    // Head
-    const h=trail[trail.length-1];
-    ctx.beginPath();
-    ctx.arc(offsetX+h.c*CELL+CELL/2, offsetY+h.r*CELL+CELL/2, 8, 0, Math.PI*2);
-    ctx.fillStyle=color;
-    ctx.shadowColor=color;
-    ctx.shadowBlur=20;
-    ctx.fill();
-    ctx.shadowBlur=0;
-    // Eyes
-    ctx.fillStyle='#fff';
-    ctx.beginPath();
-    ctx.arc(offsetX+h.c*CELL+CELL/2+3, offsetY+h.r*CELL+CELL/2-2, 2, 0, Math.PI*2);
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(offsetX+h.c*CELL+CELL/2-3, offsetY+h.r*CELL+CELL/2-2, 2, 0, Math.PI*2);
-    ctx.fill();
+    ctx.restore();
   }
 
-  // ================================================================
-  // MAZE 1 — Classic neon worm
-  // ================================================================
-  (function() {
-    const canvas = document.getElementById('maze-canvas-1');
-    if(!canvas) return;
-    const ctx = canvas.getContext('2d');
-    const COLS=16, ROWS=13, OX=8, OY=8;
-    let walls=buildMaze(COLS,ROWS,12345);
-    let path=solveMaze(walls,COLS,ROWS,0,0,ROWS-1,COLS-1);
-    let pathIdx=0, trail=[], autoMode=true, playerPos={r:0,c:0};
-    let moves=0, level=1, solved=false, frameCount=0;
-    let deadEndFlash=null, deadEndTimer=0;
-    let stepDelay=0;
-
-    function reset() {
-      walls=buildMaze(COLS,ROWS,Date.now());
-      path=solveMaze(walls,COLS,ROWS,0,0,ROWS-1,COLS-1);
-      pathIdx=0; trail=[{r:0,c:0}]; moves=0; solved=false;
-      playerPos={r:0,c:0}; deadEndFlash=null;
-      document.getElementById('maze1-moves').textContent='0';
-      document.getElementById('maze1-status').textContent=autoMode?'AI SOLVING':'PLAYER';
+  function drawBeam(ctx,trail,ox,oy,cs,color,trailLen){
+    if(!trail.length)return;
+    const len=Math.min(trail.length,trailLen||28);
+    for(let i=trail.length-len;i<trail.length;i++){
+      if(i<0)continue;
+      const t=trail[i];
+      const frac=(i-(trail.length-len))/len;
+      const r2=cs*0.38*frac;
+      const x=ox+t.c*cs+cs/2, y=oy+t.r*cs+cs/2;
+      ctx.beginPath();
+      ctx.arc(x,y,Math.max(r2,1),0,Math.PI*2);
+      ctx.fillStyle=color;
+      ctx.globalAlpha=frac*0.6;
+      ctx.fill();
     }
-    reset();
+    ctx.globalAlpha=1;
+    // Glowing head
+    const h=trail[trail.length-1];
+    const hx=ox+h.c*cs+cs/2, hy=oy+h.r*cs+cs/2;
+    ctx.save();
+    ctx.shadowColor=color;ctx.shadowBlur=18;
+    ctx.beginPath();ctx.arc(hx,hy,cs*0.36,0,Math.PI*2);
+    ctx.fillStyle=color;ctx.fill();
+    ctx.shadowBlur=0;
+    // Sparkle
+    if(Math.random()<0.4){
+      ctx.strokeStyle='#fff';ctx.lineWidth=0.8;ctx.globalAlpha=0.5;
+      for(let a=0;a<4;a++){
+        const ang=a*Math.PI/2+(Date.now()*0.003);
+        ctx.beginPath();ctx.moveTo(hx,hy);
+        ctx.lineTo(hx+Math.cos(ang)*cs*0.55,hy+Math.sin(ang)*cs*0.55);
+        ctx.stroke();
+      }
+    }
+    ctx.restore();
+    ctx.globalAlpha=1;
+  }
 
-    window.maze1Reset=reset;
-    window.maze1ToggleAuto=function(){
-      autoMode=true;
-      document.getElementById('maze1-auto-btn').classList.add('active');
-      document.getElementById('maze1-play-btn').classList.remove('active');
-      document.getElementById('maze1-status').textContent='AI SOLVING';
-      reset();
-    };
-    window.maze1PlayerMode=function(){
-      autoMode=false;
-      document.getElementById('maze1-play-btn').classList.add('active');
-      document.getElementById('maze1-auto-btn').classList.remove('active');
-      document.getElementById('maze1-status').textContent='PLAYER';
-      reset();
-    };
+  // ──────────────────────────────────────────────
+  // BACKGROUND MAZE CONTROLLER
+  // ──────────────────────────────────────────────
+  function BgMaze(canvasId,opts){
+    const canvas=document.getElementById(canvasId);
+    if(!canvas)return;
+    const ctx=canvas.getContext('2d');
+    const O=Object.assign({
+      wallColor:'rgba(0,245,255,0.35)',
+      wallGlow:'rgba(0,245,255,0.15)',
+      beamColor:'#00F5FF',
+      bgColor:'rgba(1,10,30,0.04)',
+      cellSize:0, // auto
+      aiMoves: [0],  // counts
+      solvedCount: 0,
+      elMoves: null, elSolved: null, elStatus: null,
+      elCountdown: null, elShifts: null,
+      elTime: null, elBest: null,
+      shiftInterval: 10000,
+      speedMs: 55,
+    },opts);
 
-    function tryMove(dr,dc) {
-      if(autoMode||solved) return;
-      const dirs=[{r:-1,c:0,b:1},{r:0,c:1,b:2},{r:1,c:0,b:4},{r:0,c:-1,b:8}];
-      const d=dirs.find(x=>x.r===dr&&x.c===dc);
-      if(!d) return;
-      const nr=playerPos.r+dr, nc=playerPos.c+dc;
-      if(nr<0||nr>=ROWS||nc<0||nc>=COLS) return;
-      if(walls[playerPos.r][playerPos.c]&d.b) return;
+    let cols,rows,W,path,pathIdx,trail,aiMode,playerPos,solved,moveCount,solvedCount;
+    let shiftTimer=null,shiftSeconds=O.shiftInterval/1000,shiftCount=0;
+    let startTime=null,elapsed=0,bestTime=null,timerInterval=null;
+    let stepInterval=null;
+
+    function resize(){
+      const rect=canvas.parentElement.getBoundingClientRect();
+      const w=rect.width||window.innerWidth;
+      const h=canvas.parentElement.offsetHeight||600;
+      canvas.width=w; canvas.height=h;
+      const cs=O.cellSize||Math.max(18,Math.min(28,Math.floor(w/30)));
+      cols=Math.floor((w-4)/cs);
+      rows=Math.floor((h-4)/cs);
+      return cs;
+    }
+
+    function init(seed){
+      const cs=resize();
+      W=genMaze(cols,rows,seed||Date.now());
+      path=solveBFS(W,cols,rows,0,0,rows-1,cols-1);
+      pathIdx=0;trail=[];
+      playerPos={r:0,c:0};
+      solved=false;moveCount=0;
+      if(O.elMoves)O.elMoves.textContent='0';
+      if(O.elStatus)O.elStatus.textContent=aiMode?'AI RUNNING':'YOUR TURN';
+      if(startTime){clearInterval(timerInterval);startTime=null;}
+      if(aiMode&&O.elTime)O.elTime.textContent='--';
+    }
+
+    function startTimer(){
+      startTime=Date.now();
+      if(timerInterval)clearInterval(timerInterval);
+      timerInterval=setInterval(()=>{
+        elapsed=(Date.now()-startTime)/1000;
+        if(O.elTime)O.elTime.textContent=elapsed.toFixed(1)+'s';
+      },100);
+    }
+
+    function onSolve(){
+      solved=true;
+      solvedCount=(solvedCount||0)+1;
+      if(O.elSolved)O.elSolved.textContent=solvedCount;
+      if(O.elStatus)O.elStatus.textContent=aiMode?'✓ SOLVED!':'✓ YOU WIN!';
+      if(timerInterval){
+        clearInterval(timerInterval);
+        const t=(Date.now()-startTime)/1000;
+        if(!bestTime||t<bestTime){bestTime=t;if(O.elBest)O.elBest.textContent=bestTime.toFixed(1)+'s';}
+      }
+      setTimeout(()=>init(),2000);
+    }
+
+    // AI step
+    function stepAI(){
+      if(!aiMode||solved)return;
+      if(pathIdx<path.length){
+        trail.push({...path[pathIdx]});
+        if(trail.length>32)trail.shift();
+        pathIdx++;
+        moveCount++;
+        if(O.elMoves)O.elMoves.textContent=moveCount;
+        if(pathIdx>=path.length)onSolve();
+      }
+    }
+
+    function startAIInterval(){
+      if(stepInterval)clearInterval(stepInterval);
+      stepInterval=setInterval(stepAI,O.speedMs);
+    }
+
+    // Player move
+    this.move=function(dr,dc){
+      if(aiMode||solved)return;
+      const D=[{r:-1,c:0,b:1},{r:0,c:1,b:2},{r:1,c:0,b:4},{r:0,c:-1,b:8}];
+      const d=D.find(x=>x.r===dr&&x.c===dc);
+      if(!d)return;
+      const nr=playerPos.r+dr,nc=playerPos.c+dc;
+      if(nr<0||nr>=rows||nc<0||nc>=cols)return;
+      if(W[playerPos.r][playerPos.c]&d.b)return;
       playerPos={r:nr,c:nc};
       trail.push({...playerPos});
-      if(trail.length>18) trail.shift();
-      moves++;
-      document.getElementById('maze1-moves').textContent=moves;
-      if(playerPos.r===ROWS-1&&playerPos.c===COLS-1) {
-        solved=true;
-        document.getElementById('maze1-status').textContent='🎉 SOLVED!';
-      }
-    }
-
-    document.addEventListener('keydown',function(e){
-      if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','w','a','s','d'].includes(e.key)){
-        if(!autoMode){
-          e.preventDefault();
-          if(e.key==='ArrowUp'||e.key==='w') tryMove(-1,0);
-          if(e.key==='ArrowDown'||e.key==='s') tryMove(1,0);
-          if(e.key==='ArrowLeft'||e.key==='a') tryMove(0,-1);
-          if(e.key==='ArrowRight'||e.key==='d') tryMove(0,1);
-        }
-      }
-    });
-
-    function anim() {
-      frameCount++;
-      ctx.fillStyle='rgba(2,5,22,0.2)';
-      ctx.fillRect(0,0,canvas.width,canvas.height);
-      ctx.fillStyle='#020516';
-      ctx.fillRect(0,0,canvas.width,canvas.height);
-
-      // Grid glow
-      ctx.strokeStyle='rgba(0,245,255,0.04)';
-      ctx.lineWidth=1;
-      for(let c=0;c<=COLS;c++){ctx.beginPath();ctx.moveTo(OX+c*CELL,OY);ctx.lineTo(OX+c*CELL,OY+ROWS*CELL);ctx.stroke();}
-      for(let r=0;r<=ROWS;r++){ctx.beginPath();ctx.moveTo(OX,OY+r*CELL);ctx.lineTo(OX+COLS*CELL,OY+r*CELL);ctx.stroke();}
-
-      // Draw maze walls
-      ctx.shadowBlur=6;
-      ctx.shadowColor='#00F5FF';
-      drawMaze(ctx,walls,COLS,ROWS,OX,OY,'rgba(0,245,255,0.7)');
-      ctx.shadowBlur=0;
-
-      // Start/End markers
-      ctx.fillStyle='rgba(57,255,20,0.3)';
-      ctx.fillRect(OX,OY,CELL,CELL);
-      ctx.fillStyle='rgba(255,229,0,0.3)';
-      ctx.fillRect(OX+(COLS-1)*CELL,OY+(ROWS-1)*CELL,CELL,CELL);
-      ctx.fillStyle='#39FF14';ctx.font='bold 11px Outfit';ctx.textAlign='center';
-      ctx.fillText('S',OX+CELL/2,OY+CELL/2+4);
-      ctx.fillStyle='#FFE500';
-      ctx.fillText('E',OX+(COLS-1)*CELL+CELL/2,OY+(ROWS-1)*CELL+CELL/2+4);
-
-      // AI mode — step along solution path
-      if(autoMode&&!solved) {
-        stepDelay++;
-        if(stepDelay>=3) {
-          stepDelay=0;
-          if(pathIdx<path.length) {
-            trail.push({...path[pathIdx]});
-            if(trail.length>20) trail.shift();
-            pathIdx++;
-            moves++;
-            document.getElementById('maze1-moves').textContent=moves;
-            if(pathIdx>=path.length) {
-              solved=true;
-              document.getElementById('maze1-status').textContent='🎉 AI SOLVED!';
-              setTimeout(()=>{
-                walls=buildMaze(COLS,ROWS,Date.now());
-                path=solveMaze(walls,COLS,ROWS,0,0,ROWS-1,COLS-1);
-                pathIdx=0;trail=[{r:0,c:0}];moves=0;solved=false;
-                document.getElementById('maze1-moves').textContent='0';
-                document.getElementById('maze1-status').textContent='AI SOLVING';
-              },2000);
-            }
-          }
-        }
-      }
-
-      const wormPos=autoMode?(trail[trail.length-1]||{r:0,c:0}):playerPos;
-      drawWorm(ctx,trail,'#00F5FF','rgba(0,245,255,0.4)',OX,OY);
-
-      if(solved&&!autoMode) {
-        ctx.fillStyle='rgba(2,5,22,0.75)';
-        ctx.fillRect(0,0,canvas.width,canvas.height);
-        ctx.fillStyle='#39FF14';
-        ctx.font='bold 28px Bebas Neue,cursive';
-        ctx.textAlign='center';
-        ctx.fillText('🎉 MAZE SOLVED!',canvas.width/2,canvas.height/2-20);
-        ctx.fillStyle='#FFE500';
-        ctx.font='16px Outfit,sans-serif';
-        ctx.fillText('Moves: '+moves,canvas.width/2,canvas.height/2+16);
-      }
-
-      requestAnimationFrame(anim);
-    }
-    trail=[{r:0,c:0}];
-    anim();
-  })();
-
-  // ================================================================
-  // MAZE 2 — Shifting/Rotating walls
-  // ================================================================
-  (function() {
-    const canvas = document.getElementById('maze-canvas-2');
-    if(!canvas) return;
-    const ctx = canvas.getContext('2d');
-    const COLS=16, ROWS=13, OX=8, OY=8;
-    let walls=buildMaze(COLS,ROWS,99999);
-    let path=solveMaze(walls,COLS,ROWS,0,0,ROWS-1,COLS-1);
-    let pathIdx=0, trail=[], autoMode=true;
-    let playerPos={r:0,c:0}, solved=false, rotations=0;
-    let rotTimer=0, rotInterval=480; // ~8s at 60fps
-    let rotAngle=0, rotating=false, rotProgress=0;
-    let stepDelay=0;
-
-    function reset() {
-      walls=buildMaze(COLS,ROWS,Date.now()+1);
-      path=solveMaze(walls,COLS,ROWS,0,0,ROWS-1,COLS-1);
-      pathIdx=0;trail=[{r:0,c:0}];solved=false;playerPos={r:0,c:0};
-      rotTimer=0;rotating=false;rotProgress=0;
-      document.getElementById('maze2-status').textContent=autoMode?'AI SOLVING':'PLAYER';
-      document.getElementById('maze2-rotations').textContent=rotations=0;
-    }
-    reset();
-
-    window.maze2Reset=()=>{rotations=0;reset();};
-    window.maze2ToggleAuto=function(){
-      autoMode=true;
-      document.getElementById('maze2-auto-btn').classList.add('active');
-      document.getElementById('maze2-play-btn').classList.remove('active');
-      document.getElementById('maze2-status').textContent='AI SOLVING';
-      reset();
+      if(trail.length>32)trail.shift();
+      moveCount++;
+      if(O.elMoves)O.elMoves.textContent=moveCount;
+      if(!startTime)startTimer();
+      if(playerPos.r===rows-1&&playerPos.c===cols-1)onSolve();
     };
-    window.maze2PlayerMode=function(){
-      autoMode=false;
-      document.getElementById('maze2-play-btn').classList.add('active');
-      document.getElementById('maze2-auto-btn').classList.remove('active');
-      document.getElementById('maze2-status').textContent='PLAYER';
-      reset();
+
+    this.setAI=function(){
+      aiMode=true;
+      if(O.aiBtn)O.aiBtn.classList.add('active');
+      if(O.playBtn)O.playBtn.classList.remove('active');
+      init();startAIInterval();
     };
-    window.maze2RotateNow=function(){doRotate();};
+    this.setPlayer=function(){
+      aiMode=false;
+      if(O.playBtn)O.playBtn.classList.add('active');
+      if(O.aiBtn)O.aiBtn.classList.remove('active');
+      if(stepInterval)clearInterval(stepInterval);
+      init();
+      if(O.elStatus)O.elStatus.textContent='YOUR TURN';
+    };
+    this.reset=function(){init();if(aiMode)startAIInterval();};
+    this.shiftNow=function(){
+      shiftCount++;
+      if(O.elShifts)O.elShifts.textContent=shiftCount;
+      const pr=aiMode?null:{r:Math.min(playerPos.r,rows-2),c:Math.min(playerPos.c,cols-2)};
+      init(Date.now()+shiftCount);
+      if(!aiMode&&pr)playerPos=pr;
+      if(aiMode)startAIInterval();
+      shiftSeconds=O.shiftInterval/1000;
+    };
 
-    function doRotate() {
-      // Rotate maze 90 degrees — rebuild with new seed
-      rotations++;
-      walls=buildMaze(COLS,ROWS,Date.now()*rotations);
-      path=solveMaze(walls,COLS,ROWS,
-        autoMode?0:(Math.min(playerPos.r,ROWS-1)),
-        autoMode?0:(Math.min(playerPos.c,COLS-1)),
-        ROWS-1,COLS-1);
-      if(!autoMode) pathIdx=0;
-      else { pathIdx=0; trail=[{r:0,c:0}]; }
-      document.getElementById('maze2-rotations').textContent=rotations;
-      rotating=true; rotProgress=0;
+    // Shifting countdown
+    if(O.shiftInterval&&O.elCountdown){
+      setInterval(()=>{
+        shiftSeconds--;
+        if(O.elCountdown)O.elCountdown.textContent=Math.max(0,Math.ceil(shiftSeconds));
+        if(shiftSeconds<=0)this.shiftNow();
+      },1000);
     }
 
-    document.addEventListener('keydown',function(e){
-      if(!autoMode&&!solved){
-        const dirs=[{r:-1,c:0,b:1,key:['ArrowUp','w']},{r:0,c:1,b:2,key:['ArrowRight','d']},{r:1,c:0,b:4,key:['ArrowDown','s']},{r:0,c:-1,b:8,key:['ArrowLeft','a']}];
-        for(const d of dirs){
-          if(d.key.includes(e.key)){
-            e.preventDefault();
-            const nr=playerPos.r+d.r,nc=playerPos.c+d.c;
-            if(nr>=0&&nr<ROWS&&nc>=0&&nc<COLS&&!(walls[playerPos.r][playerPos.c]&d.b)){
-              playerPos={r:nr,c:nc};
-              trail.push({...playerPos});
-              if(trail.length>18)trail.shift();
-              if(playerPos.r===ROWS-1&&playerPos.c===COLS-1){solved=true;document.getElementById('maze2-status').textContent='🎉 SOLVED!';}
-            }
-          }
-        }
-      }
+    // Keyboard
+    document.addEventListener('keydown',e=>{
+      if(aiMode)return;
+      const map={'ArrowUp':[-1,0],'ArrowDown':[1,0],'ArrowLeft':[0,-1],'ArrowRight':[0,1],
+                 'w':[-1,0],'s':[1,0],'a':[0,-1],'d':[0,1]};
+      if(map[e.key]){e.preventDefault();this.move(...map[e.key]);}
     });
 
-    function anim2(frame) {
-      ctx.fillStyle='#020516';ctx.fillRect(0,0,canvas.width,canvas.height);
+    // DRAW LOOP
+    const draw=()=>{
+      const cs=O.cellSize||Math.max(18,Math.min(28,Math.floor(canvas.width/30)));
+      const ox=Math.floor((canvas.width-cols*cs)/2);
+      const oy=Math.floor((canvas.height-rows*cs)/2);
 
-      // Rotation flash effect
-      if(rotating) {
-        rotProgress+=0.08;
-        const flash=Math.sin(rotProgress*Math.PI);
-        ctx.fillStyle=`rgba(255,45,120,${flash*0.15})`;
-        ctx.fillRect(0,0,canvas.width,canvas.height);
-        if(rotProgress>=1) rotating=false;
-      }
+      // Fade trail
+      ctx.fillStyle=O.bgColor;
+      ctx.fillRect(0,0,canvas.width,canvas.height);
 
-      ctx.shadowBlur=6; ctx.shadowColor='#FF2D78';
-      drawMaze(ctx,walls,COLS,ROWS,OX,OY,'rgba(255,45,120,0.7)');
-      ctx.shadowBlur=0;
+      if(!W){requestAnimationFrame(draw);return;}
 
-      // Start/End
-      ctx.fillStyle='rgba(57,255,20,0.3)';ctx.fillRect(OX,OY,CELL,CELL);
-      ctx.fillStyle='rgba(255,229,0,0.3)';ctx.fillRect(OX+(COLS-1)*CELL,OY+(ROWS-1)*CELL,CELL,CELL);
-      ctx.fillStyle='#39FF14';ctx.font='bold 11px Outfit';ctx.textAlign='center';
-      ctx.fillText('S',OX+CELL/2,OY+CELL/2+4);
-      ctx.fillStyle='#FFE500';ctx.fillText('E',OX+(COLS-1)*CELL+CELL/2,OY+(ROWS-1)*CELL+CELL/2+4);
-
-      // Auto step
-      if(autoMode&&!solved) {
-        stepDelay++;
-        if(stepDelay>=4){stepDelay=0;
-          if(pathIdx<path.length){
-            trail.push({...path[pathIdx]});
-            if(trail.length>20)trail.shift();
-            pathIdx++;
-            if(pathIdx>=path.length){solved=true;document.getElementById('maze2-status').textContent='🎉 AI SOLVED!';
-              setTimeout(()=>{solved=false;walls=buildMaze(COLS,ROWS,Date.now());path=solveMaze(walls,COLS,ROWS,0,0,ROWS-1,COLS-1);pathIdx=0;trail=[{r:0,c:0}];document.getElementById('maze2-status').textContent='AI SOLVING';},2000);}
-          }
-        }
-      }
-
-      drawWorm(ctx,trail,'#FF2D78','rgba(255,45,120,0.4)',OX,OY);
-
-      // Rotation countdown
-      if(!solved){
-        rotTimer++;
-        const secondsLeft=Math.ceil((rotInterval-rotTimer)/60);
-        document.getElementById('maze2-timer').textContent=secondsLeft+'s';
-        if(rotTimer>=rotInterval){rotTimer=0;doRotate();}
-      }
-
-      requestAnimationFrame(anim2);
-    }
-    anim2(0);
-  })();
-
-  // ================================================================
-  // MAZE 3 — Speed run / lightning
-  // ================================================================
-  (function() {
-    const canvas = document.getElementById('maze-canvas-3');
-    if(!canvas) return;
-    const ctx = canvas.getContext('2d');
-    const COLS=16, ROWS=13, OX=8, OY=8;
-    let walls=buildMaze(COLS,ROWS,77777);
-    let path=solveMaze(walls,COLS,ROWS,0,0,ROWS-1,COLS-1);
-    let pathIdx=0, trail=[], autoMode=true;
-    let playerPos={r:0,c:0}, solved=false;
-    let startTime=null, elapsed=0, bestTime=null, pathsTried=0;
-    let stepDelay=0;
-    let particles=[];
-
-    function reset() {
-      walls=buildMaze(COLS,ROWS,Date.now());
-      path=solveMaze(walls,COLS,ROWS,0,0,ROWS-1,COLS-1);
-      pathIdx=0;trail=[{r:0,c:0}];solved=false;playerPos={r:0,c:0};
-      startTime=Date.now();elapsed=0;particles=[];
-      document.getElementById('maze3-paths').textContent=++pathsTried;
-      document.getElementById('maze3-status')&&(document.getElementById('maze3-status').textContent=autoMode?'AI SOLVING':'PLAYER');
-    }
-    reset();
-
-    window.maze3Reset=reset;
-    window.maze3ToggleAuto=function(){autoMode=true;document.getElementById('maze3-auto-btn').classList.add('active');document.getElementById('maze3-play-btn').classList.remove('active');reset();};
-    window.maze3PlayerMode=function(){autoMode=false;document.getElementById('maze3-play-btn').classList.add('active');document.getElementById('maze3-auto-btn').classList.remove('active');reset();};
-
-    document.addEventListener('keydown',function(e){
-      if(!autoMode&&!solved){
-        const dirs=[{r:-1,c:0,b:1,key:['ArrowUp','w']},{r:0,c:1,b:2,key:['ArrowRight','d']},{r:1,c:0,b:4,key:['ArrowDown','s']},{r:0,c:-1,b:8,key:['ArrowLeft','a']}];
-        for(const d of dirs){
-          if(d.key.includes(e.key)){
-            e.preventDefault();
-            const nr=playerPos.r+d.r,nc=playerPos.c+d.c;
-            if(nr>=0&&nr<ROWS&&nc>=0&&nc<COLS&&!(walls[playerPos.r][playerPos.c]&d.b)){
-              playerPos={r:nr,c:nc};
-              trail.push({...playerPos});
-              if(trail.length>18)trail.shift();
-              if(playerPos.r===ROWS-1&&playerPos.c===COLS-1){winMaze();}
-            }
-          }
-        }
-      }
-    });
-
-    function winMaze(){
-      solved=true;
-      const t=(Date.now()-startTime)/1000;
-      elapsed=t;
-      if(!bestTime||t<bestTime)bestTime=t;
-      document.getElementById('maze3-best').textContent=bestTime.toFixed(1)+'s';
-      for(let i=0;i<40;i++){
-        particles.push({x:OX+(COLS-1)*CELL+CELL/2,y:OY+(ROWS-1)*CELL+CELL/2,
-          vx:(Math.random()-0.5)*6,vy:(Math.random()-0.5)*6,
-          life:1,color:['#39FF14','#FFE500','#00F5FF','#FF2D78'][Math.floor(Math.random()*4)]});
-      }
-      setTimeout(()=>{reset();},2500);
-    }
-
-    function anim3(){
-      ctx.fillStyle='#020516';ctx.fillRect(0,0,canvas.width,canvas.height);
-
-      // Lightning flicker bg
-      if(Math.random()<0.04){
-        ctx.fillStyle='rgba(57,255,20,0.03)';
+      // Solved flash
+      if(solved){
+        ctx.fillStyle='rgba(57,255,20,0.06)';
         ctx.fillRect(0,0,canvas.width,canvas.height);
       }
 
-      ctx.shadowBlur=8;ctx.shadowColor='#39FF14';
-      drawMaze(ctx,walls,COLS,ROWS,OX,OY,'rgba(57,255,20,0.7)');
-      ctx.shadowBlur=0;
+      drawWalls(ctx,W,cols,rows,ox,oy,cs,O.wallColor,O.wallGlow);
 
-      ctx.fillStyle='rgba(57,255,20,0.3)';ctx.fillRect(OX,OY,CELL,CELL);
-      ctx.fillStyle='rgba(255,229,0,0.4)';ctx.fillRect(OX+(COLS-1)*CELL,OY+(ROWS-1)*CELL,CELL,CELL);
-      ctx.fillStyle='#39FF14';ctx.font='bold 11px Outfit';ctx.textAlign='center';
-      ctx.fillText('S',OX+CELL/2,OY+CELL/2+4);
-      ctx.fillStyle='#FFE500';ctx.fillText('E',OX+(COLS-1)*CELL+CELL/2,OY+(ROWS-1)*CELL+CELL/2+4);
+      // Start/end dots
+      ctx.save();
+      ctx.shadowBlur=12;
+      ctx.shadowColor='#39FF14';
+      ctx.fillStyle='rgba(57,255,20,0.5)';
+      ctx.beginPath();ctx.arc(ox+cs/2,oy+cs/2,cs*0.3,0,Math.PI*2);ctx.fill();
+      ctx.shadowColor='#FFE500';
+      ctx.fillStyle='rgba(255,229,0,0.7)';
+      ctx.beginPath();ctx.arc(ox+(cols-1)*cs+cs/2,oy+(rows-1)*cs+cs/2,cs*0.3,0,Math.PI*2);ctx.fill();
+      ctx.restore();
 
-      if(autoMode&&!solved){
-        stepDelay++;
-        if(stepDelay>=2){stepDelay=0;
-          if(pathIdx<path.length){
-            trail.push({...path[pathIdx]});
-            if(trail.length>22)trail.shift();
-            pathIdx++;
-            if(pathIdx>=path.length)winMaze();
+      // Draw beam
+      const drawTrail=aiMode?trail:[...trail];
+      if(!aiMode&&trail.length>0){
+        // also draw solution ghost faintly
+        if(path.length){
+          ctx.save();ctx.globalAlpha=0.07;
+          for(let i=0;i<path.length-1;i++){
+            ctx.beginPath();
+            ctx.moveTo(ox+path[i].c*cs+cs/2,oy+path[i].r*cs+cs/2);
+            ctx.lineTo(ox+path[i+1].c*cs+cs/2,oy+path[i+1].r*cs+cs/2);
+            ctx.strokeStyle=O.beamColor;ctx.lineWidth=2;ctx.stroke();
           }
+          ctx.restore();
         }
       }
+      drawBeam(ctx,drawTrail,ox,oy,cs,O.beamColor,32);
 
-      // Timer
-      if(!solved&&startTime){
-        elapsed=(Date.now()-startTime)/1000;
-        document.getElementById('maze3-time').textContent=elapsed.toFixed(1)+'s';
+      // Player dot in play mode
+      if(!aiMode){
+        const px=ox+playerPos.c*cs+cs/2, py=oy+playerPos.r*cs+cs/2;
+        ctx.save();
+        ctx.shadowColor=O.beamColor;ctx.shadowBlur=20;
+        ctx.beginPath();ctx.arc(px,py,cs*0.4,0,Math.PI*2);
+        ctx.fillStyle=O.beamColor;ctx.fill();
+        ctx.restore();
       }
 
-      drawWorm(ctx,trail,'#39FF14','rgba(57,255,20,0.5)',OX,OY);
+      requestAnimationFrame(draw);
+    };
 
-      // Win particles
-      particles=particles.filter(p=>p.life>0.05);
-      particles.forEach(p=>{
-        p.x+=p.vx;p.y+=p.vy;p.vy+=0.15;p.life*=0.94;
-        ctx.beginPath();ctx.arc(p.x,p.y,4*p.life,0,Math.PI*2);
-        ctx.fillStyle=p.color;ctx.globalAlpha=p.life;ctx.fill();ctx.globalAlpha=1;
+    // Init
+    aiMode=true;
+    window.addEventListener('resize',()=>init());
+    init();
+    startAIInterval();
+    draw();
+  }
+
+  // ──────────────────────────────────────────────
+  // MEGA MAZE (stacked 3-in-1 tall canvas)
+  // ──────────────────────────────────────────────
+  function initMegaMaze(){
+    const canvas=document.getElementById('megaMazeCanvas');
+    if(!canvas)return;
+    const ctx=canvas.getContext('2d');
+    const W_px=canvas.parentElement.offsetWidth||window.innerWidth;
+    const cs=Math.max(14,Math.min(22,Math.floor(W_px/36)));
+    const cols=Math.floor(W_px/cs);
+    const rowsPerPanel=16;
+    const totalRows=rowsPerPanel*3;
+    const H_px=totalRows*cs+8;
+    canvas.width=W_px;canvas.height=H_px;
+    canvas.parentElement.style.height=H_px+'px';
+
+    const seeds=[11111,22222,33333];
+    const panels=seeds.map((seed,i)=>{
+      const W=genMaze(cols,rowsPerPanel,seed);
+      const path=solveBFS(W,cols,rowsPerPanel,0,0,rowsPerPanel-1,cols-1);
+      return {W,path,pathIdx:0,trail:[],color:['#00F5FF','#FF2D78','#FFE500'][i],idx:i};
+    });
+
+    function step(){
+      panels.forEach(p=>{
+        if(p.pathIdx<p.path.length){
+          p.trail.push({...p.path[p.pathIdx]});
+          if(p.trail.length>40)p.trail.shift();
+          p.pathIdx++;
+        } else {
+          // Loop
+          p.pathIdx=0;p.trail=[];
+          p.W=genMaze(cols,rowsPerPanel,Date.now()+p.idx);
+          p.path=solveBFS(p.W,cols,rowsPerPanel,0,0,rowsPerPanel-1,cols-1);
+        }
       });
-
-      requestAnimationFrame(anim3);
     }
-    anim3();
-  })();
+    setInterval(step,60);
 
-  // ================================================================
+    function drawMega(){
+      ctx.fillStyle='rgba(1,6,20,0.12)';ctx.fillRect(0,0,canvas.width,canvas.height);
+      const colors=['rgba(0,245,255,0.2)','rgba(255,45,120,0.2)','rgba(255,229,0,0.2)'];
+      const glows=['rgba(0,245,255,0.08)','rgba(255,45,120,0.08)','rgba(255,229,0,0.08)'];
+      panels.forEach((p,i)=>{
+        const oy=i*rowsPerPanel*cs;
+        drawWalls(ctx,p.W,cols,rowsPerPanel,0,oy,cs,colors[i],glows[i]);
+        drawBeam(ctx,p.trail,0,oy,cs,p.color,40);
+        // Connector between panels
+        if(i<2){
+          ctx.save();
+          ctx.strokeStyle=p.color;ctx.lineWidth=2;ctx.globalAlpha=0.3;
+          ctx.shadowColor=p.color;ctx.shadowBlur=8;
+          ctx.beginPath();
+          ctx.moveTo(canvas.width/2,(i+1)*rowsPerPanel*cs-cs/2);
+          ctx.lineTo(canvas.width/2,(i+1)*rowsPerPanel*cs+cs/2);
+          ctx.stroke();
+          ctx.restore();
+        }
+      });
+      requestAnimationFrame(drawMega);
+    }
+    drawMega();
+  }
+
+  // ──────────────────────────────────────────────
+  // INSTANTIATE
+  // ──────────────────────────────────────────────
+  window.bgMaze1=new BgMaze('bgMaze1',{
+    wallColor:'rgba(0,245,255,0.3)',wallGlow:'rgba(0,245,255,0.1)',
+    beamColor:'#00F5FF',bgColor:'rgba(1,10,30,0.05)',speedMs:50,
+    elMoves:document.getElementById('bg1-moves'),
+    elSolved:document.getElementById('bg1-solved'),
+    elStatus:document.getElementById('bg1-status'),
+    aiBtn:document.getElementById('bg1-ai-btn'),
+    playBtn:document.getElementById('bg1-play-btn'),
+  });
+
+  window.bgMaze2=new BgMaze('bgMaze2',{
+    wallColor:'rgba(255,45,120,0.3)',wallGlow:'rgba(255,45,120,0.1)',
+    beamColor:'#FF2D78',bgColor:'rgba(13,0,24,0.05)',speedMs:55,
+    shiftInterval:10000,
+    elCountdown:document.getElementById('bg2-countdown'),
+    elShifts:document.getElementById('bg2-shifts'),
+    elSolved:document.getElementById('bg2-solved'),
+    aiBtn:document.getElementById('bg2-ai-btn'),
+    playBtn:document.getElementById('bg2-play-btn'),
+  });
+
+  window.bgMaze3=new BgMaze('bgMaze3',{
+    wallColor:'rgba(255,229,0,0.28)',wallGlow:'rgba(255,229,0,0.1)',
+    beamColor:'#FFE500',bgColor:'rgba(10,7,0,0.05)',speedMs:40,
+    elTime:document.getElementById('bg3-time'),
+    elBest:document.getElementById('bg3-best'),
+    elSolved:document.getElementById('bg3-solved'),
+    aiBtn:document.getElementById('bg3-ai-btn'),
+    playBtn:document.getElementById('bg3-play-btn'),
+  });
+
+  initMegaMaze();
+
+  // ──────────────────────────────────────────────
   // RIDDLES
-  // ================================================================
-  function checkRiddle1(){
-    const ans=document.getElementById('riddle1-input').value.trim().toLowerCase();
-    const el=document.getElementById('riddle1-result');
-    if(['a map','map'].includes(ans)){
-      el.style.color='#39FF14';el.textContent='✅ Correct! Level 2 is yours.';
-    } else {
-      el.style.color='#FF2D78';el.textContent='❌ Not quite — think geography...';
-    }
-  }
-  function checkRiddle2(){
-    const ans=document.getElementById('riddle2-input').value.trim().toLowerCase();
-    const el=document.getElementById('riddle2-result');
-    if(['footsteps','steps','footstep'].includes(ans)){
-      el.style.color='#39FF14';el.textContent='✅ Footsteps! Level 3 unlocked.';
-    } else {
-      el.style.color='#FF2D78';el.textContent='❌ Keep thinking — what do you leave behind?';
-    }
-  }
-  function checkRiddle3(){
-    const ans=document.getElementById('riddle3-input').value.trim().toLowerCase();
-    const el=document.getElementById('riddle3-result');
-    if(['an echo','echo'].includes(ans)){
-      el.style.color='#39FF14';el.textContent='🏆 An echo! You're a Maze Master!';
-    } else {
-      el.style.color='#FF2D78';el.textContent='❌ Listen carefully — it comes back to you...';
-    }
-  }
+  // ──────────────────────────────────────────────
+  window.checkR2=function(){
+    const v=document.getElementById('r2-inp').value.trim().toLowerCase();
+    const el=document.getElementById('r2-fb');
+    if(['footsteps','steps','footstep'].includes(v)){el.style.color='#39FF14';el.textContent='✅ Footsteps! You nailed it.';}
+    else{el.style.color='#FF2D78';el.textContent='❌ Think about what you leave behind...';}
+  };
+  window.checkR3=function(){
+    const v=document.getElementById('r3-inp').value.trim().toLowerCase();
+    const el=document.getElementById('r3-fb');
+    if(['echo','an echo'].includes(v)){el.style.color='#39FF14';el.textContent='🏆 An echo! Maze Master!';}
+    else{el.style.color='#FF2D78';el.textContent='❌ It comes back to you...';}
+  };
 
-  // ================================================================
-  // FAQ ACCORDION
-  // ================================================================
+  // FAQ accordion (re-bind in case of DOM timing)
   document.querySelectorAll('.faq-question').forEach(btn=>{
     btn.addEventListener('click',function(){
       const item=this.closest('.faq-item');
       const isOpen=item.classList.contains('open');
       document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
-      if(!isOpen) item.classList.add('open');
+      if(!isOpen)item.classList.add('open');
     });
   });
+
+  })();
   </script>
 
   <!-- YouTube IFrame API -->
