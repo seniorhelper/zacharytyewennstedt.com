@@ -541,6 +541,81 @@
       display: block;
     }
 
+    /* Bio thumbnail (monkey photo) */
+    .bio-thumb-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 24px 0 0;
+      background: rgba(0,0,0,0.3);
+      border-radius: 12px;
+      padding: 10px;
+      border: 1px solid rgba(0,245,255,0.15);
+      width: fit-content;
+    }
+    .bio-thumb {
+      width: 90px;
+      height: 90px;
+      border-radius: 8px;
+      object-fit: cover;
+      object-position: center 20%;
+      flex-shrink: 0;
+      border: 2px solid rgba(0,245,255,0.3);
+      display: block;
+    }
+    .bio-thumb-caption {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    /* Philosophy section with photo */
+    .phil-inner {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 56px;
+      align-items: center;
+      text-align: left;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .phil-photo-wrap {
+      position: relative;
+    }
+    .phil-photo {
+      width: 100%;
+      border-radius: 16px;
+      object-fit: cover;
+      object-position: center top;
+      border: 3px solid rgba(255,45,120,0.35);
+      box-shadow: 0 0 40px rgba(255,45,120,0.2), 0 20px 60px rgba(0,0,0,0.7);
+      display: block;
+      aspect-ratio: 3/4;
+    }
+    .phil-photo-caption {
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--text-muted);
+      font-style: italic;
+      text-align: center;
+    }
+    .phil-text h2 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(44px, 6vw, 80px);
+      color: #fff;
+      line-height: 0.9;
+      margin: 12px 0 24px;
+    }
+    .phil-text h2 span { color: var(--neon-pink); }
+    .phil-text p {
+      font-size: 17px;
+      line-height: 1.9;
+      color: rgba(232,234,246,0.85);
+      margin-bottom: 16px;
+      font-family: 'Playfair Display', serif;
+    }
+
     /* ============ ROCKET SECTION ============ */
     #rocket-section {
       background: linear-gradient(180deg, #030d1a 0%, #000820 50%, #030510 100%);
@@ -1275,9 +1350,10 @@
       .hero-roles { justify-content: center; }
       .hero-btns { justify-content: center; }
       .bio-content { grid-template-columns: 1fr; gap: 40px; }
-      .bio-photos { flex-direction: row; }
-      .bio-photo-card img { height: 160px; }
-      .bio-photo-card--offset { margin-top: 16px; }
+      .bio-thumb-wrap { width: 100%; }
+      .phil-inner { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+      .phil-photo { aspect-ratio: 4/3; max-width: 280px; margin: 0 auto; }
+      .phil-photo-wrap { display: flex; flex-direction: column; align-items: center; }
       .form-row { grid-template-columns: 1fr; }
       nav { display: none; }
       .footer-top { grid-template-columns: 1fr; }
@@ -1449,15 +1525,11 @@
         <div class="bio-quote">
           "Every scar is a teacher.<br />Every failure is the price of wisdom."
         </div>
-        <div class="bio-photos">
-          <div class="bio-photo-card">
-            <img src="images/zach wennstedt.jpg" alt="Zach Wennstedt" />
-          </div>
-          <div class="bio-photo-card bio-photo-card--offset">
-            <img src="images/zachary tye wennstedt.jpg" alt="Zachary Tye Wennstedt" />
-          </div>
+        <div class="bio-thumb-wrap">
+          <img src="images/zach wennstedt.jpg" alt="Zach Wennstedt with a monkey in the DR" class="bio-thumb" />
+          <span class="bio-thumb-caption">🐒 Living life to the fullest — Cabarete, DR</span>
         </div>
-        <a href="#consulting" class="btn-primary" style="display:inline-block;margin-top:32px;">Work With Zach</a>
+        <a href="#consulting" class="btn-primary" style="display:inline-block;margin-top:28px;">Work With Zach</a>
       </div>
       <div class="bio-right fade-in-right">
         <p>
@@ -1715,18 +1787,26 @@
     </video>
     <div class="vid-overlay phil-overlay"></div>
     <div class="vid-content phil-content fade-in">
-      <div class="section-label" style="color:var(--neon-pink);">What I Believe</div>
-      <h2>LIFE IS THE<br /><span>ULTIMATE</span><br />INVESTMENT</h2>
-      <p>
-        Money is a tool. Faith is the foundation.
-      </p>
-      <p>
-        Health, family, purpose — these are the real metrics. Businesses rise and fall. Markets shift. But a life built on character and conviction outlasts all of it.
-      </p>
-      <p>
-        I don't chase success anymore. I build it — deliberately, authentically, and with gratitude for every single day I've been given.
-      </p>
-      <a href="#consulting" class="btn-primary" style="margin-top:32px;display:inline-block;">Let's Build Something Great</a>
+      <div class="phil-inner">
+        <div class="phil-photo-wrap">
+          <img src="images/zachary tye wennstedt.jpg" alt="Zachary Tye Wennstedt — Cabarete rainbow" class="phil-photo" />
+          <div class="phil-photo-caption">🌈 Rainbow over Cabarete, DR</div>
+        </div>
+        <div class="phil-text">
+          <div class="section-label" style="color:var(--neon-pink);">What I Believe</div>
+          <h2>LIFE IS THE<br /><span>ULTIMATE</span><br />INVESTMENT</h2>
+          <p>
+            Money is a tool. Faith is the foundation.
+          </p>
+          <p>
+            Health, family, purpose — these are the real metrics. Businesses rise and fall. Markets shift. But a life built on character and conviction outlasts all of it.
+          </p>
+          <p>
+            I don't chase success anymore. I build it — deliberately, authentically, and with gratitude for every single day I've been given.
+          </p>
+          <a href="#consulting" class="btn-primary" style="margin-top:32px;display:inline-block;">Let's Build Something Great</a>
+        </div>
+      </div>
     </div>
   </section>
 
