@@ -248,8 +248,9 @@
       max-width: 1400px;
       margin: 0 auto;
       padding: 120px 40px 80px;
+      box-sizing: border-box;
       display: grid;
-      grid-template-columns: 1fr 420px;
+      grid-template-columns: 1fr minmax(0,400px);
       gap: 60px;
       align-items: center;
     }
@@ -1839,7 +1840,7 @@
 
     /* D-pad */
     .zm-dpad { display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.08); }
-    .zm-dp { width:58px;height:58px;background:rgba(0,0,0,0.65);border:2px solid rgba(255,255,255,0.25);border-radius:10px;font-size:22px;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;user-select:none;transition:all .15s;box-shadow:0 4px 20px rgba(0,0,0,0.5); }
+    .zm-dp { width:64px;height:64px;background:rgba(0,0,0,0.7);border:2px solid rgba(255,255,255,0.25);border-radius:12px;font-size:24px;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;user-select:none;transition:all .12s;box-shadow:0 4px 24px rgba(0,0,0,0.6); }
     .zm-dp:active{background:rgba(255,255,255,0.15);transform:scale(0.88);}
     .zmg-dp{width:52px;height:52px;background:rgba(0,245,255,0.1);border:1.5px solid #00F5FF;border-radius:8px;font-size:20px;color:#00F5FF;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;user-select:none;transition:all .12s;}
     .zmg-dp:active{background:rgba(0,245,255,0.3);transform:scale(0.9);}
@@ -2015,531 +2016,147 @@
     </svg>
   </div>
 
-  <!-- ═══ MAZE CHAPTER 1 — below hero ═══ -->
-  <section id="maze-ch1" style="position:relative;overflow:hidden;min-height:clamp(520px,90vw,700px);background:#010a1e;">
-    <canvas id="mz1" style="position:absolute;top:0;left:0;width:100%;height:100%;display:block;"></canvas>
-    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(1,10,30,0.93)0%,rgba(1,10,30,0.22)30%,rgba(1,10,30,0.22)70%,rgba(1,10,30,0.93)100%);pointer-events:none;z-index:1;"></div>
-    <div style="position:relative;z-index:2;max-width:800px;margin:0 auto;padding:56px 24px;text-align:center;">
-      <div style="font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#00F5FF;font-weight:800;margin-bottom:10px;">Chapter 1 · The Grid</div>
-      <h2 style="font-family:'Bebas Neue',cursive;font-size:clamp(36px,5vw,60px);color:#fff;margin-bottom:8px;">ENTER THE <span style="color:#00F5FF;">LABYRINTH</span></h2>
-      <p style="color:rgba(232,234,246,0.65);font-size:14px;max-width:480px;margin:0 auto 24px;line-height:1.7;">The worm finds its path. Every dead end is a data point. Watch AI navigate — or take the wheel.</p>
-      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:20px;">
-        <button onclick="ZM.ai(0)" id="ch1-ai" style="background:rgba(0,245,255,0.12);border:1.5px solid #00F5FF;color:#00F5FF;padding:10px 22px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .25s;">⚡ AI PILOT</button>
-        <button onclick="ZM.play(0)" id="ch1-pl" style="background:rgba(0,0,0,0.4);border:1.5px solid rgba(255,255,255,0.2);color:rgba(232,234,246,0.7);padding:10px 22px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .25s;">🕹 PLAY</button>
-        <button onclick="ZM.regen(0)" style="background:rgba(0,0,0,0.4);border:1.5px solid rgba(255,255,255,0.15);color:rgba(232,234,246,0.5);padding:10px 18px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .25s;">↺ NEW</button>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- MAZE CHAPTER 1 — directly below hero video         -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div style="background:#010a1e;">
+    <!-- Full-bleed maze canvas — no content on top -->
+    <section id="maze-ch1" style="position:relative;overflow:hidden;height:70vw;min-height:420px;max-height:600px;background:#010a1e;">
+      <canvas id="mz1" style="position:absolute;top:0;left:0;width:100%;height:100%;display:block;"></canvas>
+    </section>
+    <!-- Controls sit BELOW the canvas -->
+    <div style="background:#010a1e;padding:20px 20px 32px;text-align:center;border-bottom:2px solid rgba(0,245,255,0.15);">
+      <div style="font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#00F5FF;font-weight:800;margin-bottom:6px;">Chapter 1 · The Grid · <span id="ch1-st">AI RUNNING</span></div>
+      <h2 style="font-family:'Bebas Neue',cursive;font-size:clamp(28px,6vw,52px);color:#fff;margin-bottom:4px;">ENTER THE <span style="color:#00F5FF;">LABYRINTH</span></h2>
+      <p style="color:rgba(232,234,246,0.55);font-size:13px;margin:0 auto 16px;max-width:400px;line-height:1.5;">Watch AI find the path — or take control with the buttons below.</p>
+      <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:14px;">
+        <button onclick="ZM.ai(0)" id="ch1-ai" style="background:rgba(0,245,255,0.15);border:2px solid #00F5FF;color:#00F5FF;padding:11px 24px;border-radius:6px;font-size:13px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;box-shadow:0 0 14px rgba(0,245,255,0.3);">⚡ AI MODE</button>
+        <button onclick="ZM.play(0)" id="ch1-pl" style="background:rgba(0,0,0,0.5);border:2px solid rgba(255,255,255,0.3);color:#fff;padding:11px 24px;border-radius:6px;font-size:13px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;">🕹 PLAY</button>
+        <button onclick="ZM.regen(0)" style="background:rgba(0,0,0,0.5);border:2px solid rgba(0,245,255,0.2);color:rgba(0,245,255,0.6);padding:11px 18px;border-radius:6px;font-size:13px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;">↺ NEW</button>
       </div>
-      <div style="display:flex;gap:32px;justify-content:center;">
-        <div style="text-align:center;"><div style="font-family:'Bebas Neue',cursive;font-size:38px;color:#00F5FF;" id="ch1-mv">0</div><div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(136,146,176,0.7);">Moves</div></div>
-        <div style="text-align:center;"><div style="font-family:'Bebas Neue',cursive;font-size:38px;color:#fff;" id="ch1-sv">0</div><div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(136,146,176,0.7);">Solved</div></div>
-        <div style="text-align:center;padding-top:6px;"><div style="font-size:13px;font-weight:800;color:#00F5FF;letter-spacing:1px;" id="ch1-st">AI RUNNING</div><div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(136,146,176,0.7);">Status</div></div>
+      <div style="display:flex;gap:28px;justify-content:center;margin-bottom:20px;">
+        <div style="text-align:center;"><div style="font-family:'Bebas Neue',cursive;font-size:32px;color:#00F5FF;" id="ch1-mv">0</div><div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(136,146,176,0.6);">Moves</div></div>
+        <div style="text-align:center;"><div style="font-family:'Bebas Neue',cursive;font-size:32px;color:#fff;" id="ch1-sv">0</div><div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(136,146,176,0.6);">Solved</div></div>
       </div>
-      <!-- D-pad mobile -->
-      <div class="zm-dpad" id="dpad-0">
-        <div style="font-size:10px;letter-spacing:2px;color:rgba(0,245,255,0.6);text-transform:uppercase;margin-bottom:8px;font-weight:700;">TAP PLAY THEN USE D-PAD</div>
-        <div><button class="zm-dp" style="border-color:rgba(0,245,255,0.5);color:#00F5FF;width:58px;height:58px;font-size:22px;" ontouchstart="event.preventDefault();ZM.play(0);ZM.move(0,-1,0);" onclick="ZM.play(0);ZM.move(0,-1,0);">▲</button></div>
-        <div style="display:flex;gap:6px;align-items:center;">
-          <button class="zm-dp" style="border-color:rgba(0,245,255,0.5);color:#00F5FF;width:58px;height:58px;font-size:22px;" ontouchstart="event.preventDefault();ZM.play(0);ZM.move(0,0,-1);" onclick="ZM.play(0);ZM.move(0,0,-1);">◀</button>
-          <div style="width:58px;height:58px;border:1px solid rgba(255,255,255,0.08);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:10px;color:rgba(255,255,255,0.2);">YOU</div>
-          <button class="zm-dp" style="border-color:rgba(0,245,255,0.5);color:#00F5FF;width:58px;height:58px;font-size:22px;" ontouchstart="event.preventDefault();ZM.play(0);ZM.move(0,0,1);" onclick="ZM.play(0);ZM.move(0,0,1);">▶</button>
+      <!-- D-PAD — outside maze, always visible -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:5px;" id="dpad-0">
+        <button class="zm-dp" style="border-color:#00F5FF;color:#00F5FF;" ontouchstart="event.preventDefault();ZM.move(0,-1,0);" onclick="ZM.move(0,-1,0);">▲</button>
+        <div style="display:flex;gap:5px;">
+          <button class="zm-dp" style="border-color:#00F5FF;color:#00F5FF;" ontouchstart="event.preventDefault();ZM.move(0,0,-1);" onclick="ZM.move(0,0,-1);">◀</button>
+          <div style="width:64px;height:64px;background:rgba(0,245,255,0.06);border:1px solid rgba(0,245,255,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;">🎮</div>
+          <button class="zm-dp" style="border-color:#00F5FF;color:#00F5FF;" ontouchstart="event.preventDefault();ZM.move(0,0,1);" onclick="ZM.move(0,0,1);">▶</button>
         </div>
-        <div><button class="zm-dp" style="border-color:rgba(0,245,255,0.5);color:#00F5FF;width:58px;height:58px;font-size:22px;" ontouchstart="event.preventDefault();ZM.play(0);ZM.move(0,1,0);" onclick="ZM.play(0);ZM.move(0,1,0);">▼</button></div>
+        <button class="zm-dp" style="border-color:#00F5FF;color:#00F5FF;" ontouchstart="event.preventDefault();ZM.move(0,1,0);" onclick="ZM.move(0,1,0);">▼</button>
       </div>
     </div>
-  </section>
-
-
-  <!-- ============ BUILDING IMPACT SECTION ============ -->
-  <section id="building-impact">
-    <div class="building-img-wrap fade-in">
-      <img src="images/Building-impact-below hero video.png" alt="Building impact — Zachary Tye Wennstedt" />
-    </div>
-  </section>
-
-  <!-- ============ ATTRIBUTES ============ -->
-  <section id="attributes">
-    <div class="attributes-label">Who I Am</div>
-    <h2 class="fade-in">MORE THAN A TITLE</h2>
-    <div class="attributes-img fade-in">
-      <img src="images/Attributes mid content.png" alt="Zachary Tye Wennstedt — Attributes" />
-    </div>
-    <div class="attr-tags fade-in">
-      <span class="attr-tag">Father</span>
-      <span class="attr-tag">Son</span>
-      <span class="attr-tag">Brother</span>
-      <span class="attr-tag">Entrepreneur</span>
-      <span class="attr-tag">Humanitarian</span>
-      <span class="attr-tag">Artist</span>
-      <span class="attr-tag">Poet</span>
-      <span class="attr-tag">Writer</span>
-      <span class="attr-tag">Mentor</span>
-      <span class="attr-tag">Overcomer</span>
-      <span class="attr-tag">Man of Faith</span>
-      <span class="attr-tag">Visionary</span>
-      <span class="attr-tag">Problem Solver</span>
-      <span class="attr-tag">Health Advocate</span>
-      <span class="attr-tag">Storyteller</span>
-    </div>
-  </section>
-
-  <!-- SLANT -->
-  <div class="slant-divider" style="background:#030d1a;">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="0,60 1440,0 1440,60 0,60" fill="#08001a" />
-    </svg>
   </div>
 
-  <!-- ============ INTERACTIVE BRAIN ============ -->
-  <section id="brain-section">
-    <div class="section-label" style="color:var(--neon-cyan);">The Mind Behind It All</div>
-    <h2 class="fade-in">A <span style="color:var(--neon-cyan);">WIRED</span> MIND</h2>
-    <p class="fade-in">Hover the brain. Watch the ideas spark.</p>
-    <canvas id="brain-canvas" width="600" height="400"></canvas>
-  </section>
-
-  <!-- SLANT -->
-  <div class="slant-divider" style="background:#08001a;">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="0,0 1440,60 0,60 0,0" fill="#030510" />
-    </svg>
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- MAZE CHAPTER 2 — mid page, shifting walls           -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div style="background:#0c001a;">
+    <section id="maze-ch2" style="position:relative;overflow:hidden;height:70vw;min-height:420px;max-height:600px;background:#0c001a;">
+      <canvas id="mz2" style="position:absolute;top:0;left:0;width:100%;height:100%;display:block;"></canvas>
+    </section>
+    <div style="background:#0c001a;padding:20px 20px 32px;text-align:center;border-bottom:2px solid rgba(255,45,120,0.15);">
+      <div style="font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#FF2D78;font-weight:800;margin-bottom:6px;">Chapter 2 · Sacred Geometry · Shifting Walls</div>
+      <h2 style="font-family:'Bebas Neue',cursive;font-size:clamp(28px,6vw,52px);color:#fff;margin-bottom:4px;">THE MAZE <span style="color:#FF2D78;">MUTATES</span></h2>
+      <p style="color:rgba(232,234,246,0.55);font-size:13px;margin:0 auto 16px;max-width:400px;line-height:1.5;">Walls rebuild every 12 seconds. Sacred patterns pulse through the passages. Adapt.</p>
+      <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:14px;">
+        <button onclick="ZM.ai(1)" id="ch2-ai" style="background:rgba(255,45,120,0.15);border:2px solid #FF2D78;color:#FF2D78;padding:11px 24px;border-radius:6px;font-size:13px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;box-shadow:0 0 14px rgba(255,45,120,0.3);">⚡ AI MODE</button>
+        <button onclick="ZM.play(1)" id="ch2-pl" style="background:rgba(0,0,0,0.5);border:2px solid rgba(255,255,255,0.3);color:#fff;padding:11px 24px;border-radius:6px;font-size:13px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;">🕹 PLAY</button>
+        <button onclick="ZM.shiftNow(1)" style="background:rgba(0,0,0,0.5);border:2px solid rgba(255,45,120,0.3);color:#FF2D78;padding:11px 18px;border-radius:6px;font-size:13px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;">⟳ SHIFT</button>
+      </div>
+      <div style="display:flex;gap:28px;justify-content:center;margin-bottom:14px;">
+        <div style="text-align:center;"><div style="font-family:'Bebas Neue',cursive;font-size:32px;color:#FF2D78;" id="ch2-cd">12</div><div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(136,146,176,0.6);">Shift In</div></div>
+        <div style="text-align:center;"><div style="font-family:'Bebas Neue',cursive;font-size:32px;color:#fff;" id="ch2-sh">0</div><div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(136,146,176,0.6);">Shifts</div></div>
+        <div style="text-align:center;"><div style="font-family:'Bebas Neue',cursive;font-size:32px;color:#fff;" id="ch2-sv">0</div><div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(136,146,176,0.6);">Solved</div></div>
+      </div>
+      <div style="background:rgba(255,45,120,0.07);border:1px solid rgba(255,45,120,0.2);border-radius:10px;padding:14px 18px;max-width:380px;margin:0 auto 20px;text-align:left;">
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#FF2D78;font-weight:800;margin-bottom:6px;">🧩 Riddle</div>
+        <p style="font-size:13px;font-style:italic;color:rgba(232,234,246,0.75);margin-bottom:10px;">"The more you take, the more you leave behind."</p>
+        <div style="display:flex;gap:6px;"><input id="r2i" type="text" placeholder="Answer..." style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,45,120,0.3);border-radius:6px;padding:8px 12px;color:#fff;font-family:'Outfit',sans-serif;font-size:13px;outline:none;" /><button onclick="ZM.riddle(2)" style="background:#FF2D78;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:13px;font-weight:800;cursor:pointer;">→</button></div>
+        <div id="r2fb" style="margin-top:6px;font-size:13px;font-weight:700;min-height:16px;"></div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:5px;" id="dpad-1">
+        <button class="zm-dp" style="border-color:#FF2D78;color:#FF2D78;" ontouchstart="event.preventDefault();ZM.move(1,-1,0);" onclick="ZM.move(1,-1,0);">▲</button>
+        <div style="display:flex;gap:5px;">
+          <button class="zm-dp" style="border-color:#FF2D78;color:#FF2D78;" ontouchstart="event.preventDefault();ZM.move(1,0,-1);" onclick="ZM.move(1,0,-1);">◀</button>
+          <div style="width:64px;height:64px;background:rgba(255,45,120,0.06);border:1px solid rgba(255,45,120,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;">🎮</div>
+          <button class="zm-dp" style="border-color:#FF2D78;color:#FF2D78;" ontouchstart="event.preventDefault();ZM.move(1,0,1);" onclick="ZM.move(1,0,1);">▶</button>
+        </div>
+        <button class="zm-dp" style="border-color:#FF2D78;color:#FF2D78;" ontouchstart="event.preventDefault();ZM.move(1,1,0);" onclick="ZM.move(1,1,0);">▼</button>
+      </div>
+    </div>
   </div>
 
-  <!-- ============ BIOGRAPHY — MID VIDEO ============ -->
-  <section id="biography" class="video-section">
-    <video autoplay muted loop playsinline>
-      <source src="images/lightning background vifeo mid page.mp4" type="video/mp4" />
-    </video>
-    <div class="vid-overlay bio-overlay"></div>
-    <div class="vid-content bio-content">
-      <div class="bio-left fade-in-left">
-        <h2>FROM THE <em>VALLEY</em><br />TO THE<br /><em>MOUNTAIN</em> TOP</h2>
-        <div class="bio-quote">
-          "Every scar is a teacher.<br />Every failure is the price of wisdom."
-        </div>
-        <div class="bio-thumb-wrap">
-          <img src="images/zach wennstedt.jpg" alt="Zach Wennstedt with a monkey in the DR" class="bio-thumb" />
-          <span class="bio-thumb-caption">🐒 Living life to the fullest — Cabarete, DR</span>
-        </div>
-        <a href="#consulting" class="btn-primary" style="display:inline-block;margin-top:28px;">Work With Zach</a>
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- MAZE CHAPTER 3 — near bottom, speed run            -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div style="background:#080800;">
+    <section id="maze-ch3" style="position:relative;overflow:hidden;height:70vw;min-height:420px;max-height:600px;background:#080800;">
+      <canvas id="mz3" style="position:absolute;top:0;left:0;width:100%;height:100%;display:block;"></canvas>
+    </section>
+    <div style="background:#080800;padding:20px 20px 32px;text-align:center;border-bottom:2px solid rgba(255,229,0,0.15);">
+      <div style="font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#FFE500;font-weight:800;margin-bottom:6px;">Chapter 3 · The Gauntlet · Speed Run</div>
+      <h2 style="font-family:'Bebas Neue',cursive;font-size:clamp(28px,6vw,52px);color:#fff;margin-bottom:4px;">FIND THE <span style="color:#FFE500;">FASTEST PATH</span></h2>
+      <p style="color:rgba(232,234,246,0.55);font-size:13px;margin:0 auto 16px;max-width:400px;line-height:1.5;">Race the clock. Beat the AI. Solve the riddle to prove your mind.</p>
+      <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:14px;">
+        <button onclick="ZM.ai(2)" id="ch3-ai" style="background:rgba(255,229,0,0.12);border:2px solid #FFE500;color:#FFE500;padding:11px 24px;border-radius:6px;font-size:13px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;box-shadow:0 0 14px rgba(255,229,0,0.25);">⚡ AI SPEED RUN</button>
+        <button onclick="ZM.play(2)" id="ch3-pl" style="background:rgba(0,0,0,0.5);border:2px solid rgba(255,255,255,0.3);color:#fff;padding:11px 24px;border-radius:6px;font-size:13px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;">🕹 BEAT AI</button>
+        <button onclick="ZM.openMega()" style="background:linear-gradient(135deg,rgba(0,245,255,0.2),rgba(255,45,120,0.2),rgba(255,229,0,0.2));border:2px solid #FFE500;color:#FFE500;padding:11px 22px;border-radius:6px;font-size:13px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;animation:gradShift 3s infinite;">⚡ COMBINE ALL</button>
       </div>
-      <div class="bio-right fade-in-right">
-        <p>
-          <strong>Zachary Tye Wennstedt was born in Fremont, Nebraska</strong> — and raised on the front range of beautiful Colorado. His story doesn't start with privilege. It starts with pain.
-        </p>
-        <p>
-          His first memory in life is losing his baby sister, Jasmine, to SIDS at just five months old. He was five years old. That loss planted the seed of something fierce in him — an awareness of how short and precious life truly is.
-        </p>
-        <p>
-          What followed wasn't easy. Abuse. Trauma. Drugs at eleven years old — before his brain had even fully formed. The kind of start that swallows most people whole. But Zach was not most people.
-        </p>
-        <p>
-          <strong>Through hundreds of failures and the unshakeable grace of God</strong>, Zach overcame every addiction, every obstacle, every chapter that was supposed to end him. He didn't just survive. He chose to build something extraordinary from the rubble.
-        </p>
-        <p>
-          Today he is a CEO, a developer, a strategist — and above all, a father. Being a dad is his greatest achievement. Because he knows what it means to grow up without a present father, he decided to be fiercely present for his own children. Leading by example. Loving completely.
-        </p>
-        <p>
-          <strong>Faith drives everything.</strong> Money is just a tool. His real passion is helping others discover what they're truly capable of. Raising the standard — for himself, for his family, and for every person he encounters.
-        </p>
-        <p>
-          No more hollow words. No more settling. Every step forward is intentional. Every word spoken carries weight. This is a man who earned his voice.
-        </p>
+      <div style="display:flex;gap:28px;justify-content:center;margin-bottom:14px;">
+        <div style="text-align:center;"><div style="font-family:'Bebas Neue',cursive;font-size:32px;color:#FFE500;" id="ch3-tm">0.0s</div><div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(136,146,176,0.6);">Time</div></div>
+        <div style="text-align:center;"><div style="font-family:'Bebas Neue',cursive;font-size:32px;color:#fff;" id="ch3-bt">--</div><div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(136,146,176,0.6);">Best</div></div>
+        <div style="text-align:center;"><div style="font-family:'Bebas Neue',cursive;font-size:32px;color:#fff;" id="ch3-sv">0</div><div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(136,146,176,0.6);">Solved</div></div>
+      </div>
+      <div style="background:rgba(255,229,0,0.06);border:1px solid rgba(255,229,0,0.2);border-radius:10px;padding:14px 18px;max-width:380px;margin:0 auto 20px;text-align:left;">
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#FFE500;font-weight:800;margin-bottom:6px;">🏆 Master Riddle</div>
+        <p style="font-size:13px;font-style:italic;color:rgba(232,234,246,0.75);margin-bottom:10px;">"I speak without a mouth, hear without ears, come alive with the wind."</p>
+        <div style="display:flex;gap:6px;"><input id="r3i" type="text" placeholder="Answer..." style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,229,0,0.3);border-radius:6px;padding:8px 12px;color:#fff;font-family:'Outfit',sans-serif;font-size:13px;outline:none;" /><button onclick="ZM.riddle(3)" style="background:#FFE500;color:#000;border:none;border-radius:6px;padding:8px 14px;font-size:13px;font-weight:800;cursor:pointer;">→</button></div>
+        <div id="r3fb" style="margin-top:6px;font-size:13px;font-weight:700;min-height:16px;"></div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:5px;" id="dpad-2">
+        <button class="zm-dp" style="border-color:#FFE500;color:#FFE500;" ontouchstart="event.preventDefault();ZM.move(2,-1,0);" onclick="ZM.move(2,-1,0);">▲</button>
+        <div style="display:flex;gap:5px;">
+          <button class="zm-dp" style="border-color:#FFE500;color:#FFE500;" ontouchstart="event.preventDefault();ZM.move(2,0,-1);" onclick="ZM.move(2,0,-1);">◀</button>
+          <div style="width:64px;height:64px;background:rgba(255,229,0,0.06);border:1px solid rgba(255,229,0,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;">🎮</div>
+          <button class="zm-dp" style="border-color:#FFE500;color:#FFE500;" ontouchstart="event.preventDefault();ZM.move(2,0,1);" onclick="ZM.move(2,0,1);">▶</button>
+        </div>
+        <button class="zm-dp" style="border-color:#FFE500;color:#FFE500;" ontouchstart="event.preventDefault();ZM.move(2,1,0);" onclick="ZM.move(2,1,0);">▼</button>
       </div>
     </div>
-  </section>
-
-  
-  <!-- ═══ MAZE CHAPTER 2 — mid page ═══ -->
-  <section id="maze-ch2" style="position:relative;overflow:hidden;min-height:clamp(560px,90vw,720px);background:#0c001a;">
-    <canvas id="mz2" style="position:absolute;top:0;left:0;width:100%;height:100%;display:block;"></canvas>
-    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,0,26,0.93)0%,rgba(12,0,26,0.22)30%,rgba(12,0,26,0.22)70%,rgba(12,0,26,0.93)100%);pointer-events:none;z-index:1;"></div>
-    <div style="position:relative;z-index:2;max-width:800px;margin:0 auto;padding:56px 24px;text-align:center;">
-      <div style="font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#FF2D78;font-weight:800;margin-bottom:10px;">Chapter 2 · Shifting Walls</div>
-      <h2 style="font-family:'Bebas Neue',cursive;font-size:clamp(36px,5vw,60px);color:#fff;margin-bottom:8px;">THE MAZE <span style="color:#FF2D78;">MUTATES</span></h2>
-      <p style="color:rgba(232,234,246,0.65);font-size:14px;max-width:480px;margin:0 auto 24px;line-height:1.7;">Sacred geometry pulses through the walls. Every 12 seconds — everything shifts. Adapt or get trapped.</p>
-      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:20px;">
-        <button onclick="ZM.ai(1)" id="ch2-ai" style="background:rgba(255,45,120,0.12);border:1.5px solid #FF2D78;color:#FF2D78;padding:10px 22px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .25s;">⚡ AI PILOT</button>
-        <button onclick="ZM.play(1)" id="ch2-pl" style="background:rgba(0,0,0,0.4);border:1.5px solid rgba(255,255,255,0.2);color:rgba(232,234,246,0.7);padding:10px 22px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .25s;">🕹 PLAY</button>
-        <button onclick="ZM.shiftNow(1)" style="background:rgba(0,0,0,0.4);border:1.5px solid rgba(255,45,120,0.3);color:#FF2D78;padding:10px 18px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .25s;">⟳ SHIFT</button>
-      </div>
-      <div style="display:flex;gap:32px;justify-content:center;">
-        <div style="text-align:center;"><div style="font-family:'Bebas Neue',cursive;font-size:38px;color:#FF2D78;" id="ch2-cd">12</div><div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(136,146,176,0.7);">Shift In (s)</div></div>
-        <div style="text-align:center;"><div style="font-family:'Bebas Neue',cursive;font-size:38px;color:#fff;" id="ch2-sh">0</div><div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(136,146,176,0.7);">Shifts</div></div>
-        <div style="text-align:center;"><div style="font-family:'Bebas Neue',cursive;font-size:38px;color:#fff;" id="ch2-sv">0</div><div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(136,146,176,0.7);">Solved</div></div>
-      </div>
-      <div style="background:rgba(0,0,0,0.6);backdrop-filter:blur(10px);border:1px solid rgba(255,45,120,0.2);border-radius:10px;padding:18px 22px;max-width:420px;margin:20px auto 0;text-align:left;">
-        <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#FF2D78;font-weight:800;margin-bottom:8px;">🧩 Riddle</div>
-        <p style="font-size:14px;font-style:italic;color:rgba(232,234,246,0.8);margin-bottom:12px;">"The more you take, the more you leave behind. What am I?"</p>
-        <div style="display:flex;gap:8px;"><input id="r2i" type="text" placeholder="Answer..." style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,45,120,0.3);border-radius:6px;padding:9px 13px;color:#fff;font-family:'Outfit',sans-serif;font-size:13px;outline:none;" /><button onclick="ZM.riddle(2)" style="background:#FF2D78;color:#fff;border:none;border-radius:6px;padding:9px 16px;font-size:13px;font-weight:800;cursor:pointer;">→</button></div>
-        <div id="r2fb" style="margin-top:8px;font-size:13px;font-weight:700;min-height:18px;"></div>
-      </div>
-      <div class="zm-dpad" id="dpad-1" style="border-top-color:rgba(255,45,120,0.2);">
-        <div style="font-size:10px;letter-spacing:2px;color:rgba(255,45,120,0.6);text-transform:uppercase;margin-bottom:8px;font-weight:700;">TAP PLAY THEN USE D-PAD</div>
-        <div><button class="zm-dp" style="border-color:rgba(255,45,120,0.5);color:#FF2D78;width:58px;height:58px;font-size:22px;" ontouchstart="event.preventDefault();ZM.play(1);ZM.move(1,-1,0);" onclick="ZM.play(1);ZM.move(1,-1,0);">▲</button></div>
-        <div style="display:flex;gap:6px;align-items:center;">
-          <button class="zm-dp" style="border-color:rgba(255,45,120,0.5);color:#FF2D78;width:58px;height:58px;font-size:22px;" ontouchstart="event.preventDefault();ZM.play(1);ZM.move(1,0,-1);" onclick="ZM.play(1);ZM.move(1,0,-1);">◀</button>
-          <div style="width:58px;height:58px;border:1px solid rgba(255,45,120,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:10px;color:rgba(255,255,255,0.2);">YOU</div>
-          <button class="zm-dp" style="border-color:rgba(255,45,120,0.5);color:#FF2D78;width:58px;height:58px;font-size:22px;" ontouchstart="event.preventDefault();ZM.play(1);ZM.move(1,0,1);" onclick="ZM.play(1);ZM.move(1,0,1);">▶</button>
-        </div>
-        <div><button class="zm-dp" style="border-color:rgba(255,45,120,0.5);color:#FF2D78;width:58px;height:58px;font-size:22px;" ontouchstart="event.preventDefault();ZM.play(1);ZM.move(1,1,0);" onclick="ZM.play(1);ZM.move(1,1,0);">▼</button></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SLANT -->
-  <div class="slant-divider" style="background:#030510;">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="0,0 1440,0 1440,60 0,60" fill="#030510" />
-    </svg>
   </div>
 
-  <!-- ============ ROCKET SECTION ============ -->
-  <section id="rocket-section">
-    <div class="stars-bg" id="stars"></div>
-    <div class="section-label" style="color:var(--neon-green);position:relative;z-index:2;">Ready For Launch?</div>
-    <h2 class="fade-in">TAKE YOUR BUSINESS<br /><span>TO THE NEXT LEVEL</span></h2>
-    <p class="fade-in">Click the rocket. See where your business can go.</p>
-    <canvas id="rocket-canvas" width="500" height="350"></canvas>
-    <div class="rocket-cta">↑ CLICK TO LAUNCH ↑</div>
-  </section>
 
-  <!-- SLANT -->
-  <div class="slant-divider" style="background:#030510;">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="0,60 1440,0 1440,60" fill="#030510" />
-    </svg>
-  </div>
-
-  <!-- ============ EXPERTISE ============ -->
-  <section id="expertise">
-    <div class="section-header">
-      <div class="section-label" style="color:var(--neon-green);">Skills & Specialties</div>
-      <h2 class="fade-in">WHAT I BRING<br /><span style="color:var(--neon-green);">TO THE TABLE</span></h2>
-    </div>
-    <div class="expertise-grid">
-
-      <div class="exp-card fade-in" style="--card-accent:var(--neon-cyan);">
-        <span class="exp-icon">🔍</span>
-        <h3>SEO & AIO Mastery</h3>
-        <p>First-page Google rankings globally. AI-answer optimization. Generative Engine Optimization (GEO). Competing with industry giants — and winning.</p>
-      </div>
-
-      <div class="exp-card fade-in" style="--card-accent:var(--neon-yellow);">
-        <span class="exp-icon">🤖</span>
-        <h3>AI & Agentic Search</h3>
-        <p>Pioneering AIO — AI Optimization for ChatGPT, Claude, Perplexity and emerging agentic AI. Schema-heavy, citation-ready, machine-readable content architecture.</p>
-      </div>
-
-      <div class="exp-card fade-in" style="--card-accent:var(--neon-pink);">
-        <span class="exp-icon">💻</span>
-        <h3>Full-Stack Development</h3>
-        <p>HTML, CSS, JavaScript, video-background sites, e-commerce, lead gen funnels, SVG graphics, video games, sales pages. Production-grade from day one.</p>
-      </div>
-
-      <div class="exp-card fade-in" style="--card-accent:var(--neon-green);">
-        <span class="exp-icon">📊</span>
-        <h3>Sales Training & KPIs</h3>
-        <p>Built multi-million dollar national sales teams from the ground up. Expert at KPI analysis, call tracking, conversion optimization, and sales system architecture.</p>
-      </div>
-
-      <div class="exp-card fade-in" style="--card-accent:var(--coral);">
-        <span class="exp-icon">🎯</span>
-        <h3>PPC & Paid Advertising</h3>
-        <p>Google Ads, Meta Ads, remarketing, and retargeting at scale. ROI-focused, data-driven campaign management that converts browsers into buyers.</p>
-      </div>
-
-      <div class="exp-card fade-in" style="--card-accent:var(--mint);">
-        <span class="exp-icon">✍️</span>
-        <h3>Copywriting & Content</h3>
-        <p>Persuasive, conversion-focused copy. Long-form authority content. Bilingual (EN/ES). Optimized for humans first, search engines second, AI agents third.</p>
-      </div>
-
-      <div class="exp-card fade-in" style="--card-accent:var(--purple);">
-        <span class="exp-icon">📱</span>
-        <h3>Social Media Strategy</h3>
-        <p>Platform-native content strategy across Facebook, Instagram, LinkedIn, TikTok, and YouTube. Community building, viral content frameworks, paid social.</p>
-      </div>
-
-      <div class="exp-card fade-in" style="--card-accent:var(--gold);">
-        <span class="exp-icon">🏗️</span>
-        <h3>Business Planning & Branding</h3>
-        <p>From naming and identity to full market entry strategies. Brand architecture, positioning, and go-to-market planning for startups and scale-ups alike.</p>
-      </div>
-
-      <div class="exp-card fade-in" style="--card-accent:var(--neon-cyan);">
-        <span class="exp-icon">🌐</span>
-        <h3>Lead Generation & Funnels</h3>
-        <p>End-to-end funnel architecture. Multi-step lead capture, nurture sequences, FormSubmit spam protection, and CRO testing. Funnels that actually convert.</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- SLANT -->
-  <div class="slant-divider" style="background:#030510;">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="0,0 1440,60 0,60" fill="#020820" />
-    </svg>
-  </div>
-
-  <!-- ============ HIKING VIDEO SECTION ============ -->
-  <section id="life-section" class="video-section">
-    <video autoplay muted loop playsinline>
-      <source src="images/hiking video background bottom below content.mp4" type="video/mp4" />
-    </video>
-    <div class="vid-overlay life-overlay"></div>
-    <div class="vid-content life-content fade-in">
-      <div class="section-label" style="color:var(--neon-green);">The Numbers Speak</div>
-      <h2>RESULTS THAT<br /><span>MATTER</span></h2>
-      <p>
-        Numbers don't lie. These aren't projections or promises. They're the product of real work, real hustle, and relentless execution.
-      </p>
-      <p>
-        From zero-to-ranked in competitive markets. From solo operator to national sales force. Built with strategy, sweat, and a refusal to quit.
-      </p>
-      <div class="life-stats">
-        <div class="stat-item">
-          <div class="stat-num">50+</div>
-          <div class="stat-label">Websites Built</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">#1</div>
-          <div class="stat-label">Google Rankings Achieved</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">$M+</div>
-          <div class="stat-label">Sales Teams Built</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">3</div>
-          <div class="stat-label">Companies Founded</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SLANT -->
-  <div class="slant-divider" style="background:#020820;">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="0,0 1440,0 1440,60 0,0" fill="#030510" />
-    </svg>
-  </div>
-
-  <!-- ============ CREDENTIALS / PORTFOLIO ============ -->
-  <section id="credentials">
-    <div class="section-header">
-      <div class="section-label" style="color:var(--gold);">Resume & Portfolio</div>
-      <h2 class="fade-in" style="font-family:'Bebas Neue',cursive;font-size:clamp(42px,5vw,66px);color:#fff;">COMPANIES &<br /><span style="color:var(--gold);">WEB PORTFOLIO</span></h2>
-    </div>
-
-    <div class="credentials-grid">
-      <div class="cred-companies fade-in">
-
-        <div class="company-card">
-          <div class="role">Founder & CEO</div>
-          <h3>Eye To Ad Media</h3>
-          <p>Full-service digital marketing agency. SEO, AIO, web development, PPC, and lead generation for clients across the USA and internationally.</p>
-          <a href="https://eyetoad.com" target="_blank" rel="noopener">eyetoad.com ↗</a>
-        </div>
-
-        <div class="company-card">
-          <div class="role">Founder & CEO</div>
-          <h3>Search Converts</h3>
-          <p>Conversion-focused SEO and digital strategy. Getting businesses found and turning traffic into revenue across competitive verticals.</p>
-          <a href="https://searchconverts.com" target="_blank" rel="noopener">searchconverts.com ↗</a>
-        </div>
-
-        <div class="company-card">
-          <div class="role">Founder & CEO</div>
-          <h3>Aging Safely Baths</h3>
-          <p>National provider of walk-in tubs and accessibility solutions. Helping seniors and disabled individuals live independently with dignity.</p>
-          <a href="https://agingsafelybaths.com" target="_blank" rel="noopener">agingsafelybaths.com ↗</a>
-        </div>
-
-        <div class="company-card">
-          <div class="role">Owned Property</div>
-          <h3>Showers4Less.com</h3>
-          <p>National one-day shower installation brand. Affordable, fast, and professionally designed across all 50 states.</p>
-          <a href="https://showers4less.com" target="_blank" rel="noopener">showers4less.com ↗</a>
-        </div>
-
-      </div>
-
-    
-    </div>
-  </section>
-
-  <!-- SLANT -->
-  <div class="slant-divider" style="background:#0a0520;">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="0,60 1440,0 0,0" fill="#030510" />
-    </svg>
-  </div>
-
-  <!-- ============ ELECTRICITY BOTTOM VIDEO — PHILOSOPHY ============ -->
-  <section id="philosophy-section" class="video-section">
-    <video autoplay muted loop playsinline>
-      <source src="images/electricity-bottom-fold-background.mp4" type="video/mp4" />
-    </video>
-    <div class="vid-overlay phil-overlay"></div>
-    <div class="vid-content phil-content fade-in">
-      <div class="phil-inner">
-        <div class="phil-photo-wrap">
-          <img src="images/zachary tye wennstedt.jpg" alt="Zachary Tye Wennstedt — Cabarete rainbow" class="phil-photo" />
-          <div class="phil-photo-caption">🌈 Rainbow over Cabarete, DR</div>
-        </div>
-        <div class="phil-text">
-          <div class="section-label" style="color:var(--neon-pink);">What I Believe</div>
-          <h2>LIFE IS THE<br /><span>ULTIMATE</span><br />INVESTMENT</h2>
-          <p>
-            Money is a tool. Faith is the foundation.
-          </p>
-          <p>
-            Health, family, purpose — these are the real metrics. Businesses rise and fall. Markets shift. But a life built on character and conviction outlasts all of it.
-          </p>
-          <p>
-            I don't chase success anymore. I build it — deliberately, authentically, and with gratitude for every single day I've been given.
-          </p>
-          <a href="#consulting" class="btn-primary" style="margin-top:32px;display:inline-block;">Let's Build Something Great</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SLANT -->
-  <div class="slant-divider" style="background:#030510;">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="0,0 1440,60 1440,0" fill="#030510" />
-    </svg>
-  </div>
-
-  <!-- ============ STICKY NOTE MESSAGE BOARD ============ -->
-  <section id="message-board">
-    <div class="board-wrap">
-      <div class="section-header">
-        <div class="section-label" style="color:var(--neon-pink);">Leave a Message</div>
-        <h2 class="fade-in" style="font-family:'Bebas Neue',cursive;font-size:clamp(42px,5vw,64px);color:#fff;">DROP A NOTE<br /><span style="color:var(--neon-pink);">ON THE BOARD</span></h2>
-        <p style="color:var(--text-muted);margin-top:12px;">Write something. Pick an emoji. Stick it up. Send it to Zach.</p>
-      </div>
-
-      <div id="sticky-board">
-        <div class="board-instructions" id="boardInstructions">
-          ✏️ Type a message below and click Add Note<br />
-          Drag notes around the board<br />
-          Send them to Zach when you're done
-        </div>
-      </div>
-
-      <div class="board-controls" style="margin-top:20px;">
-        <input type="text" class="board-input" id="noteInput" placeholder="Write your message here..." maxlength="120" />
-        <div class="emoji-picker" id="emojiPicker">
-          <button class="emoji-btn selected" data-emoji="💡">💡</button>
-          <button class="emoji-btn" data-emoji="🔥">🔥</button>
-          <button class="emoji-btn" data-emoji="⚡">⚡</button>
-          <button class="emoji-btn" data-emoji="🙏">🙏</button>
-          <button class="emoji-btn" data-emoji="👊">👊</button>
-          <button class="emoji-btn" data-emoji="🚀">🚀</button>
-          <button class="emoji-btn" data-emoji="❤️">❤️</button>
-          <button class="emoji-btn" data-emoji="✅">✅</button>
-        </div>
-        <button class="btn-add-note" id="addNoteBtn">Add Note</button>
-        <button class="btn-send-notes" id="sendNotesBtn">Send to Zach ✉️</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- SLANT -->
-  <div class="slant-divider" style="background:#030510;">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="0,60 1440,60 0,0" fill="#020820" />
-    </svg>
-  </div>
-
-  <!-- ============ MINI GAME ============ -->
-  <section id="game-section">
-    <div class="section-label" style="color:var(--neon-cyan);">A Little Something Different</div>
-    <h2 class="fade-in">ZACH'S <span style="color:var(--neon-cyan);">LIGHTNING</span> DODGE</h2>
-    <p class="fade-in">Dodge the bolts. Catch the stars. Because in business — and in life — it's all about reflexes.</p>
-    <canvas id="game-canvas" width="600" height="380"></canvas>
-    <div class="game-controls" style="margin-top:16px;">
-      <kbd>Arrow Keys</kbd> or <kbd>WASD</kbd> to move &nbsp;|&nbsp; <kbd>Space</kbd> to start
-    </div>
-    <div id="game-score" style="margin-top:12px;color:var(--neon-yellow);font-size:18px;font-weight:800;"></div>
-  </section>
-
-  <!-- ═══ MAZE CHAPTER 3 — near bottom ═══ -->
-  <section id="maze-ch3" style="position:relative;overflow:hidden;min-height:clamp(560px,90vw,720px);background:#080800;">
-    <canvas id="mz3" style="position:absolute;top:0;left:0;width:100%;height:100%;display:block;"></canvas>
-    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,8,0,0.93)0%,rgba(8,8,0,0.22)30%,rgba(8,8,0,0.22)70%,rgba(8,8,0,0.93)100%);pointer-events:none;z-index:1;"></div>
-    <div style="position:relative;z-index:2;max-width:800px;margin:0 auto;padding:56px 24px;text-align:center;">
-      <div style="font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#FFE500;font-weight:800;margin-bottom:10px;">Chapter 3 · The Gauntlet</div>
-      <h2 style="font-family:'Bebas Neue',cursive;font-size:clamp(36px,5vw,60px);color:#fff;margin-bottom:8px;">FIND THE <span style="color:#FFE500;">FASTEST PATH</span></h2>
-      <p style="color:rgba(232,234,246,0.65);font-size:14px;max-width:480px;margin:0 auto 24px;line-height:1.7;">Speed run. Optimal routing. The AI learns — but can you beat it?</p>
-      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:20px;">
-        <button onclick="ZM.ai(2)" id="ch3-ai" style="background:rgba(255,229,0,0.12);border:1.5px solid #FFE500;color:#FFE500;padding:10px 22px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .25s;">⚡ AI SPEED RUN</button>
-        <button onclick="ZM.play(2)" id="ch3-pl" style="background:rgba(0,0,0,0.4);border:1.5px solid rgba(255,255,255,0.2);color:rgba(232,234,246,0.7);padding:10px 22px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .25s;">🕹 BEAT AI</button>
-        <button onclick="ZM.regen(2)" style="background:rgba(0,0,0,0.4);border:1.5px solid rgba(255,255,255,0.15);color:rgba(232,234,246,0.5);padding:10px 18px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .25s;">↺ RESET</button>
-        <button onclick="ZM.openMega()" style="background:linear-gradient(135deg,#00F5FF,#FF2D78,#FFE500);background-size:200%;animation:gradShift 3s infinite;color:#000;border:none;border-radius:6px;padding:10px 22px;font-size:12px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;box-shadow:0 0 24px rgba(0,245,255,0.4);">⚡ COMBINE ALL</button>
-      </div>
-      <div style="display:flex;gap:32px;justify-content:center;">
-        <div style="text-align:center;"><div style="font-family:'Bebas Neue',cursive;font-size:38px;color:#FFE500;" id="ch3-tm">0.0s</div><div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(136,146,176,0.7);">Time</div></div>
-        <div style="text-align:center;"><div style="font-family:'Bebas Neue',cursive;font-size:38px;color:#fff;" id="ch3-bt">--</div><div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(136,146,176,0.7);">Best</div></div>
-        <div style="text-align:center;"><div style="font-family:'Bebas Neue',cursive;font-size:38px;color:#fff;" id="ch3-sv">0</div><div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(136,146,176,0.7);">Solved</div></div>
-      </div>
-      <div style="background:rgba(0,0,0,0.6);backdrop-filter:blur(10px);border:1px solid rgba(255,229,0,0.2);border-radius:10px;padding:18px 22px;max-width:420px;margin:20px auto 0;text-align:left;">
-        <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#FFE500;font-weight:800;margin-bottom:8px;">🏆 Master Riddle</div>
-        <p style="font-size:14px;font-style:italic;color:rgba(232,234,246,0.8);margin-bottom:12px;">"I speak without a mouth, hear without ears, have no body — but come alive with the wind."</p>
-        <div style="display:flex;gap:8px;"><input id="r3i" type="text" placeholder="Answer..." style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,229,0,0.3);border-radius:6px;padding:9px 13px;color:#fff;font-family:'Outfit',sans-serif;font-size:13px;outline:none;" /><button onclick="ZM.riddle(3)" style="background:#FFE500;color:#000;border:none;border-radius:6px;padding:9px 16px;font-size:13px;font-weight:800;cursor:pointer;">→</button></div>
-        <div id="r3fb" style="margin-top:8px;font-size:13px;font-weight:700;min-height:18px;"></div>
-      </div>
-      <div class="zm-dpad" id="dpad-2" style="border-top-color:rgba(255,229,0,0.2);">
-        <div style="font-size:10px;letter-spacing:2px;color:rgba(255,229,0,0.6);text-transform:uppercase;margin-bottom:8px;font-weight:700;">TAP PLAY THEN USE D-PAD</div>
-        <div><button class="zm-dp" style="border-color:rgba(255,229,0,0.5);color:#FFE500;width:58px;height:58px;font-size:22px;" ontouchstart="event.preventDefault();ZM.play(2);ZM.move(2,-1,0);" onclick="ZM.play(2);ZM.move(2,-1,0);">▲</button></div>
-        <div style="display:flex;gap:6px;align-items:center;">
-          <button class="zm-dp" style="border-color:rgba(255,229,0,0.5);color:#FFE500;width:58px;height:58px;font-size:22px;" ontouchstart="event.preventDefault();ZM.play(2);ZM.move(2,0,-1);" onclick="ZM.play(2);ZM.move(2,0,-1);">◀</button>
-          <div style="width:58px;height:58px;border:1px solid rgba(255,229,0,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:10px;color:rgba(255,255,255,0.2);">YOU</div>
-          <button class="zm-dp" style="border-color:rgba(255,229,0,0.5);color:#FFE500;width:58px;height:58px;font-size:22px;" ontouchstart="event.preventDefault();ZM.play(2);ZM.move(2,0,1);" onclick="ZM.play(2);ZM.move(2,0,1);">▶</button>
-        </div>
-        <div><button class="zm-dp" style="border-color:rgba(255,229,0,0.5);color:#FFE500;width:58px;height:58px;font-size:22px;" ontouchstart="event.preventDefault();ZM.play(2);ZM.move(2,1,0);" onclick="ZM.play(2);ZM.move(2,1,0);">▼</button></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MEGA MODAL -->
-  <div id="zm-mega" style="display:none;position:fixed;inset:0;z-index:9999;background:#000;flex-direction:column;touch-action:none;">
+    <!-- MEGA MODAL -->
+  <div id="zm-mega" style="display:none;position:fixed;inset:0;z-index:9999;background:#000;flex-direction:column;overflow:hidden;">
     <!-- Top bar -->
-    <div style="display:flex;align-items:center;gap:10px;padding:10px 16px;background:rgba(0,0,0,0.95);border-bottom:1px solid rgba(0,245,255,0.15);flex-shrink:0;">
-      <span style="font-family:'Bebas Neue',cursive;font-size:20px;color:#fff;flex:1;line-height:1.1;">⚡ ALL CHAPTERS — MEGA MAZE</span>
-      <span style="font-size:11px;color:rgba(136,146,176,0.7);">Moves: <b id="zmg-mv" style="color:#fff;">0</b></span>
-      <span style="font-size:11px;color:rgba(136,146,176,0.7);">Best: <b id="zmg-bt" style="color:#FFE500;">--</b></span>
-      <button onclick="ZM.closeMega()" style="background:rgba(255,45,120,0.15);border:1px solid #FF2D78;color:#FF2D78;padding:7px 14px;border-radius:6px;font-size:12px;font-weight:800;cursor:pointer;white-space:nowrap;">✕ CLOSE</button>
+    <div style="display:flex;align-items:center;gap:12px;padding:10px 16px;background:rgba(0,0,10,0.98);border-bottom:2px solid rgba(0,245,255,0.2);flex-shrink:0;">
+      <div style="flex:1;">
+        <div style="font-family:'Bebas Neue',cursive;font-size:18px;color:#fff;line-height:1;">⚡ ALL CHAPTERS COMBINED</div>
+        <div style="font-size:10px;color:rgba(136,146,176,0.6);letter-spacing:2px;text-transform:uppercase;">Moves: <b id="zmg-mv" style="color:#00F5FF;">0</b> &nbsp; Best: <b id="zmg-bt" style="color:#FFE500;">--</b></div>
+      </div>
+      <button onclick="ZM.megaAI()" id="zmg-ai" style="background:rgba(0,245,255,0.15);border:2px solid #00F5FF;color:#00F5FF;padding:8px 14px;border-radius:6px;font-size:11px;font-weight:900;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">⚡ AI</button>
+      <button onclick="ZM.megaPlay()" id="zmg-pl" style="background:rgba(0,0,0,0.5);border:2px solid rgba(255,255,255,0.25);color:#fff;padding:8px 14px;border-radius:6px;font-size:11px;font-weight:900;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">🕹 PLAY</button>
+      <button onclick="ZM.megaRegen()" style="background:rgba(0,0,0,0.5);border:2px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);padding:8px 12px;border-radius:6px;font-size:11px;font-weight:900;cursor:pointer;">↺</button>
+      <button onclick="ZM.closeMega()" style="background:rgba(255,45,120,0.15);border:2px solid #FF2D78;color:#FF2D78;padding:8px 14px;border-radius:6px;font-size:11px;font-weight:900;cursor:pointer;">✕ CLOSE</button>
     </div>
-    <!-- Canvas -->
-    <canvas id="zmg-canvas" style="flex:1;display:block;width:100%;touch-action:none;"></canvas>
-    <!-- Bottom controls -->
-    <div style="background:rgba(0,0,0,0.95);border-top:1px solid rgba(255,255,255,0.06);flex-shrink:0;padding:8px 12px;">
-      <!-- Mode buttons row -->
-      <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px;flex-wrap:wrap;">
-        <button onclick="ZM.megaAI()" id="zmg-ai" style="background:rgba(0,245,255,0.15);border:1.5px solid #00F5FF;color:#00F5FF;padding:8px 16px;border-radius:6px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">⚡ AI PILOT</button>
-        <button onclick="ZM.megaPlay()" id="zmg-pl" style="background:rgba(0,0,0,0.4);border:1.5px solid rgba(255,255,255,0.2);color:rgba(232,234,246,0.7);padding:8px 16px;border-radius:6px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">🕹 PLAY</button>
-        <button onclick="ZM.megaRegen()" style="background:rgba(0,0,0,0.4);border:1.5px solid rgba(255,255,255,0.12);color:rgba(232,234,246,0.5);padding:8px 12px;border-radius:6px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">↺ NEW</button>
-        <span id="zmg-hint" style="flex:1;font-size:10px;color:rgba(136,146,176,0.6);text-align:right;">⌨ Arrow/WASD · 👆 Swipe · D-pad below</span>
+    <!-- Canvas fills remaining space -->
+    <canvas id="zmg-canvas" style="flex:1;display:block;min-height:0;"></canvas>
+    <!-- D-pad below canvas -->
+    <div style="background:rgba(0,0,10,0.98);border-top:1px solid rgba(0,245,255,0.15);padding:12px;display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;" id="zmg-dpad">
+      <button class="zmg-dp" ontouchstart="event.preventDefault();ZM.megaMv(-1,0);" onclick="ZM.megaMv(-1,0);">▲</button>
+      <div style="display:flex;gap:4px;">
+        <button class="zmg-dp" ontouchstart="event.preventDefault();ZM.megaMv(0,-1);" onclick="ZM.megaMv(0,-1);">◀</button>
+        <div style="width:56px;height:56px;background:rgba(0,245,255,0.06);border:1px solid rgba(0,245,255,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;">🎮</div>
+        <button class="zmg-dp" ontouchstart="event.preventDefault();ZM.megaMv(0,1);" onclick="ZM.megaMv(0,1);">▶</button>
       </div>
-      <!-- D-PAD — always visible in modal -->
-      <div id="zmg-dpad" style="display:flex;flex-direction:column;align-items:center;gap:6px;">
-        <div><button class="zmg-dp" ontouchstart="event.preventDefault();ZM.megaMv(-1,0);" onclick="ZM.megaMv(-1,0);">▲</button></div>
-        <div style="display:flex;gap:6px;">
-          <button class="zmg-dp" ontouchstart="event.preventDefault();ZM.megaMv(0,-1);" onclick="ZM.megaMv(0,-1);">◀</button>
-          <div style="width:48px;"></div>
-          <button class="zmg-dp" ontouchstart="event.preventDefault();ZM.megaMv(0,1);" onclick="ZM.megaMv(0,1);">▶</button>
-        </div>
-        <div><button class="zmg-dp" ontouchstart="event.preventDefault();ZM.megaMv(1,0);" onclick="ZM.megaMv(1,0);">▼</button></div>
-      </div>
-        <div><button class="zmg-dp" ontouchstart="event.preventDefault();ZM.megaMv(1,0)" onclick="ZM.megaMv(1,0)">▼</button></div>
-      </div>
+      <button class="zmg-dp" ontouchstart="event.preventDefault();ZM.megaMv(1,0);" onclick="ZM.megaMv(1,0);">▼</button>
     </div>
   </div>
-
-
 
   <!-- ============ CONSULTING FORM ============ -->
   <section id="consulting">
@@ -3467,13 +3084,42 @@
   }
   function drawGeo(ctx,cols,rows,ox,oy,cs,color,t){
     ctx.save();
-    for(let r=3;r<rows-2;r+=5){for(let c=3;c<cols-2;c+=5){
-      const x=ox+c*cs+cs/2,y=oy+r*cs+cs/2,rad=cs*1.8,rot=t*0.03+(r+c)*0.18;
-      ctx.globalAlpha=0.13+Math.sin(t*0.7+r+c)*0.05;ctx.strokeStyle=color;ctx.lineWidth=0.8;
-      for(let a=0;a<6;a++){const ang=a*Math.PI/3+rot;ctx.beginPath();ctx.arc(x+Math.cos(ang)*rad,y+Math.sin(ang)*rad,rad,0,Math.PI*2);ctx.stroke();}
+    // ── Flower of Life at every 5th cell intersection ───────────────
+    for(let r=1;r<rows-1;r+=4){for(let c=1;c<cols-1;c+=5){
+      const x=ox+c*cs+cs/2,y=oy+r*cs+cs/2,rad=cs*1.6,rot=t*0.04+(r+c)*0.2;
+      ctx.globalAlpha=0.18+Math.sin(t*0.8+r*0.5+c*0.3)*0.08;
+      ctx.strokeStyle=color;ctx.lineWidth=1;
       ctx.beginPath();ctx.arc(x,y,rad,0,Math.PI*2);ctx.stroke();
-      ctx.globalAlpha=0.08;ctx.strokeStyle='#FFE500';
-      ctx.beginPath();for(let i=0;i<5;i++){const a=rot*0.7+i*2*Math.PI/5-Math.PI/2;i===0?ctx.moveTo(x+Math.cos(a)*rad*0.75,y+Math.sin(a)*rad*0.75):ctx.lineTo(x+Math.cos(a)*rad*0.75,y+Math.sin(a)*rad*0.75);}ctx.closePath();ctx.stroke();
+      for(let a=0;a<6;a++){const ang=a*Math.PI/3+rot;
+        ctx.beginPath();ctx.arc(x+Math.cos(ang)*rad,y+Math.sin(ang)*rad,rad,0,Math.PI*2);ctx.stroke();}
+    }}
+    // ── Rotating Star of David (hexagram) ───────────────────────────
+    for(let r=2;r<rows-1;r+=5){for(let c=2;c<cols-1;c+=6){
+      const x=ox+c*cs+cs/2,y=oy+r*cs+cs/2,rad=cs*0.85,rot=t*0.1+(r-c)*0.18;
+      ctx.globalAlpha=0.22+Math.sin(t*1.1+(r+c)*0.4)*0.1;
+      ctx.strokeStyle=color;ctx.lineWidth=1.1;
+      for(let tri=0;tri<2;tri++){
+        ctx.beginPath();
+        for(let i=0;i<3;i++){const a=rot+tri*Math.PI/3+i*2*Math.PI/3;
+          i===0?ctx.moveTo(x+Math.cos(a)*rad,y+Math.sin(a)*rad):ctx.lineTo(x+Math.cos(a)*rad,y+Math.sin(a)*rad);}
+        ctx.closePath();ctx.stroke();
+      }
+    }}
+    // ── Spinning pentagram ───────────────────────────────────────────
+    for(let r=3;r<rows-1;r+=6){for(let c=3;c<cols-1;c+=7){
+      const x=ox+c*cs+cs/2,y=oy+r*cs+cs/2,rad=cs*0.75,rot=t*0.15+(r*cols+c)*0.12;
+      ctx.globalAlpha=0.16;ctx.strokeStyle='#FFE500';ctx.lineWidth=0.9;
+      ctx.beginPath();
+      for(let i=0;i<5;i++){const a=rot+i*2*Math.PI/5-Math.PI/2;
+        i===0?ctx.moveTo(x+Math.cos(a)*rad,y+Math.sin(a)*rad):ctx.lineTo(x+Math.cos(a)*rad,y+Math.sin(a)*rad);}
+      ctx.closePath();ctx.stroke();
+      // Inner star lines
+      ctx.beginPath();
+      for(let i=0;i<5;i++){
+        const a1=rot+i*2*Math.PI/5-Math.PI/2,a2=rot+(i+2)*2*Math.PI/5-Math.PI/2;
+        ctx.moveTo(x+Math.cos(a1)*rad,y+Math.sin(a1)*rad);
+        ctx.lineTo(x+Math.cos(a2)*rad,y+Math.sin(a2)*rad);}
+      ctx.stroke();
     }}
     ctx.globalAlpha=1;ctx.restore();
   }
@@ -3505,7 +3151,7 @@
       const sect=cv.parentElement;
       cv.width=sect.offsetWidth||window.innerWidth;
       cv.height=sect.offsetHeight||480;
-      cs=Math.max(32,Math.min(42,Math.floor(cv.width/11)));
+      cs=Math.max(28,Math.min(36,Math.floor(cv.width/13)));
       cols=Math.floor((cv.width-4)/cs);rows=Math.floor((cv.height-4)/cs);
       ox=Math.floor((cv.width-cols*cs)/2);oy=Math.floor((cv.height-rows*cs)/2);
     }
@@ -3562,6 +3208,7 @@
         if(pi===2&&!startTime){startTime=Date.now();timerTick=setInterval(upd,100);}
         if(pos.r===rows-1&&pos.c===cols-1)onSolve();
       },
+      isAI:function(){return aiMode;},
       regen:function(){init();if(aiMode)startAI();},
       shift:function(){shiftCt++;init(Date.now()+shiftCt);if(aiMode)startAI();}
     };
@@ -3711,7 +3358,7 @@
   window.ZM={
     ai:function(i){if(panels[i]){panels[i].ai();}},
     play:function(i){if(panels[i]){panels[i].play();focus=i;}},
-    move:function(i,dr,dc){if(panels[i]){panels[i].play();panels[i].move(dr,dc);}},
+    move:function(i,dr,dc){if(panels[i]){if(panels[i].isAI())panels[i].play();panels[i].move(dr,dc);}},
     regen:function(i){if(panels[i])panels[i].regen();},
     shiftNow:function(i){if(panels[i])panels[i].shift();},
     riddle:function(n){
@@ -3780,6 +3427,72 @@
   </script>
 
   
+
+  <!-- EQ LIGHTNING VISUALIZER -->
+  <script>
+  (function(){
+    const cv=document.getElementById('eq-canvas');
+    if(!cv)return;
+    const ctx=cv.getContext('2d');
+    const N=36;
+    let playing=false;
+    const COLS=['#00F5FF','#00D4FF','#7B2FBE','#FF2D78','#FF6B6B','#FFE500','#FFD700','#39FF14','#64FFDA','#FF9500'];
+    const bars=Array.from({length:N},(_,i)=>({
+      h:0.04, v:0, phase:Math.random()*Math.PI*2,
+      freq:0.6+Math.random()*2.8, color:COLS[i%COLS.length]
+    }));
+    function resize(){
+      cv.width=cv.offsetWidth||window.innerWidth;
+      cv.height=cv.offsetHeight||80;
+    }
+    resize();
+    window.addEventListener('resize',resize);
+    const t0=Date.now();
+    function draw(){
+      const W=cv.width,H=cv.height,t=(Date.now()-t0)/1000;
+      ctx.clearRect(0,0,W,H);
+      const bw=Math.max(3,Math.floor(W/N)-2);
+      bars.forEach((b,i)=>{
+        const target=playing
+          ?(0.1+0.9*(Math.pow(Math.sin(t*b.freq+b.phase)*0.5+0.5,1.4))*(0.5+0.5*Math.sin(t*2.1+i*0.55)))
+          :0.03;
+        b.v+=(target-b.h)*0.32; b.v*=0.7; b.h=Math.max(0.02,b.h+b.v);
+        const x=i*(bw+2), barH=Math.max(3,Math.floor(b.h*H)), y=H-barH;
+        if(playing&&b.h>0.35){
+          // Lightning bolt
+          ctx.save();
+          ctx.shadowColor=b.color; ctx.shadowBlur=16;
+          ctx.strokeStyle=b.color; ctx.lineWidth=Math.max(2,bw*0.55);
+          const mx=x+bw/2;
+          ctx.beginPath(); ctx.moveTo(mx+bw*0.3,y);
+          const segs=Math.max(4,Math.floor(b.h*10));
+          for(let s=1;s<=segs;s++){
+            const sy=y+s*(barH/segs);
+            const jit=(Math.random()-0.5)*bw*1.2;
+            ctx.lineTo(mx+jit,sy);
+          }
+          ctx.stroke();
+          // Glowing top dot
+          ctx.beginPath(); ctx.arc(mx,y,bw*0.55,0,Math.PI*2);
+          ctx.fillStyle=b.color; ctx.globalAlpha=0.95; ctx.fill();
+          ctx.restore(); ctx.globalAlpha=1;
+        } else {
+          const grad=ctx.createLinearGradient(0,y,0,H);
+          grad.addColorStop(0,b.color);
+          grad.addColorStop(1,b.color+'22');
+          ctx.fillStyle=grad;
+          ctx.shadowColor=b.color; ctx.shadowBlur=playing?8:2;
+          ctx.fillRect(x,y,bw,barH);
+          if(playing){ctx.fillStyle='rgba(255,255,255,0.9)';ctx.fillRect(x,y,bw,2);}
+          ctx.shadowBlur=0;
+        }
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
+    window.setEQPlaying=function(p){playing=p;};
+  })();
+  </script>
 
   <!-- YouTube IFrame API -->
   <script src="https://www.youtube.com/iframe_api"></script>
