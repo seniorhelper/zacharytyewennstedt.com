@@ -1220,8 +1220,27 @@
 
     /* ============ RESPONSIVE ============ */
     @media (max-width: 900px) {
-      .hero-content { grid-template-columns: 1fr; }
-      .hero-photo-wrap { display: none; }
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        justify-items: center;
+      }
+      .hero-photo-wrap {
+        display: block;
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+      }
+      .hero-photo-wrap img {
+        max-width: 100%;
+        width: 280px;
+      }
+      .hero-photo-badge {
+        right: 0;
+        bottom: 16px;
+      }
+      .hero-roles { justify-content: center; }
+      .hero-btns { justify-content: center; }
       .bio-content { grid-template-columns: 1fr; gap: 40px; }
       .form-row { grid-template-columns: 1fr; }
       nav { display: none; }
@@ -1229,7 +1248,7 @@
       .footer-links { flex-direction: column; gap: 24px; }
       header { padding: 16px 20px; }
       .hero-content { padding: 100px 20px 60px; }
-      #brain-canvas, #game-canvas, #rocket-canvas { max-width: 100%; }
+      #brain-canvas, #game-canvas, #rocket-canvas { max-width: 100%; width: 100%; }
     }
 
     /* ============ SUCCESS MESSAGE ============ */
