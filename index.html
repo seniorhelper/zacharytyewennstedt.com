@@ -1838,10 +1838,13 @@
 
 
     /* D-pad */
-    .zm-dpad { display:none;flex-direction:column;align-items:center;gap:4px;margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.08); }
-    @media(max-width:768px){.zm-dpad{display:flex;}}
-    .zm-dp { width:50px;height:50px;background:rgba(0,0,0,0.55);border:1.5px solid rgba(255,255,255,0.2);border-radius:8px;font-size:18px;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;user-select:none;transition:all .12s; }
+    .zm-dpad { display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.08); }
+    .zm-dp { width:58px;height:58px;background:rgba(0,0,0,0.65);border:2px solid rgba(255,255,255,0.25);border-radius:10px;font-size:22px;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;user-select:none;transition:all .15s;box-shadow:0 4px 20px rgba(0,0,0,0.5); }
     .zm-dp:active{background:rgba(255,255,255,0.15);transform:scale(0.88);}
+    .zmg-dp{width:52px;height:52px;background:rgba(0,245,255,0.1);border:1.5px solid #00F5FF;border-radius:8px;font-size:20px;color:#00F5FF;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;user-select:none;transition:all .12s;}
+    .zmg-dp:active{background:rgba(0,245,255,0.3);transform:scale(0.9);}
+    .zmg-dp{width:56px;height:56px;background:rgba(0,245,255,0.1);border:2px solid rgba(0,245,255,0.5);border-radius:10px;font-size:22px;color:#00F5FF;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;user-select:none;transition:all .12s;text-shadow:0 0 10px #00F5FF;}
+    .zmg-dp:active{background:rgba(0,245,255,0.3);transform:scale(0.88);box-shadow:0 0 16px rgba(0,245,255,0.6);}
     @keyframes gradShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 
     /* ============ FAQ ============ */
@@ -2013,7 +2016,7 @@
   </div>
 
   <!-- ═══ MAZE CHAPTER 1 — below hero ═══ -->
-  <section id="maze-ch1" style="position:relative;overflow:hidden;min-height:480px;background:#010a1e;">
+  <section id="maze-ch1" style="position:relative;overflow:hidden;min-height:clamp(520px,90vw,700px);background:#010a1e;">
     <canvas id="mz1" style="position:absolute;top:0;left:0;width:100%;height:100%;display:block;"></canvas>
     <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(1,10,30,0.93)0%,rgba(1,10,30,0.22)30%,rgba(1,10,30,0.22)70%,rgba(1,10,30,0.93)100%);pointer-events:none;z-index:1;"></div>
     <div style="position:relative;z-index:2;max-width:800px;margin:0 auto;padding:56px 24px;text-align:center;">
@@ -2031,10 +2034,15 @@
         <div style="text-align:center;padding-top:6px;"><div style="font-size:13px;font-weight:800;color:#00F5FF;letter-spacing:1px;" id="ch1-st">AI RUNNING</div><div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(136,146,176,0.7);">Status</div></div>
       </div>
       <!-- D-pad mobile -->
-      <div class="zm-dpad">
-        <div><button class="zm-dp" ontouchstart="event.preventDefault();ZM.move(0,-1,0)">▲</button></div>
-        <div style="display:flex;gap:4px;"><button class="zm-dp" ontouchstart="event.preventDefault();ZM.move(0,0,-1)">◀</button><div style="width:48px;"></div><button class="zm-dp" ontouchstart="event.preventDefault();ZM.move(0,0,1)">▶</button></div>
-        <div><button class="zm-dp" ontouchstart="event.preventDefault();ZM.move(0,1,0)">▼</button></div>
+      <div class="zm-dpad" id="dpad-0">
+        <div style="font-size:10px;letter-spacing:2px;color:rgba(0,245,255,0.6);text-transform:uppercase;margin-bottom:8px;font-weight:700;">TAP PLAY THEN USE D-PAD</div>
+        <div><button class="zm-dp" style="border-color:rgba(0,245,255,0.5);color:#00F5FF;width:58px;height:58px;font-size:22px;" ontouchstart="event.preventDefault();ZM.play(0);ZM.move(0,-1,0);" onclick="ZM.play(0);ZM.move(0,-1,0);">▲</button></div>
+        <div style="display:flex;gap:6px;align-items:center;">
+          <button class="zm-dp" style="border-color:rgba(0,245,255,0.5);color:#00F5FF;width:58px;height:58px;font-size:22px;" ontouchstart="event.preventDefault();ZM.play(0);ZM.move(0,0,-1);" onclick="ZM.play(0);ZM.move(0,0,-1);">◀</button>
+          <div style="width:58px;height:58px;border:1px solid rgba(255,255,255,0.08);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:10px;color:rgba(255,255,255,0.2);">YOU</div>
+          <button class="zm-dp" style="border-color:rgba(0,245,255,0.5);color:#00F5FF;width:58px;height:58px;font-size:22px;" ontouchstart="event.preventDefault();ZM.play(0);ZM.move(0,0,1);" onclick="ZM.play(0);ZM.move(0,0,1);">▶</button>
+        </div>
+        <div><button class="zm-dp" style="border-color:rgba(0,245,255,0.5);color:#00F5FF;width:58px;height:58px;font-size:22px;" ontouchstart="event.preventDefault();ZM.play(0);ZM.move(0,1,0);" onclick="ZM.play(0);ZM.move(0,1,0);">▼</button></div>
       </div>
     </div>
   </section>
@@ -2141,7 +2149,7 @@
 
   
   <!-- ═══ MAZE CHAPTER 2 — mid page ═══ -->
-  <section id="maze-ch2" style="position:relative;overflow:hidden;min-height:520px;background:#0c001a;">
+  <section id="maze-ch2" style="position:relative;overflow:hidden;min-height:clamp(560px,90vw,720px);background:#0c001a;">
     <canvas id="mz2" style="position:absolute;top:0;left:0;width:100%;height:100%;display:block;"></canvas>
     <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,0,26,0.93)0%,rgba(12,0,26,0.22)30%,rgba(12,0,26,0.22)70%,rgba(12,0,26,0.93)100%);pointer-events:none;z-index:1;"></div>
     <div style="position:relative;z-index:2;max-width:800px;margin:0 auto;padding:56px 24px;text-align:center;">
@@ -2164,10 +2172,15 @@
         <div style="display:flex;gap:8px;"><input id="r2i" type="text" placeholder="Answer..." style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,45,120,0.3);border-radius:6px;padding:9px 13px;color:#fff;font-family:'Outfit',sans-serif;font-size:13px;outline:none;" /><button onclick="ZM.riddle(2)" style="background:#FF2D78;color:#fff;border:none;border-radius:6px;padding:9px 16px;font-size:13px;font-weight:800;cursor:pointer;">→</button></div>
         <div id="r2fb" style="margin-top:8px;font-size:13px;font-weight:700;min-height:18px;"></div>
       </div>
-      <div class="zm-dpad" style="border-top-color:rgba(255,45,120,0.2);">
-        <div><button class="zm-dp" style="border-color:rgba(255,45,120,0.5);color:#FF2D78;" ontouchstart="event.preventDefault();ZM.move(1,-1,0)">▲</button></div>
-        <div style="display:flex;gap:4px;"><button class="zm-dp" style="border-color:rgba(255,45,120,0.5);color:#FF2D78;" ontouchstart="event.preventDefault();ZM.move(1,0,-1)">◀</button><div style="width:48px;"></div><button class="zm-dp" style="border-color:rgba(255,45,120,0.5);color:#FF2D78;" ontouchstart="event.preventDefault();ZM.move(1,0,1)">▶</button></div>
-        <div><button class="zm-dp" style="border-color:rgba(255,45,120,0.5);color:#FF2D78;" ontouchstart="event.preventDefault();ZM.move(1,1,0)">▼</button></div>
+      <div class="zm-dpad" id="dpad-1" style="border-top-color:rgba(255,45,120,0.2);">
+        <div style="font-size:10px;letter-spacing:2px;color:rgba(255,45,120,0.6);text-transform:uppercase;margin-bottom:8px;font-weight:700;">TAP PLAY THEN USE D-PAD</div>
+        <div><button class="zm-dp" style="border-color:rgba(255,45,120,0.5);color:#FF2D78;width:58px;height:58px;font-size:22px;" ontouchstart="event.preventDefault();ZM.play(1);ZM.move(1,-1,0);" onclick="ZM.play(1);ZM.move(1,-1,0);">▲</button></div>
+        <div style="display:flex;gap:6px;align-items:center;">
+          <button class="zm-dp" style="border-color:rgba(255,45,120,0.5);color:#FF2D78;width:58px;height:58px;font-size:22px;" ontouchstart="event.preventDefault();ZM.play(1);ZM.move(1,0,-1);" onclick="ZM.play(1);ZM.move(1,0,-1);">◀</button>
+          <div style="width:58px;height:58px;border:1px solid rgba(255,45,120,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:10px;color:rgba(255,255,255,0.2);">YOU</div>
+          <button class="zm-dp" style="border-color:rgba(255,45,120,0.5);color:#FF2D78;width:58px;height:58px;font-size:22px;" ontouchstart="event.preventDefault();ZM.play(1);ZM.move(1,0,1);" onclick="ZM.play(1);ZM.move(1,0,1);">▶</button>
+        </div>
+        <div><button class="zm-dp" style="border-color:rgba(255,45,120,0.5);color:#FF2D78;width:58px;height:58px;font-size:22px;" ontouchstart="event.preventDefault();ZM.play(1);ZM.move(1,1,0);" onclick="ZM.play(1);ZM.move(1,1,0);">▼</button></div>
       </div>
     </div>
   </section>
@@ -2351,40 +2364,7 @@
 
       </div>
 
-      <!-- Web Portfolio Grid -->
-      <h3 class="portfolio-title fade-in">WEB <span>PORTFOLIO</span></h3>
-      <div class="portfolio-grid fade-in">
-        <a href="https://eyetoad.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">eyetoad.com</a>
-        <a href="https://agingsafelybaths.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">agingsafelybaths.com</a>
-        <a href="https://showers4less.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">showers4less.com</a>
-        <a href="https://seniorwalkintub.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">seniorwalkintub.com</a>
-        <a href="https://handicapbathtubs.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">handicapbathtubs.com</a>
-        <a href="https://walkintubschicago.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">walkintubschicago.com</a>
-        <a href="https://puertoplataseo.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">puertoplataseo.com</a>
-        <a href="https://seodominicanrepublic.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">seodominicanrepublic.com</a>
-        <a href="https://cabareterestaurants.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">cabareterestaurants.com</a>
-        <a href="https://cabaretebeachdominicanrepublic.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">cabaretebeach.com</a>
-        <a href="https://puertoplatarestaurants.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">puertoplatarestaurants.com</a>
-        <a href="https://dominicanrepublicvacationspots.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">dominicanrepublicvacationspots.com</a>
-        <a href="https://dominicanrepublicplacestovisit.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">dominicanrepublicplacestovisit.com</a>
-        <a href="https://dominicanrealestatetour.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">dominicanrealestatetour.com</a>
-        <a href="https://walkintubsarizona.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">walkintubsarizona.com</a>
-        <a href="https://walkintubsforelderly.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">walkintubsforelderly.com</a>
-        <a href="https://walkintubscalifornia.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">walkintubscalifornia.com</a>
-        <a href="https://utahwalkintubs.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">utahwalkintubs.com</a>
-        <a href="https://walkintubdenver.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">walkintubdenver.com</a>
-        <a href="https://walkintubwithshower.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">walkintubwithshower.com</a>
-        <a href="https://walkintubswithjets.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">walkintubswithjets.com</a>
-        <a href="https://madeinusawalkintubs.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">madeinusawalkintubs.com</a>
-        <a href="https://botoxlongmont.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">botoxlongmont.com</a>
-        <a href="https://seoexpertsdenver.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">seoexpertsdenver.com</a>
-        <a href="https://denverpaintcontractors.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">denverpaintcontractors.com</a>
-        <a href="https://cabaretecondosforsale.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">cabaretecondosforsale.com</a>
-        <a href="https://santodomingoseo.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">santodomingoseo.com</a>
-        <a href="https://monumentseo.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">monumentseo.com</a>
-        <a href="https://roll-in-showers.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">roll-in-showers.com</a>
-        <a href="https://bestseocompanyamerica.com" target="_blank" rel="noopener" style="display:block;padding:8px 4px;text-decoration:none;color:rgba(136,146,176,0.75);font-size:13px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.75)'">bestseocompanyamerica.com</a>
-      </div>
+    
     </div>
   </section>
 
@@ -2487,7 +2467,7 @@
   </section>
 
   <!-- ═══ MAZE CHAPTER 3 — near bottom ═══ -->
-  <section id="maze-ch3" style="position:relative;overflow:hidden;min-height:520px;background:#080800;">
+  <section id="maze-ch3" style="position:relative;overflow:hidden;min-height:clamp(560px,90vw,720px);background:#080800;">
     <canvas id="mz3" style="position:absolute;top:0;left:0;width:100%;height:100%;display:block;"></canvas>
     <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,8,0,0.93)0%,rgba(8,8,0,0.22)30%,rgba(8,8,0,0.22)70%,rgba(8,8,0,0.93)100%);pointer-events:none;z-index:1;"></div>
     <div style="position:relative;z-index:2;max-width:800px;margin:0 auto;padding:56px 24px;text-align:center;">
@@ -2511,1519 +2491,55 @@
         <div style="display:flex;gap:8px;"><input id="r3i" type="text" placeholder="Answer..." style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,229,0,0.3);border-radius:6px;padding:9px 13px;color:#fff;font-family:'Outfit',sans-serif;font-size:13px;outline:none;" /><button onclick="ZM.riddle(3)" style="background:#FFE500;color:#000;border:none;border-radius:6px;padding:9px 16px;font-size:13px;font-weight:800;cursor:pointer;">→</button></div>
         <div id="r3fb" style="margin-top:8px;font-size:13px;font-weight:700;min-height:18px;"></div>
       </div>
-      <div class="zm-dpad" style="border-top-color:rgba(255,229,0,0.2);">
-        <div><button class="zm-dp" style="border-color:rgba(255,229,0,0.5);color:#FFE500;" ontouchstart="event.preventDefault();ZM.move(2,-1,0)">▲</button></div>
-        <div style="display:flex;gap:4px;"><button class="zm-dp" style="border-color:rgba(255,229,0,0.5);color:#FFE500;" ontouchstart="event.preventDefault();ZM.move(2,0,-1)">◀</button><div style="width:48px;"></div><button class="zm-dp" style="border-color:rgba(255,229,0,0.5);color:#FFE500;" ontouchstart="event.preventDefault();ZM.move(2,0,1)">▶</button></div>
-        <div><button class="zm-dp" style="border-color:rgba(255,229,0,0.5);color:#FFE500;" ontouchstart="event.preventDefault();ZM.move(2,1,0)">▼</button></div>
+      <div class="zm-dpad" id="dpad-2" style="border-top-color:rgba(255,229,0,0.2);">
+        <div style="font-size:10px;letter-spacing:2px;color:rgba(255,229,0,0.6);text-transform:uppercase;margin-bottom:8px;font-weight:700;">TAP PLAY THEN USE D-PAD</div>
+        <div><button class="zm-dp" style="border-color:rgba(255,229,0,0.5);color:#FFE500;width:58px;height:58px;font-size:22px;" ontouchstart="event.preventDefault();ZM.play(2);ZM.move(2,-1,0);" onclick="ZM.play(2);ZM.move(2,-1,0);">▲</button></div>
+        <div style="display:flex;gap:6px;align-items:center;">
+          <button class="zm-dp" style="border-color:rgba(255,229,0,0.5);color:#FFE500;width:58px;height:58px;font-size:22px;" ontouchstart="event.preventDefault();ZM.play(2);ZM.move(2,0,-1);" onclick="ZM.play(2);ZM.move(2,0,-1);">◀</button>
+          <div style="width:58px;height:58px;border:1px solid rgba(255,229,0,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:10px;color:rgba(255,255,255,0.2);">YOU</div>
+          <button class="zm-dp" style="border-color:rgba(255,229,0,0.5);color:#FFE500;width:58px;height:58px;font-size:22px;" ontouchstart="event.preventDefault();ZM.play(2);ZM.move(2,0,1);" onclick="ZM.play(2);ZM.move(2,0,1);">▶</button>
+        </div>
+        <div><button class="zm-dp" style="border-color:rgba(255,229,0,0.5);color:#FFE500;width:58px;height:58px;font-size:22px;" ontouchstart="event.preventDefault();ZM.play(2);ZM.move(2,1,0);" onclick="ZM.play(2);ZM.move(2,1,0);">▼</button></div>
       </div>
     </div>
   </section>
 
   <!-- MEGA MODAL -->
-  <div id="zm-mega" style="display:none;position:fixed;inset:0;z-index:9999;background:#000;flex-direction:column;">
-    <div style="display:flex;align-items:center;gap:14px;padding:10px 18px;background:rgba(0,0,0,0.95);border-bottom:1px solid rgba(255,255,255,0.08);flex-shrink:0;">
-      <span style="font-family:'Bebas Neue',cursive;font-size:22px;color:#fff;flex:1;">⚡ ALL THREE CHAPTERS — COMBINED MAZE</span>
-      <span style="font-size:12px;color:rgba(136,146,176,0.7);">Moves: <b id="zmg-mv" style="color:#fff;">0</b> &nbsp; Best: <b id="zmg-bt" style="color:#FFE500;">--</b></span>
-      <button onclick="ZM.closeMega()" style="background:rgba(255,45,120,0.15);border:1px solid #FF2D78;color:#FF2D78;padding:7px 16px;border-radius:6px;font-size:12px;font-weight:800;cursor:pointer;">✕ CLOSE</button>
+  <div id="zm-mega" style="display:none;position:fixed;inset:0;z-index:9999;background:#000;flex-direction:column;touch-action:none;">
+    <!-- Top bar -->
+    <div style="display:flex;align-items:center;gap:10px;padding:10px 16px;background:rgba(0,0,0,0.95);border-bottom:1px solid rgba(0,245,255,0.15);flex-shrink:0;">
+      <span style="font-family:'Bebas Neue',cursive;font-size:20px;color:#fff;flex:1;line-height:1.1;">⚡ ALL CHAPTERS — MEGA MAZE</span>
+      <span style="font-size:11px;color:rgba(136,146,176,0.7);">Moves: <b id="zmg-mv" style="color:#fff;">0</b></span>
+      <span style="font-size:11px;color:rgba(136,146,176,0.7);">Best: <b id="zmg-bt" style="color:#FFE500;">--</b></span>
+      <button onclick="ZM.closeMega()" style="background:rgba(255,45,120,0.15);border:1px solid #FF2D78;color:#FF2D78;padding:7px 14px;border-radius:6px;font-size:12px;font-weight:800;cursor:pointer;white-space:nowrap;">✕ CLOSE</button>
     </div>
-    <canvas id="zmg-canvas" style="flex:1;display:block;width:100%;"></canvas>
-    <div style="display:flex;gap:10px;align-items:center;padding:8px 18px;background:rgba(0,0,0,0.95);border-top:1px solid rgba(255,255,255,0.06);flex-shrink:0;flex-wrap:wrap;">
-      <button onclick="ZM.megaAI()" id="zmg-ai" style="background:rgba(0,245,255,0.12);border:1.5px solid #00F5FF;color:#00F5FF;padding:8px 18px;border-radius:6px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">⚡ AI</button>
-      <button onclick="ZM.megaPlay()" id="zmg-pl" style="background:rgba(0,0,0,0.4);border:1.5px solid rgba(255,255,255,0.2);color:rgba(232,234,246,0.7);padding:8px 18px;border-radius:6px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">🕹 PLAY</button>
-      <button onclick="ZM.megaRegen()" style="background:rgba(0,0,0,0.4);border:1.5px solid rgba(255,255,255,0.15);color:rgba(232,234,246,0.5);padding:8px 14px;border-radius:6px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">↺ NEW</button>
-      <span style="flex:1;font-size:11px;color:rgba(136,146,176,0.6);text-align:right;">Arrow keys / WASD to move</span>
-    </div>
-  </div>
-
-  
-
-  <!-- ============ FOOTER ============ -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <img src="images/zachary-wennstedt-logo.png" alt="Zachary Tye Wennstedt" />
-          <p>CEO · Developer · Strategist · Life Optimizer. Based in Colorado. Operating globally. Available for consulting, partnerships, and speaking.</p>
-          <p style="margin-top:12px;font-size:13px;color:rgba(136,146,176,0.6);">
-            <a href="mailto:zach@eyetoad.com" style="color:var(--neon-cyan);">zach@eyetoad.com</a>
-          </p>
+    <!-- Canvas -->
+    <canvas id="zmg-canvas" style="flex:1;display:block;width:100%;touch-action:none;"></canvas>
+    <!-- Bottom controls -->
+    <div style="background:rgba(0,0,0,0.95);border-top:1px solid rgba(255,255,255,0.06);flex-shrink:0;padding:8px 12px;">
+      <!-- Mode buttons row -->
+      <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px;flex-wrap:wrap;">
+        <button onclick="ZM.megaAI()" id="zmg-ai" style="background:rgba(0,245,255,0.15);border:1.5px solid #00F5FF;color:#00F5FF;padding:8px 16px;border-radius:6px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">⚡ AI PILOT</button>
+        <button onclick="ZM.megaPlay()" id="zmg-pl" style="background:rgba(0,0,0,0.4);border:1.5px solid rgba(255,255,255,0.2);color:rgba(232,234,246,0.7);padding:8px 16px;border-radius:6px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">🕹 PLAY</button>
+        <button onclick="ZM.megaRegen()" style="background:rgba(0,0,0,0.4);border:1.5px solid rgba(255,255,255,0.12);color:rgba(232,234,246,0.5);padding:8px 12px;border-radius:6px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">↺ NEW</button>
+        <span id="zmg-hint" style="flex:1;font-size:10px;color:rgba(136,146,176,0.6);text-align:right;">⌨ Arrow/WASD · 👆 Swipe · D-pad below</span>
+      </div>
+      <!-- D-PAD — always visible in modal -->
+      <div id="zmg-dpad" style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+        <div><button class="zmg-dp" ontouchstart="event.preventDefault();ZM.megaMv(-1,0);" onclick="ZM.megaMv(-1,0);">▲</button></div>
+        <div style="display:flex;gap:6px;">
+          <button class="zmg-dp" ontouchstart="event.preventDefault();ZM.megaMv(0,-1);" onclick="ZM.megaMv(0,-1);">◀</button>
+          <div style="width:48px;"></div>
+          <button class="zmg-dp" ontouchstart="event.preventDefault();ZM.megaMv(0,1);" onclick="ZM.megaMv(0,1);">▶</button>
         </div>
-        <div class="footer-links">
-          <div class="footer-col">
-            <h4>Navigate</h4>
-            <a href="#biography">My Story</a>
-            <a href="#expertise">Expertise</a>
-            <a href="#credentials">Portfolio</a>
-            <a href="#message-board">Leave a Note</a>
-            <a href="#consulting">Hire Me</a>
-          </div>
-          <div class="footer-col">
-            <h4>Companies</h4>
-            <a href="https://eyetoad.com" target="_blank" rel="noopener">Eye To Ad Media</a>
-            <a href="https://searchconverts.com" target="_blank" rel="noopener">Search Converts</a>
-            <a href="https://agingsafelybaths.com" target="_blank" rel="noopener">Aging Safely Baths</a>
-            <a href="https://showers4less.com" target="_blank" rel="noopener">Showers4Less</a>
-          </div>
-          <div class="footer-col">
-            <h4>Legal</h4>
-            <a href="sitemap.html">Sitemap</a>
-            <a href="robots.txt">Robots.txt</a>
-          </div>
-        </div>
+        <div><button class="zmg-dp" ontouchstart="event.preventDefault();ZM.megaMv(1,0);" onclick="ZM.megaMv(1,0);">▼</button></div>
       </div>
-      <div class="footer-bottom">
-        <p>© 2026 Zachary Tye Wennstedt. All Rights Reserved.</p>
-        <p>Powered by <a href="https://eyetoad.com" target="_blank" rel="nofollow">Eye To Ad Media</a></p>
+        <div><button class="zmg-dp" ontouchstart="event.preventDefault();ZM.megaMv(1,0)" onclick="ZM.megaMv(1,0)">▼</button></div>
       </div>
-    </div>
-  </footer>
-
-  <!-- ============ JSON-LD SCHEMA ============ -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Person",
-        "@id": "https://zacharytyewennstedt.com/#person",
-        "name": "Zachary Tye Wennstedt",
-        "alternateName": ["Zach Wennstedt", "Zachary Wennstedt"],
-        "url": "https://zacharytyewennstedt.com",
-        "image": "https://zacharytyewennstedt.com/images/zachary wennstedt hero.jpg",
-        "description": "CEO of Eye To Ad Media, Search Converts, and Aging Safely Baths. Full-stack developer, SEO/AIO expert, sales trainer, and business consultant based in Colorado.",
-        "jobTitle": "CEO, Digital Strategist, Business Consultant",
-        "worksFor": [
-          { "@type": "Organization", "name": "Eye To Ad Media", "url": "https://eyetoad.com" },
-          { "@type": "Organization", "name": "Search Converts", "url": "https://searchconverts.com" },
-          { "@type": "Organization", "name": "Aging Safely Baths", "url": "https://agingsafelybaths.com" }
-        ],
-        "knowsAbout": ["SEO", "AIO", "Generative Engine Optimization", "Full-Stack Development", "Sales Training", "PPC", "Digital Marketing", "Business Strategy", "Lead Generation", "Copywriting"],
-        "email": "zach@eyetoad.com",
-        "sameAs": [
-          "https://eyetoad.com",
-          "https://searchconverts.com",
-          "https://agingsafelybaths.com"
-        ],
-        "address": {
-          "@type": "PostalAddress",
-          "addressRegion": "CO",
-          "addressCountry": "US"
-        }
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://zacharytyewennstedt.com/#website",
-        "url": "https://zacharytyewennstedt.com",
-        "name": "Zachary Tye Wennstedt",
-        "description": "Official website of Zachary Tye Wennstedt — CEO, digital strategist, full-stack developer, and business consultant.",
-        "publisher": { "@id": "https://zacharytyewennstedt.com/#person" }
-      },
-      {
-        "@type": "ProfessionalService",
-        "name": "Zachary Tye Wennstedt Consulting",
-        "url": "https://zacharytyewennstedt.com",
-        "description": "Executive consulting, digital marketing strategy, SEO/AIO, full-stack web development, and sales training by Zachary Tye Wennstedt.",
-        "founder": { "@id": "https://zacharytyewennstedt.com/#person" },
-        "areaServed": "Worldwide",
-        "serviceType": ["SEO Consulting", "AIO Strategy", "Full-Stack Development", "Sales Training", "Business Consulting"]
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {"@type":"Question","name":"Who is Zachary Tye Wennstedt?","acceptedAnswer":{"@type":"Answer","text":"Zachary Tye Wennstedt is a Colorado-based CEO, digital marketing expert, SEO and AIO consultant, full-stack developer, and business consultant. He is the founder of Eye To Ad Media, Search Converts, and Aging Safely Baths."}},
-          {"@type":"Question","name":"What does Zachary Tye Wennstedt specialize in?","acceptedAnswer":{"@type":"Answer","text":"Zachary Tye Wennstedt specializes in SEO, AIO, Generative Engine Optimization, full-stack web development, sales training, PPC advertising, lead generation, conversion rate optimization, and executive business consulting."}},
-          {"@type":"Question","name":"Is Zachary Tye Wennstedt available for consulting?","acceptedAnswer":{"@type":"Answer","text":"Yes. Zach is available for consulting in digital marketing, SEO/AIO strategy, web development, sales team building, fractional CMO services, and executive advisory. Contact zach@eyetoad.com."}},
-          {"@type":"Question","name":"What is AIO and generative engine optimization?","acceptedAnswer":{"@type":"Answer","text":"AIO (AI Optimization) and GEO (Generative Engine Optimization) are practices for getting your brand cited in AI-generated answers from ChatGPT, Claude, Perplexity, and Google AI Overviews. Zach is an expert in both."}},
-          {"@type":"Question","name":"Can Zach build a national sales team?","acceptedAnswer":{"@type":"Answer","text":"Yes. Zachary Tye Wennstedt has built multi-million dollar national sales teams including recruiting, training, KPI systems, CRM setup, and performance coaching."}},
-          {"@type":"Question","name":"What companies has Zachary Tye Wennstedt founded?","acceptedAnswer":{"@type":"Answer","text":"Zachary Tye Wennstedt founded Eye To Ad Media, Search Converts, and Aging Safely Baths. He also owns Showers4Less.com."}},
-          {"@type":"Question","name":"Does Zachary Tye Wennstedt offer fractional CMO services?","acceptedAnswer":{"@type":"Answer","text":"Yes. Zach is available as a Fractional CMO for companies needing executive-level marketing leadership without a full-time hire."}},
-          {"@type":"Question","name":"How do I hire Zachary Tye Wennstedt as a marketing consultant?","acceptedAnswer":{"@type":"Answer","text":"Contact Zach at zach@eyetoad.com or fill out the consulting form at zacharytyewennstedt.com. He accepts select consulting engagements in digital marketing, SEO, AIO, web development, and sales strategy."}}
-        ]
-      },
-      {
-        "@type": "HowTo",
-        "name": "How to Work With Zachary Tye Wennstedt as a Consultant",
-        "description": "Step-by-step process to hire Zach for consulting, digital marketing, or executive advisory.",
-        "step": [
-          {"@type":"HowToStep","name":"Submit Inquiry","text":"Fill out the consulting form at zacharytyewennstedt.com or email zach@eyetoad.com with your project details."},
-          {"@type":"HowToStep","name":"Discovery Call","text":"Zach schedules a discovery call to understand your goals, challenges, and budget."},
-          {"@type":"HowToStep","name":"Custom Strategy","text":"Receive a tailored strategy proposal covering SEO, AIO, lead generation, sales, or web development — depending on your needs."},
-          {"@type":"HowToStep","name":"Execution & Results","text":"Zach and his team execute the strategy with full transparency, regular reporting, and measurable KPIs."}
-        ]
-      },
-      {
-        "@type": "SpeakableSpecification",
-        "@id": "https://zacharytyewennstedt.com/#speakable",
-        "cssSelector": [".hero-tagline", ".bio-quote", "#faq-section"]
-      }
-    ]
-  }
-  </script>
-
-  <!-- ============ JAVASCRIPT ============ -->
-  <script>
-  // ===== CURSOR =====
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    cursor.style.left = mx - 6 + 'px';
-    cursor.style.top = my - 6 + 'px';
-  });
-  function animRing() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    ring.style.left = rx - 18 + 'px';
-    ring.style.top = ry - 18 + 'px';
-    requestAnimationFrame(animRing);
-  }
-  animRing();
-  document.querySelectorAll('a,button,input,textarea,select').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.style.transform = 'scale(2)';
-      ring.style.width = '60px'; ring.style.height = '60px';
-    });
-    el.addEventListener('mouseleave', () => {
-      cursor.style.transform = 'scale(1)';
-      ring.style.width = '36px'; ring.style.height = '36px';
-    });
-  });
-
-  // ===== FADE IN ON SCROLL =====
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right').forEach(el => observer.observe(el));
-
-  // ===== STARS =====
-  const starsContainer = document.getElementById('stars');
-  for (let i = 0; i < 120; i++) {
-    const s = document.createElement('div');
-    s.classList.add('star');
-    const sz = Math.random() * 2.5 + 0.5;
-    s.style.cssText = `width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${2+Math.random()*4}s;animation-delay:${Math.random()*5}s;`;
-    starsContainer.appendChild(s);
-  }
-
-  // ===== PARTICLES =====
-  function createParticle() {
-    const p = document.createElement('div');
-    p.classList.add('particle');
-    const colors = ['#00F5FF','#FFE500','#FF2D78','#39FF14','#7B2FBE'];
-    const sz = Math.random() * 4 + 1;
-    p.style.cssText = `width:${sz}px;height:${sz}px;left:${Math.random()*100}vw;background:${colors[Math.floor(Math.random()*colors.length)]};animation-duration:${6+Math.random()*10}s;animation-delay:${Math.random()*5}s;opacity:0.4;`;
-    document.body.appendChild(p);
-    setTimeout(() => p.remove(), 18000);
-  }
-  setInterval(createParticle, 500);
-
-  // ===== BRAIN CANVAS =====
-  (function() {
-    const canvas = document.getElementById('brain-canvas');
-    const ctx = canvas.getContext('2d');
-    const W = canvas.width, H = canvas.height;
-    let mouseX = W/2, mouseY = H/2;
-    canvas.addEventListener('mousemove', e => {
-      const r = canvas.getBoundingClientRect();
-      mouseX = e.clientX - r.left;
-      mouseY = e.clientY - r.top;
-    });
-
-    // Nodes
-    const nodes = [];
-    const nodeCount = 28;
-    for (let i = 0; i < nodeCount; i++) {
-      nodes.push({
-        x: 80 + Math.random() * (W - 160),
-        y: 60 + Math.random() * (H - 120),
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        r: 4 + Math.random() * 5,
-        pulse: Math.random() * Math.PI * 2,
-        color: ['#00F5FF','#FFE500','#FF2D78','#39FF14','#7B2FBE'][Math.floor(Math.random()*5)]
-      });
-    }
-
-    // Lightning bolts from cursor
-    let bolts = [];
-    function spawnBolt() {
-      const closest = nodes.reduce((a, b) => {
-        const da = Math.hypot(a.x - mouseX, a.y - mouseY);
-        const db = Math.hypot(b.x - mouseX, b.y - mouseY);
-        return da < db ? a : b;
-      });
-      bolts.push({
-        x1: mouseX, y1: mouseY,
-        x2: closest.x, y2: closest.y,
-        life: 1.0,
-        color: closest.color,
-        segs: 6
-      });
-      if (bolts.length > 10) bolts.shift();
-    }
-    canvas.addEventListener('mousemove', spawnBolt);
-
-    function drawBolt(b) {
-      const segs = b.segs;
-      const dx = (b.x2 - b.x1) / segs;
-      const dy = (b.y2 - b.y1) / segs;
-      ctx.beginPath();
-      ctx.moveTo(b.x1, b.y1);
-      for (let i = 1; i < segs; i++) {
-        const ox = (Math.random() - 0.5) * 18;
-        const oy = (Math.random() - 0.5) * 18;
-        ctx.lineTo(b.x1 + dx * i + ox, b.y1 + dy * i + oy);
-      }
-      ctx.lineTo(b.x2, b.y2);
-      ctx.strokeStyle = b.color;
-      ctx.lineWidth = 1.5;
-      ctx.globalAlpha = b.life * 0.9;
-      ctx.shadowColor = b.color;
-      ctx.shadowBlur = 12;
-      ctx.stroke();
-      ctx.globalAlpha = 1;
-      ctx.shadowBlur = 0;
-    }
-
-    function animBrain() {
-      ctx.fillStyle = 'rgba(8,0,26,0.15)';
-      ctx.fillRect(0, 0, W, H);
-
-      // Connections
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const d = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
-          if (d < 130) {
-            ctx.beginPath();
-            ctx.moveTo(nodes[i].x, nodes[i].y);
-            ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.strokeStyle = `rgba(0,245,255,${(1 - d/130)*0.25})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
-      }
-
-      // Nodes
-      nodes.forEach(n => {
-        n.pulse += 0.04;
-        const scale = 1 + Math.sin(n.pulse) * 0.2;
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, n.r * scale, 0, Math.PI * 2);
-        ctx.fillStyle = n.color;
-        ctx.shadowColor = n.color;
-        ctx.shadowBlur = 15;
-        ctx.fill();
-        ctx.shadowBlur = 0;
-
-        n.x += n.vx;
-        n.y += n.vy;
-        if (n.x < 20 || n.x > W - 20) n.vx *= -1;
-        if (n.y < 20 || n.y > H - 20) n.vy *= -1;
-      });
-
-      // Mouse interaction — attract nodes
-      nodes.forEach(n => {
-        const d = Math.hypot(n.x - mouseX, n.y - mouseY);
-        if (d < 100) {
-          n.vx += (mouseX - n.x) * 0.0003;
-          n.vy += (mouseY - n.y) * 0.0003;
-        }
-        const speed = Math.hypot(n.vx, n.vy);
-        if (speed > 1.5) { n.vx *= 0.98; n.vy *= 0.98; }
-      });
-
-      // Bolts
-      bolts = bolts.filter(b => b.life > 0.05);
-      bolts.forEach(b => { b.life *= 0.7; drawBolt(b); });
-
-      requestAnimationFrame(animBrain);
-    }
-    animBrain();
-  })();
-
-  // ===== ROCKET CANVAS =====
-  (function() {
-    const canvas = document.getElementById('rocket-canvas');
-    const ctx = canvas.getContext('2d');
-    const W = canvas.width, H = canvas.height;
-    let rocketY = H - 80;
-    let launching = false;
-    let particles = [];
-    let launched = false;
-    let resetTimer = null;
-
-    function drawRocket(y) {
-      ctx.save();
-      ctx.translate(W/2, y);
-
-      // Flame
-      if (launching) {
-        const grad = ctx.createRadialGradient(0, 28, 2, 0, 40, 20);
-        grad.addColorStop(0, '#FFE500');
-        grad.addColorStop(0.5, '#FF6B00');
-        grad.addColorStop(1, 'rgba(255,107,0,0)');
-        ctx.beginPath();
-        ctx.ellipse(0, 36, 10 + Math.random()*6, 22 + Math.random()*12, 0, 0, Math.PI*2);
-        ctx.fillStyle = grad;
-        ctx.fill();
-      }
-
-      // Body
-      ctx.beginPath();
-      ctx.moveTo(0, -50);
-      ctx.lineTo(18, 20);
-      ctx.lineTo(-18, 20);
-      ctx.closePath();
-      ctx.fillStyle = '#e0e0ff';
-      ctx.fill();
-
-      // Window
-      ctx.beginPath();
-      ctx.arc(0, -10, 7, 0, Math.PI*2);
-      ctx.fillStyle = '#00F5FF';
-      ctx.shadowColor = '#00F5FF';
-      ctx.shadowBlur = 10;
-      ctx.fill();
-      ctx.shadowBlur = 0;
-
-      // Fins
-      ctx.beginPath();
-      ctx.moveTo(-18, 20);
-      ctx.lineTo(-30, 40);
-      ctx.lineTo(-8, 24);
-      ctx.closePath();
-      ctx.fillStyle = '#FF2D78';
-      ctx.fill();
-      ctx.beginPath();
-      ctx.moveTo(18, 20);
-      ctx.lineTo(30, 40);
-      ctx.lineTo(8, 24);
-      ctx.closePath();
-      ctx.fillStyle = '#FF2D78';
-      ctx.fill();
-
-      ctx.restore();
-    }
-
-    function spawnParticle() {
-      particles.push({
-        x: W/2 + (Math.random()-0.5)*20,
-        y: rocketY + 30,
-        vx: (Math.random()-0.5)*2,
-        vy: 2 + Math.random()*3,
-        life: 1,
-        color: ['#FFE500','#FF6B00','#FF2D78','#39FF14'][Math.floor(Math.random()*4)],
-        r: 2 + Math.random()*4
-      });
-    }
-
-    function animRocket() {
-      ctx.fillStyle = 'rgba(2,8,32,0.15)';
-      ctx.fillRect(0,0,W,H);
-
-      if (launching) {
-        rocketY -= 4;
-        spawnParticle(); spawnParticle();
-        if (rocketY < -80) {
-          launching = false;
-          launched = true;
-          clearTimeout(resetTimer);
-          resetTimer = setTimeout(() => {
-            rocketY = H - 80;
-            launched = false;
-          }, 1200);
-        }
-      }
-
-      particles = particles.filter(p => p.life > 0.05);
-      particles.forEach(p => {
-        p.x += p.vx;
-        p.y += p.vy;
-        p.life *= 0.92;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r * p.life, 0, Math.PI*2);
-        ctx.fillStyle = p.color;
-        ctx.globalAlpha = p.life;
-        ctx.fill();
-        ctx.globalAlpha = 1;
-      });
-
-      drawRocket(rocketY);
-
-      if (launched && rocketY < -80) {
-        ctx.fillStyle = '#FFE500';
-        ctx.font = 'bold 22px Bebas Neue, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('🚀 TO THE NEXT LEVEL!', W/2, H/2);
-      }
-
-      requestAnimationFrame(animRocket);
-    }
-
-    canvas.addEventListener('click', () => {
-      if (!launching && !launched) launching = true;
-    });
-
-    animRocket();
-  })();
-
-  // ===== STICKY NOTES =====
-  (function() {
-    const board = document.getElementById('sticky-board');
-    const instructions = document.getElementById('boardInstructions');
-    const noteInput = document.getElementById('noteInput');
-    const addBtn = document.getElementById('addNoteBtn');
-    const sendBtn = document.getElementById('sendNotesBtn');
-    const emojiPicker = document.getElementById('emojiPicker');
-    let selectedEmoji = '💡';
-    let notes = [];
-    let dragNote = null, offsetX = 0, offsetY = 0;
-
-    const colors = ['#FFF176','#F48FB1','#80DEEA','#A5D6A7','#FFCC80','#CE93D8','#90CAF9'];
-    const rotations = [-4,-2,-1,0,1,2,4,3,-3];
-
-    emojiPicker.querySelectorAll('.emoji-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        emojiPicker.querySelectorAll('.emoji-btn').forEach(b => b.classList.remove('selected'));
-        btn.classList.add('selected');
-        selectedEmoji = btn.dataset.emoji;
-      });
-    });
-
-    function addNote() {
-      const text = noteInput.value.trim();
-      if (!text) { noteInput.focus(); return; }
-      if (instructions) instructions.style.opacity = '0';
-
-      const note = document.createElement('div');
-      note.classList.add('sticky-note');
-      const color = colors[Math.floor(Math.random()*colors.length)];
-      const rot = rotations[Math.floor(Math.random()*rotations.length)];
-      const bRect = board.getBoundingClientRect();
-      const startX = Math.random() * (board.offsetWidth - 200) + 20;
-      const startY = Math.random() * (board.offsetHeight - 180) + 20;
-      note.style.cssText = `left:${startX}px;top:${startY}px;background:${color};color:#1a1a2e;--rot:${rot}deg;`;
-      note.innerHTML = `
-        <span class="note-emoji">${selectedEmoji}</span>
-        <span>${text}</span>
-        <button class="note-delete" onclick="this.parentElement.remove()">✕</button>
-      `;
-
-      // Drag
-      note.addEventListener('mousedown', e => {
-        dragNote = note;
-        const r = note.getBoundingClientRect();
-        const br = board.getBoundingClientRect();
-        offsetX = e.clientX - r.left;
-        offsetY = e.clientY - r.top;
-        note.style.zIndex = 100;
-        note.style.transform = `rotate(${rot}deg) scale(1.05)`;
-      });
-
-      board.appendChild(note);
-      notes.push({ text, emoji: selectedEmoji });
-      noteInput.value = '';
-    }
-
-    document.addEventListener('mousemove', e => {
-      if (!dragNote) return;
-      const br = board.getBoundingClientRect();
-      let x = e.clientX - br.left - offsetX;
-      let y = e.clientY - br.top - offsetY;
-      x = Math.max(0, Math.min(board.offsetWidth - dragNote.offsetWidth, x));
-      y = Math.max(0, Math.min(board.offsetHeight - dragNote.offsetHeight, y));
-      dragNote.style.left = x + 'px';
-      dragNote.style.top = y + 'px';
-    });
-
-    document.addEventListener('mouseup', () => {
-      if (dragNote) {
-        dragNote.style.zIndex = '';
-        dragNote = null;
-      }
-    });
-
-    addBtn.addEventListener('click', addNote);
-    noteInput.addEventListener('keydown', e => { if (e.key === 'Enter') addNote(); });
-
-    sendBtn.addEventListener('click', () => {
-      if (notes.length === 0) { alert('Add at least one note first! ✏️'); return; }
-      const body = notes.map(n => `${n.emoji} ${n.text}`).join('\n');
-      const subject = encodeURIComponent('Board Notes from ZacharyTyeWennstedt.com');
-      const bodyEnc = encodeURIComponent(`Notes from the Board:\n\n${body}`);
-      window.open(`mailto:zach@eyetoad.com?subject=${subject}&body=${bodyEnc}`);
-    });
-  })();
-
-  // ===== MINI GAME =====
-  (function() {
-    const canvas = document.getElementById('game-canvas');
-    const ctx = canvas.getContext('2d');
-    const W = canvas.width, H = canvas.height;
-    const scoreEl = document.getElementById('game-score');
-
-    let state = 'idle'; // idle, playing, dead
-    let player = { x: W/2, y: H-50, w: 30, h: 30, vx: 0, vy: 0, speed: 4 };
-    let bolts = [], stars = [];
-    let score = 0, highScore = 0;
-    let keys = {};
-    let frameCount = 0;
-
-    document.addEventListener('keydown', e => {
-      keys[e.key] = true;
-      if ((e.key === ' ' || e.key === 'Spacebar') && state !== 'playing') {
-        startGame();
-      }
-    });
-    document.addEventListener('keyup', e => keys[e.key] = false);
-
-    // Mobile touch
-    let touchStartX = 0;
-    canvas.addEventListener('touchstart', e => {
-      touchStartX = e.touches[0].clientX;
-      if (state !== 'playing') startGame();
-    });
-    canvas.addEventListener('touchmove', e => {
-      e.preventDefault();
-      const dx = e.touches[0].clientX - touchStartX;
-      if (dx > 10) { keys['ArrowRight'] = true; keys['ArrowLeft'] = false; }
-      else if (dx < -10) { keys['ArrowLeft'] = true; keys['ArrowRight'] = false; }
-      else { keys['ArrowLeft'] = false; keys['ArrowRight'] = false; }
-    }, { passive: false });
-    canvas.addEventListener('touchend', () => {
-      keys['ArrowLeft'] = false; keys['ArrowRight'] = false;
-    });
-
-    function startGame() {
-      state = 'playing';
-      player = { x: W/2, y: H-50, w: 30, h: 30, vx: 0, vy: 0, speed: 4 };
-      bolts = []; stars = [];
-      score = 0; frameCount = 0;
-    }
-
-    function spawnBolt() {
-      bolts.push({ x: Math.random() * (W-20) + 10, y: -20, vy: 3 + score * 0.03, w: 8, h: 28, glow: '#FFE500' });
-    }
-    function spawnStar() {
-      stars.push({ x: Math.random()*(W-20)+10, y: -15, vy: 2+Math.random()*1, r:8, glow:'#00F5FF', active:true });
-    }
-
-    function drawPlayer(p) {
-      ctx.save();
-      ctx.translate(p.x, p.y);
-      // Glow
-      ctx.shadowColor = '#00F5FF';
-      ctx.shadowBlur = 20;
-      // Body
-      ctx.fillStyle = '#00F5FF';
-      ctx.beginPath();
-      ctx.roundRect(-12, -14, 24, 28, 6);
-      ctx.fill();
-      // Visor
-      ctx.fillStyle = '#030510';
-      ctx.beginPath();
-      ctx.arc(0, -2, 7, 0, Math.PI*2);
-      ctx.fill();
-      ctx.fillStyle = '#39FF14';
-      ctx.beginPath();
-      ctx.arc(0, -2, 4, 0, Math.PI*2);
-      ctx.fill();
-      ctx.restore();
-    }
-
-    function drawBolt(b) {
-      ctx.save();
-      ctx.fillStyle = b.glow;
-      ctx.shadowColor = b.glow;
-      ctx.shadowBlur = 12;
-      // Zigzag
-      ctx.beginPath();
-      ctx.moveTo(b.x, b.y);
-      ctx.lineTo(b.x + b.w*0.4, b.y + b.h*0.35);
-      ctx.lineTo(b.x - b.w*0.2, b.y + b.h*0.5);
-      ctx.lineTo(b.x + b.w*0.5, b.y + b.h);
-      ctx.lineWidth = 3;
-      ctx.strokeStyle = b.glow;
-      ctx.stroke();
-      ctx.restore();
-    }
-
-    function drawStar(s) {
-      ctx.save();
-      ctx.beginPath();
-      for (let i = 0; i < 5; i++) {
-        const a = (i * 4 * Math.PI / 5) - Math.PI/2;
-        const ia = a + 2*Math.PI/5;
-        if (i===0) ctx.moveTo(s.x + s.r * Math.cos(a), s.y + s.r * Math.sin(a));
-        else ctx.lineTo(s.x + s.r * Math.cos(a), s.y + s.r * Math.sin(a));
-        ctx.lineTo(s.x + s.r*0.4 * Math.cos(ia), s.y + s.r*0.4 * Math.sin(ia));
-      }
-      ctx.closePath();
-      ctx.fillStyle = s.glow;
-      ctx.shadowColor = s.glow;
-      ctx.shadowBlur = 18;
-      ctx.fill();
-      ctx.restore();
-    }
-
-    function collides(a, bx, by, bw, bh) {
-      return a.x - a.w/2 < bx + bw/2 && a.x + a.w/2 > bx - bw/2 &&
-             a.y - a.h/2 < by + bh/2 && a.y + a.h/2 > by - bh/2;
-    }
-
-    function gameLoop() {
-      // Background
-      ctx.fillStyle = '#020820';
-      ctx.fillRect(0,0,W,H);
-
-      // Grid lines
-      ctx.strokeStyle = 'rgba(0,245,255,0.05)';
-      ctx.lineWidth = 1;
-      for (let x = 0; x < W; x += 40) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
-      for (let y = 0; y < H; y += 40) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
-
-      if (state === 'idle') {
-        ctx.fillStyle = '#fff';
-        ctx.font = 'bold 20px Outfit,sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('LIGHTNING DODGE', W/2, H/2 - 40);
-        ctx.fillStyle = 'var(--neon-cyan)';
-        ctx.font = '14px Outfit,sans-serif';
-        ctx.fillText('Press Space or Tap to Start', W/2, H/2);
-        ctx.fillStyle = '#8892b0';
-        ctx.font = '12px Outfit,sans-serif';
-        ctx.fillText('Dodge bolts ⚡ · Catch stars ⭐ · Survive', W/2, H/2 + 30);
-      }
-
-      if (state === 'playing') {
-        frameCount++;
-
-        // Move player
-        if (keys['ArrowLeft'] || keys['a'] || keys['A']) player.vx = -player.speed;
-        else if (keys['ArrowRight'] || keys['d'] || keys['D']) player.vx = player.speed;
-        else player.vx *= 0.7;
-        if (keys['ArrowUp'] || keys['w'] || keys['W']) player.vy = -player.speed;
-        else if (keys['ArrowDown'] || keys['s'] || keys['S']) player.vy = player.speed;
-        else player.vy *= 0.7;
-
-        player.x = Math.max(15, Math.min(W-15, player.x + player.vx));
-        player.y = Math.max(15, Math.min(H-15, player.y + player.vy));
-
-        // Spawn
-        if (frameCount % Math.max(40 - Math.floor(score/3), 18) === 0) spawnBolt();
-        if (frameCount % 90 === 0) spawnStar();
-
-        // Update bolts
-        bolts = bolts.filter(b => b.y < H + 30);
-        bolts.forEach(b => {
-          b.y += b.vy;
-          drawBolt(b);
-          if (collides({x:player.x,y:player.y,w:20,h:28}, b.x, b.y+b.h/2, b.w-4, b.h-4)) {
-            state = 'dead';
-            if (score > highScore) highScore = score;
-          }
-        });
-
-        // Update stars
-        stars = stars.filter(s => s.y < H + 20 && s.active);
-        stars.forEach(s => {
-          s.y += s.vy;
-          drawStar(s);
-          if (Math.hypot(s.x-player.x, s.y-player.y) < s.r + 14) {
-            s.active = false;
-            score += 5;
-          }
-        });
-
-        score += 0.03;
-        drawPlayer(player);
-
-        // HUD
-        ctx.fillStyle = '#fff';
-        ctx.font = 'bold 16px Outfit,sans-serif';
-        ctx.textAlign = 'left';
-        ctx.fillText(`⭐ ${Math.floor(score)}`, 16, 28);
-        ctx.textAlign = 'right';
-        ctx.fillStyle = '#8892b0';
-        ctx.fillText(`Best: ${Math.floor(highScore)}`, W-16, 28);
-        ctx.textAlign = 'center';
-
-        scoreEl.textContent = `Score: ${Math.floor(score)}  |  Best: ${Math.floor(highScore)}`;
-      }
-
-      if (state === 'dead') {
-        ctx.fillStyle = 'rgba(2,8,32,0.75)';
-        ctx.fillRect(0,0,W,H);
-        ctx.fillStyle = '#FF2D78';
-        ctx.font = 'bold 30px Bebas Neue,cursive';
-        ctx.textAlign = 'center';
-        ctx.fillText('GAME OVER', W/2, H/2 - 40);
-        ctx.fillStyle = '#FFE500';
-        ctx.font = 'bold 20px Outfit,sans-serif';
-        ctx.fillText(`Score: ${Math.floor(score)}`, W/2, H/2);
-        ctx.fillStyle = '#fff';
-        ctx.font = '14px Outfit,sans-serif';
-        ctx.fillText('Press Space or Tap to Try Again', W/2, H/2 + 36);
-      }
-
-      requestAnimationFrame(gameLoop);
-    }
-    gameLoop();
-  })();
-
-  // ===== FORM SPAM PROTECTION =====
-  (function() {
-    const loadTime = Date.now();
-    const form = document.getElementById('consult-form');
-    const timeField = document.getElementById('form-time-field');
-    if (timeField) timeField.value = loadTime;
-
-    if (form) {
-      form.addEventListener('submit', function(e) {
-        const elapsed = Date.now() - loadTime;
-        if (elapsed < 3000) { e.preventDefault(); return; }
-        const honey = form.querySelector('[name="_honey"]');
-        if (honey && honey.value !== '') { e.preventDefault(); return; }
-      });
-    }
-  })();
-  </script>
-
-
-      <!-- MAZE ENGINE ZM -->
-  <script>
-  (function(){
-  'use strict';
-  // ── Seeded RNG ──────────────────────────────────────────────────
-  function mkRng(seed){let s=(seed||Date.now())>>>0;return()=>{s=Math.imul(s^s>>>13,1540483477)^s>>>15;return(s>>>0)/4294967296;};}
-
-  // ── Maze gen (recursive backtracker) ────────────────────────────
-  function gen(cols,rows,seed){
-    const rnd=mkRng(seed);
-    const W=Array.from({length:rows},()=>new Uint8Array(cols).fill(15));
-    const vis=Array.from({length:rows},()=>new Uint8Array(cols));
-    const D=[{r:-1,c:0,b:1,o:4},{r:0,c:1,b:2,o:8},{r:1,c:0,b:4,o:1},{r:0,c:-1,b:8,o:2}];
-    vis[0][0]=1; const stk=[{r:0,c:0}];
-    while(stk.length){
-      const cur=stk[stk.length-1];
-      const sh=[...D].sort(()=>rnd()-0.5);
-      let mv=false;
-      for(const d of sh){const nr=cur.r+d.r,nc=cur.c+d.c;if(nr>=0&&nr<rows&&nc>=0&&nc<cols&&!vis[nr][nc]){vis[nr][nc]=1;W[cur.r][cur.c]&=~d.b;W[nr][nc]&=~d.o;stk.push({r:nr,c:nc});mv=true;break;}}
-      if(!mv)stk.pop();
-    }
-    return W;
-  }
-
-  // ── BFS solver ──────────────────────────────────────────────────
-  function bfs(W,cols,rows,sr,sc,er,ec){
-    const vis=Array.from({length:rows},()=>new Uint8Array(cols));
-    const par=Array.from({length:rows},()=>Array(cols).fill(null));
-    const D=[{r:-1,c:0,b:1},{r:0,c:1,b:2},{r:1,c:0,b:4},{r:0,c:-1,b:8}];
-    vis[sr][sc]=1; const q=[{r:sr,c:sc}];
-    while(q.length){
-      const cur=q.shift();
-      if(cur.r===er&&cur.c===ec){const p=[];let n=cur;while(n){p.unshift(n);n=par[n.r][n.c];}return p;}
-      for(const d of D){const nr=cur.r+d.r,nc=cur.c+d.c;if(nr>=0&&nr<rows&&nc>=0&&nc<cols&&!vis[nr][nc]&&!(W[cur.r][cur.c]&d.b)){vis[nr][nc]=1;par[nr][nc]=cur;q.push({r:nr,c:nc});}}
-    }
-    return[];
-  }
-
-  // ── Wall colors per panel ────────────────────────────────────────
-  const PALS=[
-    ['rgba(0,245,255,0.6)','rgba(0,200,255,0.4)','rgba(100,255,218,0.45)'],
-    ['rgba(255,45,120,0.55)','rgba(180,0,200,0.42)','rgba(255,80,60,0.45)'],
-    ['rgba(255,229,0,0.55)','rgba(255,165,0,0.44)','rgba(200,255,0,0.42)'],
-  ];
-  const BEAM=['#00F5FF','#FF2D78','#FFE500'];
-
-  // ── Draw walls with flashing multicolor ─────────────────────────
-  function drawWalls(ctx,W,cols,rows,ox,oy,cs,pi,seed,t){
-    const rnd=mkRng(seed+Math.floor(t*2));
-    const pal=PALS[pi%3];
-    for(let r=0;r<rows;r++){
-      for(let c=0;c<cols;c++){
-        const x=ox+c*cs,y=oy+r*cs;
-        const col=pal[Math.floor(rnd()*pal.length)];
-        const fl=Math.sin(t*1.8+(r*cols+c)*0.41)*0.5+0.5;
-        ctx.save();
-        ctx.strokeStyle=col; ctx.lineWidth=fl>0.9?2.2:1.3;
-        ctx.shadowColor=col; ctx.shadowBlur=fl>0.9?10:3;
-        if(W[r][c]&1){ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+cs,y);ctx.stroke();}
-        if(W[r][c]&2){ctx.beginPath();ctx.moveTo(x+cs,y);ctx.lineTo(x+cs,y+cs);ctx.stroke();}
-        if(W[r][c]&4){ctx.beginPath();ctx.moveTo(x,y+cs);ctx.lineTo(x+cs,y+cs);ctx.stroke();}
-        if(W[r][c]&8){ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x,y+cs);ctx.stroke();}
-        ctx.restore();
-      }
-    }
-  }
-
-  // ── Sacred geometry overlay ──────────────────────────────────────
-  function drawGeo(ctx,cols,rows,ox,oy,cs,color,t){
-    ctx.save(); ctx.globalAlpha=0.05+Math.sin(t*0.5)*0.02;
-    ctx.strokeStyle=color; ctx.lineWidth=0.7;
-    for(let r=2;r<rows-1;r+=5){
-      for(let c=2;c<cols-1;c+=5){
-        const x=ox+c*cs+cs/2,y=oy+r*cs+cs/2,rad=cs*2.1,rot=t*0.03+(r+c)*0.18;
-        ctx.beginPath();
-        for(let i=0;i<6;i++){const a=rot+i*Math.PI/3;ctx.beginPath();ctx.arc(x+Math.cos(a)*rad,y+Math.sin(a)*rad,rad,0,Math.PI*2);ctx.stroke();}
-        ctx.beginPath();ctx.arc(x,y,rad,0,Math.PI*2);ctx.stroke();
-      }
-    }
-    ctx.restore();
-  }
-
-  // ── Beam draw ───────────────────────────────────────────────────
-  function drawBeam(ctx,trail,ox,oy,cs,color,t){
-    if(!trail.length)return;
-    const MAX=40, s=Math.max(0,trail.length-MAX);
-    for(let i=s;i<trail.length;i++){
-      const p=trail[i],frac=(i-s)/(trail.length-s);
-      ctx.beginPath();ctx.arc(ox+p.c*cs+cs/2,oy+p.r*cs+cs/2,Math.max(1,cs*0.3*frac),0,Math.PI*2);
-      ctx.fillStyle=color;ctx.globalAlpha=frac*0.5;ctx.fill();
-    }
-    ctx.globalAlpha=1;
-    const h=trail[trail.length-1],hx=ox+h.c*cs+cs/2,hy=oy+h.r*cs+cs/2;
-    ctx.save();ctx.shadowColor=color;ctx.shadowBlur=22;
-    ctx.beginPath();ctx.arc(hx,hy,cs*0.42,0,Math.PI*2);ctx.fillStyle=color;ctx.fill();
-    ctx.strokeStyle='rgba(255,255,255,0.8)';ctx.lineWidth=1;
-    for(let a=0;a<4;a++){const ang=a*Math.PI/2+t*4;ctx.beginPath();ctx.moveTo(hx,hy);ctx.lineTo(hx+Math.cos(ang)*cs*0.65,hy+Math.sin(ang)*cs*0.65);ctx.stroke();}
-    ctx.restore();ctx.globalAlpha=1;
-  }
-
-  // ── Panel factory ────────────────────────────────────────────────
-  const panels=[];
-  const SEEDS=[13337,24680,98765];
-  const SPEEDS=[52,58,38];
-  const BG=['rgba(1,10,30,0.06)','rgba(12,0,26,0.06)','rgba(8,8,0,0.06)'];
-
-  function Panel(canvasId,pi){
-    const cv=document.getElementById(canvasId);
-    if(!cv)return null;
-    const ctx=cv.getContext('2d');
-    let W,cols,rows,path,pidx,trail,aiMode,pos,solved,moves,solvedCt,seed;
-    let cs,ox,oy,stepTimer=null,startTime=null,timerTick=null,bestTime=null,shiftCt=0;
-    const t0=Date.now();
-
-    function resize(){
-      const sect=cv.parentElement;
-      cv.width=sect.offsetWidth||window.innerWidth;
-      cv.height=sect.offsetHeight||480;
-      cs=Math.max(16,Math.min(26,Math.floor(cv.width/34)));
-      cols=Math.floor((cv.width-4)/cs);
-      rows=Math.floor((cv.height-4)/cs);
-      ox=Math.floor((cv.width-cols*cs)/2);
-      oy=Math.floor((cv.height-rows*cs)/2);
-    }
-
-    function init(s){
-      seed=s||SEEDS[pi];resize();
-      W=gen(cols,rows,seed);
-      path=bfs(W,cols,rows,0,0,rows-1,cols-1);
-      pidx=0;trail=[];pos={r:0,c:0};solved=false;moves=0;
-      solvedCt=solvedCt||0;
-      if(startTime){clearInterval(timerTick);startTime=null;}
-      upd();
-    }
-
-    function upd(){
-      const ids=[
-        {mv:'ch1-mv',sv:'ch1-sv',st:'ch1-st'},
-        {sv:'ch2-sv'},
-        {sv:'ch3-sv',tm:'ch3-tm',bt:'ch3-bt'}
-      ][pi];
-      const q=n=>document.getElementById(n);
-      if(ids.mv&&q(ids.mv))q(ids.mv).textContent=moves;
-      if(ids.sv&&q(ids.sv))q(ids.sv).textContent=solvedCt;
-      if(ids.st&&q(ids.st))q(ids.st).textContent=aiMode?'AI RUNNING':solved?'✓ SOLVED':'YOUR TURN';
-    }
-
-    function onSolve(){
-      solved=true;solvedCt++;
-      if(pi===2&&timerTick){
-        clearInterval(timerTick);
-        const t=(Date.now()-startTime)/1000;
-        if(!bestTime||t<bestTime){bestTime=t;const be=document.getElementById('ch3-bt');if(be)be.textContent=bestTime.toFixed(1)+'s';}
-      }
-      upd();
-      setTimeout(()=>init(),2200);
-    }
-
-    function aiStep(){if(!aiMode||solved)return;if(pidx<path.length){trail.push({...path[pidx]});if(trail.length>40)trail.shift();pidx++;moves++;upd();if(pidx>=path.length)onSolve();}}
-    function startAI(){if(stepTimer)clearInterval(stepTimer);stepTimer=setInterval(aiStep,SPEEDS[pi]);}
-
-    // Draw loop
-    const loop=()=>{
-      const t=(Date.now()-t0)/1000;
-      ctx.fillStyle=BG[pi];ctx.fillRect(0,0,cv.width,cv.height);
-      if(!W){requestAnimationFrame(loop);return;}
-      drawGeo(ctx,cols,rows,ox,oy,cs,BEAM[pi],t);
-      drawWalls(ctx,W,cols,rows,ox,oy,cs,pi,seed,t);
-      // Start/end markers
-      ctx.save();ctx.shadowBlur=14;
-      ctx.shadowColor='#39FF14';ctx.fillStyle='rgba(57,255,20,0.5)';
-      ctx.beginPath();ctx.arc(ox+cs/2,oy+cs/2,cs*0.32,0,Math.PI*2);ctx.fill();
-      ctx.shadowColor='#FFE500';ctx.fillStyle='rgba(255,229,0,0.75)';
-      ctx.beginPath();ctx.arc(ox+(cols-1)*cs+cs/2,oy+(rows-1)*cs+cs/2,cs*0.32,0,Math.PI*2);ctx.fill();
-      ctx.restore();
-      // Ghost path hint
-      if(!aiMode&&path.length>1){
-        ctx.save();ctx.globalAlpha=0.05;ctx.strokeStyle=BEAM[pi];ctx.lineWidth=2;
-        ctx.beginPath();path.forEach((p,i)=>{const x=ox+p.c*cs+cs/2,y=oy+p.r*cs+cs/2;i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);});
-        ctx.stroke();ctx.restore();
-      }
-      drawBeam(ctx,trail,ox,oy,cs,BEAM[pi],t);
-      if(!aiMode){
-        ctx.save();ctx.shadowColor=BEAM[pi];ctx.shadowBlur=26;
-        ctx.beginPath();ctx.arc(ox+pos.c*cs+cs/2,oy+pos.r*cs+cs/2,cs*0.44,0,Math.PI*2);
-        ctx.fillStyle=BEAM[pi];ctx.fill();ctx.restore();
-      }
-      if(solved){ctx.save();ctx.globalAlpha=0.1;ctx.fillStyle=BEAM[pi];ctx.fillRect(0,0,cv.width,cv.height);ctx.restore();}
-      requestAnimationFrame(loop);
-    };
-
-    window.addEventListener('resize',()=>init());
-    init();startAI();aiMode=true;loop();
-
-    return{
-      ai:function(){aiMode=true;document.getElementById('ch'+(pi+1)+'-ai')?.style&&(document.getElementById('ch'+(pi+1)+'-ai').style.background=BEAM[pi].replace('#','rgba(').replace('FF','FF')+',0.15)');document.getElementById('ch'+(pi+1)+'-pl')?.style&&(document.getElementById('ch'+(pi+1)+'-pl').style.background='rgba(0,0,0,0.4)');init();startAI();},
-      play:function(){aiMode=false;if(stepTimer)clearInterval(stepTimer);init();if(pi===2){startTime=Date.now();timerTick=setInterval(()=>{const tm=document.getElementById('ch3-tm');if(tm)tm.textContent=((Date.now()-startTime)/1000).toFixed(1)+'s';},100);}},
-      move:function(dr,dc){
-        if(aiMode||solved)return;
-        const D=[{r:-1,c:0,b:1},{r:0,c:1,b:2},{r:1,c:0,b:4},{r:0,c:-1,b:8}];
-        const d=D.find(x=>x.r===dr&&x.c===dc);if(!d)return;
-        const nr=pos.r+dr,nc=pos.c+dc;
-        if(nr<0||nr>=rows||nc<0||nc>=cols||W[pos.r][pos.c]&d.b)return;
-        pos={r:nr,c:nc};trail.push({...pos});if(trail.length>40)trail.shift();
-        moves++;upd();
-        if(pi===2&&!startTime){startTime=Date.now();timerTick=setInterval(()=>{const tm=document.getElementById('ch3-tm');if(tm)tm.textContent=((Date.now()-startTime)/1000).toFixed(1)+'s';},100);}
-        if(pos.r===rows-1&&pos.c===cols-1)onSolve();
-      },
-      regen:function(){init();if(aiMode)startAI();},
-      shift:function(){shiftCt++;init(Date.now()+shiftCt);if(aiMode)startAI();}
-    };
-  }
-
-  // ── Keyboard ────────────────────────────────────────────────────
-  let focus=0;
-  const KMAP={'ArrowUp':[-1,0],'ArrowDown':[1,0],'ArrowLeft':[0,-1],'ArrowRight':[0,1],'w':[-1,0],'s':[1,0],'a':[0,-1],'d':[0,1]};
-  document.addEventListener('keydown',e=>{
-    if(document.getElementById('zm-mega').style.display==='flex'){return;}// handled by mega
-    if(KMAP[e.key]){e.preventDefault();panels[focus]&&panels[focus].move(...KMAP[e.key]);}
-  });
-  [0,1,2].forEach(i=>{const s=document.getElementById('maze-ch'+(i+1));if(s)s.addEventListener('click',()=>focus=i);});
-
-  // ── Chapter 2 shift countdown ───────────────────────────────────
-  let p2cd=12,p2sh=0;
-  setInterval(()=>{
-    p2cd--;
-    const el=document.getElementById('ch2-cd');if(el)el.textContent=Math.max(0,p2cd);
-    if(p2cd<=0){p2cd=12;panels[1]&&panels[1].shift();p2sh++;const sh=document.getElementById('ch2-sh');if(sh)sh.textContent=p2sh;}
-  },1000);
-
-  // ── Mega combined maze ───────────────────────────────────────────
-  let mgW,mgCols,mgRows,mgPath,mgPidx,mgTrail,mgAI,mgPos,mgSolved;
-  let mgMoves=0,mgBest=null,mgStart=null,mgTimer=null,mgAnimID=null,mgStepTimer=null,mgSeed=0;
-
-  function mgInit(){
-    const cv=document.getElementById('zmg-canvas');if(!cv)return;
-    cv.width=window.innerWidth;cv.height=window.innerHeight-120;
-    const cs2=Math.max(13,Math.min(20,Math.floor(cv.width/44)));
-    mgCols=Math.floor((cv.width-4)/cs2);mgRows=Math.floor((cv.height-4)/cs2);
-    mgSeed=Date.now();
-    mgW=gen(mgCols,mgRows,mgSeed);
-    mgPath=bfs(mgW,mgCols,mgRows,0,0,mgRows-1,mgCols-1);
-    mgPidx=0;mgTrail=[];mgPos={r:0,c:0};mgSolved=false;mgMoves=0;
-    if(mgStart){clearInterval(mgTimer);mgStart=null;}
-    document.getElementById('zmg-mv').textContent='0';
-    document.getElementById('zmg-bt').textContent=mgBest?mgBest.toFixed(1)+'s':'--';
-  }
-
-  function mgDraw(){
-    const cv=document.getElementById('zmg-canvas');if(!cv||!mgW)return;
-    const ctx=cv.getContext('2d');
-    const W=cv.width,H=cv.height;
-    const cs2=Math.max(13,Math.min(20,Math.floor(W/44)));
-    const ox=Math.floor((W-mgCols*cs2)/2),oy=Math.floor((H-mgRows*cs2)/2);
-    const t=(Date.now()-Date.now()%86400000)/1000; // stable time
-    const tt=performance.now()/1000;
-    ctx.fillStyle='rgba(0,0,0,0.1)';ctx.fillRect(0,0,W,H);
-    // Tri-color walls
-    const rnd=mkRng(mgSeed+Math.floor(tt*1.5));
-    for(let r=0;r<mgRows;r++){
-      for(let c=0;c<mgCols;c++){
-        const x=ox+c*cs2,y=oy+r*cs2;
-        const pi=(r+c)%3;const pal=PALS[pi];
-        const col=pal[Math.floor(rnd()*pal.length)];
-        const fl=Math.sin(tt*1.5+(r*mgCols+c)*0.35)*0.5+0.5;
-        ctx.save();ctx.strokeStyle=col;ctx.lineWidth=fl>0.91?2:1;ctx.shadowColor=col;ctx.shadowBlur=fl>0.91?8:2;
-        if(mgW[r][c]&1){ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+cs2,y);ctx.stroke();}
-        if(mgW[r][c]&2){ctx.beginPath();ctx.moveTo(x+cs2,y);ctx.lineTo(x+cs2,y+cs2);ctx.stroke();}
-        if(mgW[r][c]&4){ctx.beginPath();ctx.moveTo(x,y+cs2);ctx.lineTo(x+cs2,y+cs2);ctx.stroke();}
-        if(mgW[r][c]&8){ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x,y+cs2);ctx.stroke();}
-        ctx.restore();
-      }
-    }
-    drawGeo(ctx,mgCols,mgRows,ox,oy,cs2,'#00F5FF',tt);
-    ctx.save();ctx.shadowBlur=14;
-    ctx.shadowColor='#39FF14';ctx.fillStyle='rgba(57,255,20,0.6)';ctx.beginPath();ctx.arc(ox+cs2/2,oy+cs2/2,cs2*0.35,0,Math.PI*2);ctx.fill();
-    ctx.shadowColor='#FFE500';ctx.fillStyle='rgba(255,229,0,0.8)';ctx.beginPath();ctx.arc(ox+(mgCols-1)*cs2+cs2/2,oy+(mgRows-1)*cs2+cs2/2,cs2*0.35,0,Math.PI*2);ctx.fill();
-    ctx.restore();
-    drawBeam(ctx,mgTrail,ox,oy,cs2,'#00F5FF',tt);
-    if(!mgAI&&mgPos){
-      ctx.save();ctx.shadowColor='#00F5FF';ctx.shadowBlur=28;
-      ctx.beginPath();ctx.arc(ox+mgPos.c*cs2+cs2/2,oy+mgPos.r*cs2+cs2/2,cs2*0.46,0,Math.PI*2);
-      ctx.fillStyle='#00F5FF';ctx.fill();ctx.restore();
-    }
-    if(mgAnimID!==null)mgAnimID=requestAnimationFrame(mgDraw);
-  }
-
-  function mgStep(){
-    if(!mgAI||mgSolved)return;
-    if(mgPidx<mgPath.length){
-      mgTrail.push({...mgPath[mgPidx]});if(mgTrail.length>55)mgTrail.shift();
-      mgPidx++;mgMoves++;
-      document.getElementById('zmg-mv').textContent=mgMoves;
-      if(mgPidx>=mgPath.length){mgSolved=true;if(mgStart){clearInterval(mgTimer);const t=(Date.now()-mgStart)/1000;if(!mgBest||t<mgBest){mgBest=t;document.getElementById('zmg-bt').textContent=mgBest.toFixed(1)+'s';}}setTimeout(()=>{mgInit();if(mgStepTimer)clearInterval(mgStepTimer);mgStepTimer=setInterval(mgStep,32);},2000);}
-    }
-  }
-
-  // Mega keyboard
-  document.addEventListener('keydown',e=>{
-    const modal=document.getElementById('zm-mega');
-    if(!modal||modal.style.display!=='flex')return;
-    if(mgAI)return;
-    if(KMAP[e.key]){
-      e.preventDefault();
-      const [dr,dc]=KMAP[e.key];
-      const cv=document.getElementById('zmg-canvas');
-      const cs2=Math.max(13,Math.min(20,Math.floor(cv.width/44)));
-      const D=[{r:-1,c:0,b:1},{r:0,c:1,b:2},{r:1,c:0,b:4},{r:0,c:-1,b:8}];
-      const d=D.find(x=>x.r===dr&&x.c===dc);if(!d)return;
-      const nr=mgPos.r+dr,nc=mgPos.c+dc;
-      if(nr<0||nr>=mgRows||nc<0||nc>=mgCols||mgW[mgPos.r][mgPos.c]&d.b)return;
-      mgPos={r:nr,c:nc};mgTrail.push({...mgPos});if(mgTrail.length>55)mgTrail.shift();
-      mgMoves++;document.getElementById('zmg-mv').textContent=mgMoves;
-      if(!mgStart){mgStart=Date.now();mgTimer=setInterval(()=>{},100);}
-      if(mgPos.r===mgRows-1&&mgPos.c===mgCols-1){mgSolved=true;const t=(Date.now()-mgStart)/1000;if(!mgBest||t<mgBest){mgBest=t;document.getElementById('zmg-bt').textContent=mgBest.toFixed(1)+'s';}setTimeout(()=>{mgInit();},2000);}
-    }
-  });
-
-  // ── Public API ───────────────────────────────────────────────────
-  window.ZM={
-    ai:function(i){panels[i]&&panels[i].ai();},
-    play:function(i){panels[i]&&panels[i].play();focus=i;},
-    move:function(i,dr,dc){panels[i]&&panels[i].move(dr,dc);},
-    regen:function(i){panels[i]&&panels[i].regen();},
-    shiftNow:function(i){panels[i]&&panels[i].shift();},
-    riddle:function(n){
-      const ans={2:['footsteps','steps','footstep'],3:['echo','an echo']};
-      const v=document.getElementById('r'+n+'i').value.trim().toLowerCase();
-      const el=document.getElementById('r'+n+'fb');
-      if(ans[n].includes(v)){el.style.color='#39FF14';el.textContent='✅ Correct!';}
-      else{el.style.color='#FF2D78';el.textContent='❌ Keep thinking...';}
-    },
-    openMega:function(){
-      const m=document.getElementById('zm-mega');m.style.display='flex';
-      mgAI=true;mgAnimID=1;mgInit();
-      if(mgStepTimer)clearInterval(mgStepTimer);mgStepTimer=setInterval(mgStep,32);
-      mgDraw();
-    },
-    closeMega:function(){
-      const m=document.getElementById('zm-mega');m.style.display='none';
-      mgAnimID=null;if(mgStepTimer)clearInterval(mgStepTimer);
-    },
-    megaAI:function(){mgAI=true;mgInit();if(mgStepTimer)clearInterval(mgStepTimer);mgStepTimer=setInterval(mgStep,32);},
-    megaPlay:function(){mgAI=false;if(mgStepTimer)clearInterval(mgStepTimer);mgInit();}
-  };
-
-  // Init panels
-  ['mz1','mz2','mz3'].forEach((id,i)=>{const p=Panel(id,i);if(p)panels.push(p);});
-
-  // FAQ accordion
-  document.querySelectorAll('.faq-question').forEach(btn=>{
-    btn.addEventListener('click',function(){
-      const item=this.closest('.faq-item');
-      const isOpen=item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
-      if(!isOpen)item.classList.add('open');
-    });
-  });
-
-  })();
-  </script>
-
-
-  
-
-  <!-- EQ LIGHTNING VISUALIZER -->
-  <script>
-  (function(){
-    const cv=document.getElementById('eq-canvas');
-    if(!cv)return;
-    const ctx=cv.getContext('2d');
-    const N=32; // bar count
-    let playing=false;
-    // Each bar: current height (0-1), velocity, phase
-    const bars=Array.from({length:N},(_,i)=>({
-      h:0.05, v:0, phase:Math.random()*Math.PI*2,
-      freq:0.8+Math.random()*2.4,
-      color:['#00F5FF','#FF2D78','#FFE500','#39FF14','#7B2FBE','#FF6B6B'][i%6]
-    }));
-    function resize(){cv.width=cv.offsetWidth||window.innerWidth;cv.height=cv.offsetHeight||80;}
-    resize();
-    window.addEventListener('resize',resize);
-
-    let t0=Date.now();
-    function draw(){
-      const W=cv.width, H=cv.height;
-      const t=(Date.now()-t0)/1000;
-      ctx.clearRect(0,0,W,H);
-      const bw=Math.floor(W/N)-2;
-
-      bars.forEach((b,i)=>{
-        // Physics: spring toward target
-        const target=playing
-          ?(0.15+0.85*(Math.sin(t*b.freq+b.phase)*0.5+0.5)*(Math.sin(t*1.3+i*0.6)*0.3+0.7))
-          :0.04;
-        b.v+=(target-b.h)*0.35;
-        b.v*=0.72;
-        b.h=Math.max(0.02,b.h+b.v);
-
-        const x=i*(bw+2);
-        const barH=Math.max(3,b.h*H);
-        const y=H-barH;
-
-        if(playing&&b.h>0.45){
-          // Lightning bolt shape instead of rectangle
-          const mx=x+bw/2;
-          ctx.save();
-          ctx.shadowColor=b.color; ctx.shadowBlur=18;
-          ctx.strokeStyle=b.color; ctx.lineWidth=bw>4?2.5:1.5;
-          ctx.beginPath();
-          ctx.moveTo(mx+bw*0.15,y);
-          const segs=Math.max(3,Math.floor(b.h*8));
-          for(let s=1;s<=segs;s++){
-            const sy=y+s*(barH/segs);
-            const jitter=(Math.random()-0.5)*bw*0.9;
-            ctx.lineTo(mx+jitter,sy);
-          }
-          ctx.stroke();
-          // Glow dot at top
-          ctx.beginPath();
-          ctx.arc(mx,y,bw*0.4,0,Math.PI*2);
-          ctx.fillStyle=b.color; ctx.globalAlpha=0.9;
-          ctx.fill();
-          ctx.restore();
-          ctx.globalAlpha=1;
-        } else {
-          // Thin pillar when quiet/paused
-          const grad=ctx.createLinearGradient(0,y,0,H);
-          grad.addColorStop(0,b.color);
-          grad.addColorStop(1,b.color+'22');
-          ctx.fillStyle=grad;
-          ctx.shadowColor=b.color; ctx.shadowBlur=playing?6:2;
-          ctx.fillRect(x,y,bw,barH);
-          ctx.shadowBlur=0;
-          // Top cap
-          if(playing){
-            ctx.fillStyle='#fff'; ctx.globalAlpha=0.85;
-            ctx.fillRect(x,y,bw,2);
-            ctx.globalAlpha=1;
-          }
-        }
-      });
-
-      // Beat ring flash when playing
-      if(playing){
-        const beat=Math.sin(t*4)*0.5+0.5;
-        if(beat>0.92){
-          ctx.save();
-          ctx.strokeStyle='rgba(255,255,255,0.08)';
-          ctx.lineWidth=1; ctx.beginPath();
-          ctx.rect(0,0,W,H); ctx.stroke();
-          ctx.restore();
-        }
-      }
-      requestAnimationFrame(draw);
-    }
-    draw();
-    window.setEQPlaying=function(p){playing=p;};
-  })();
-  </script>
-
-
-  
-
-
-  <!-- YouTube IFrame API -->
-  <script src="https://www.youtube.com/iframe_api"></script>
-  <script>
-  // ===== MUSIC PLAYER =====
-  var ytPlayer = null;
-  var isPlaying = false;
-  var isMuted = false;
-  var currentVol = 70;
-
-  function onYouTubeIframeAPIReady() {
-    ytPlayer = new YT.Player('yt-player', {
-      videoId: '8CQ_QHosBSA',
-      playerVars: {
-        autoplay: 0,
-        controls: 0,
-        disablekb: 1,
-        fs: 0,
-        iv_load_policy: 3,
-        modestbranding: 1,
-        rel: 0,
-        showinfo: 0,
-        origin: window.location.origin
-      },
-      events: {
-        onReady: function(e) {
-          e.target.setVolume(currentVol);
-        },
-        onStateChange: function(e) {
-          if (e.data === YT.PlayerState.PLAYING) {
-            setPlaying(true);
-          } else if (e.data === YT.PlayerState.PAUSED || e.data === YT.PlayerState.ENDED) {
-            setPlaying(false);
-          }
-        }
-      }
-    });
-  }
-
-  function setPlaying(playing) {
-    isPlaying = playing;
-    const btn = document.getElementById('music-play-btn');
-    const label = document.getElementById('now-playing-label');
-    // EQ now runs on canvas
-    if (playing) {
-      btn.textContent = '⏸';
-      btn.style.borderColor = 'var(--neon-pink)';
-      btn.style.color = 'var(--neon-pink)';
-      btn.style.boxShadow = '0 0 24px rgba(255,45,120,0.6)';
-      label.textContent = '▶ NOW PLAYING';
-      label.classList.remove('paused');
-      if(window.setEQPlaying) window.setEQPlaying(true);
-    } else {
-      btn.textContent = '▶';
-      btn.style.borderColor = 'var(--neon-cyan)';
-      btn.style.color = 'var(--neon-cyan)';
-      btn.style.boxShadow = '0 0 12px rgba(0,245,255,0.3)';
-      label.textContent = 'PAUSED';
-      label.classList.add('paused');
-      if(window.setEQPlaying) window.setEQPlaying(false);
-    }
-  }
-
-  document.getElementById('music-play-btn').addEventListener('click', function() {
-    if (!ytPlayer) return;
-    if (isPlaying) {
-      ytPlayer.pauseVideo();
-    } else {
-      ytPlayer.playVideo();
-    }
-  });
-
-  // Volume slider
-  const volSlider = document.getElementById('vol-slider');
-  const volIcon = document.getElementById('vol-icon');
-  volSlider.addEventListener('input', function() {
-    currentVol = parseInt(this.value);
-    if (ytPlayer) ytPlayer.setVolume(currentVol);
-    // Update track fill
-    const pct = currentVol + '%';
-    this.style.background = `linear-gradient(90deg, var(--neon-cyan) ${pct}, rgba(255,255,255,0.15) ${pct})`;
-    // Update icon
-    if (currentVol === 0) { volIcon.textContent = '🔇'; isMuted = true; }
-    else if (currentVol < 40) { volIcon.textContent = '🔉'; isMuted = false; }
-    else { volIcon.textContent = '🔊'; isMuted = false; }
-  });
-  // Set initial track fill
-  volSlider.style.background = 'linear-gradient(90deg, var(--neon-cyan) 70%, rgba(255,255,255,0.15) 70%)';
-
-  // Mute toggle on icon click
-  volIcon.addEventListener('click', function() {
-    if (!ytPlayer) return;
-    if (isMuted) {
-      ytPlayer.unMute();
-      ytPlayer.setVolume(currentVol || 70);
-      volSlider.value = currentVol || 70;
-      volIcon.textContent = '🔊';
-      isMuted = false;
-    } else {
-      ytPlayer.mute();
-      volIcon.textContent = '🔇';
-      isMuted = true;
-    }
-  });
-
-  // Randomize eq bar heights slightly on interval for more organic feel
-  setInterval(function() {
-    if (!isPlaying) return;
-    document.querySelectorAll('.eq-bar').forEach(bar => {
-      const base = parseInt(bar.style.getPropertyValue('--h'));
-      const jitter = (Math.random() - 0.5) * 8;
-      const newH = Math.max(6, Math.min(32, base + jitter));
-      bar.style.setProperty('--h', newH + 'px');
-    });
-  }, 300);
-  </script>
-</body>
-</html>
-
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- MAZE PANEL 1 — Directly below hero video               -->
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <section class="maze-panel-section" id="maze-panel-1" style="min-height:520px;background:#010a1e;">
-    <canvas class="maze-panel-canvas" id="mazeCanvas1"></canvas>
-    <div class="maze-panel-overlay" style="background:linear-gradient(180deg,rgba(1,10,30,0.92)0%,rgba(1,10,30,0.3)25%,rgba(1,10,30,0.3)75%,rgba(1,10,30,0.92)100%);"></div>
-    <div class="maze-panel-content fade-in">
-      <div class="section-label" style="color:var(--neon-cyan);">One Maze · Three Chapters · Level 1</div>
-      <h2>ENTER THE <span style="color:var(--neon-cyan);">GRID</span></h2>
-      <p>The beam searches every passage. Every dead end is a lesson. Keep going — the exit exists.</p>
-      <div class="maze-ctrl-row">
-        <button class="mz-btn on" id="p1-ai" style="--btn-color:var(--neon-cyan);" onclick="MZ.p1AI()">🤖 AI Mode</button>
-        <button class="mz-btn" id="p1-play" style="--btn-color:var(--neon-cyan);" onclick="MZ.p1Player()">🕹️ Play</button>
-        <button class="mz-btn" style="--btn-color:var(--neon-cyan);" onclick="MZ.resetPanel(0)">↺ New</button>
-      </div>
-      <div class="maze-stats-row">
-        <div class="mz-stat"><div class="mz-stat-n" id="p1-moves" style="color:var(--neon-cyan);">0</div><div class="mz-stat-l">Moves</div></div>
-        <div class="mz-stat"><div class="mz-stat-n" id="p1-solved" style="color:var(--neon-cyan);">0</div><div class="mz-stat-l">Solved</div></div>
-        <div class="mz-stat"><div class="mz-stat-n" id="p1-status" style="font-size:15px;color:var(--neon-cyan);padding-top:10px;">AI RUNNING</div><div class="mz-stat-l">Status</div></div>
-      </div>
-      <div class="dpad" id="dpad1">
-        <div class="dpad-row"><button class="dp-btn" ontouchstart="event.preventDefault();MZ.playerMove(0,-1,0)">▲</button></div>
-        <div class="dpad-row">
-          <button class="dp-btn" ontouchstart="event.preventDefault();MZ.playerMove(0,0,-1)">◀</button>
-          <div style="width:50px;"></div>
-          <button class="dp-btn" ontouchstart="event.preventDefault();MZ.playerMove(0,0,1)">▶</button>
-        </div>
-        <div class="dpad-row"><button class="dp-btn" ontouchstart="event.preventDefault();MZ.playerMove(0,1,0)">▼</button></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- MAZE PANEL 2 — Mid page                                -->
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <section class="maze-panel-section" id="maze-panel-2" style="min-height:560px;background:#0c001a;">
-    <canvas class="maze-panel-canvas" id="mazeCanvas2"></canvas>
-    <div class="maze-panel-overlay" style="background:linear-gradient(180deg,rgba(12,0,26,0.92)0%,rgba(12,0,26,0.3)25%,rgba(12,0,26,0.3)75%,rgba(12,0,26,0.92)100%);"></div>
-    <div class="maze-panel-content fade-in">
-      <div class="section-label" style="color:var(--neon-pink);">Sacred Geometry · Shifting Walls · Level 2</div>
-      <h2>THE WALLS <span style="color:var(--neon-pink);">SHIFT</span></h2>
-      <p>Every 12 seconds the maze transforms. The geometry rotates. Adapt — or start over.</p>
-      <div class="maze-ctrl-row">
-        <button class="mz-btn on" id="p2-ai" style="--btn-color:var(--neon-pink);" onclick="MZ.p2AI()">🤖 AI Mode</button>
-        <button class="mz-btn" id="p2-play" style="--btn-color:var(--neon-pink);" onclick="MZ.p2Player()">🕹️ Play</button>
-        <button class="mz-btn" style="--btn-color:var(--neon-pink);" onclick="MZ.shiftPanel(1)">⟳ Shift Now</button>
-      </div>
-      <div class="maze-stats-row">
-        <div class="mz-stat"><div class="mz-stat-n" id="p2-countdown" style="color:var(--neon-pink);">12</div><div class="mz-stat-l">Shift In (s)</div></div>
-        <div class="mz-stat"><div class="mz-stat-n" id="p2-shifts">0</div><div class="mz-stat-l">Shifts</div></div>
-        <div class="mz-stat"><div class="mz-stat-n" id="p2-solved">0</div><div class="mz-stat-l">Solved</div></div>
-      </div>
-      <div class="riddle-card" style="border-color:rgba(255,45,120,0.2);">
-        <h4 style="color:var(--neon-pink);">🧩 Level 2 Riddle</h4>
-        <p>"The more you take, the more you leave behind. What am I?"</p>
-        <div class="riddle-row">
-          <input type="text" class="riddle-inp" id="r2-inp" placeholder="Your answer..." />
-          <button class="riddle-go" onclick="MZ.checkRiddle(2)" style="background:var(--neon-pink);color:#fff;">→</button>
-        </div>
-        <div class="riddle-fb" id="r2-fb"></div>
-      </div>
-      <div class="dpad" id="dpad2" style="margin-top:16px;">
-        <div class="dpad-row"><button class="dp-btn" style="border-color:rgba(255,45,120,0.4);color:var(--neon-pink);" ontouchstart="event.preventDefault();MZ.playerMove(1,-1,0)">▲</button></div>
-        <div class="dpad-row">
-          <button class="dp-btn" style="border-color:rgba(255,45,120,0.4);color:var(--neon-pink);" ontouchstart="event.preventDefault();MZ.playerMove(1,0,-1)">◀</button>
-          <div style="width:50px;"></div>
-          <button class="dp-btn" style="border-color:rgba(255,45,120,0.4);color:var(--neon-pink);" ontouchstart="event.preventDefault();MZ.playerMove(1,0,1)">▶</button>
-        </div>
-        <div class="dpad-row"><button class="dp-btn" style="border-color:rgba(255,45,120,0.4);color:var(--neon-pink);" ontouchstart="event.preventDefault();MZ.playerMove(1,1,0)">▼</button></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- COMBINE BUTTON                                         -->
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <div id="combine-btn-wrap">
-    <button id="combine-btn" onclick="MZ.openMega()">⚡ COMBINE ALL MAZES ⚡</button>
-    <p id="combine-sub">Merge all three chapters into one giant playable maze</p>
-  </div>
-
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- MAZE PANEL 3 — Bottom                                  -->
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <section class="maze-panel-section" id="maze-panel-3" style="min-height:560px;background:#0a0a00;">
-    <canvas class="maze-panel-canvas" id="mazeCanvas3"></canvas>
-    <div class="maze-panel-overlay" style="background:linear-gradient(180deg,rgba(10,10,0,0.92)0%,rgba(10,10,0,0.3)25%,rgba(10,10,0,0.3)75%,rgba(10,10,0,0.92)100%);"></div>
-    <div class="maze-panel-content fade-in">
-      <div class="section-label" style="color:var(--neon-yellow);">Speed · Precision · Final Level</div>
-      <h2>THE FINAL <span style="color:var(--neon-yellow);">GAUNTLET</span></h2>
-      <p>Race the clock. Optimal paths only. The AI learns — can you beat it?</p>
-      <div class="maze-ctrl-row">
-        <button class="mz-btn on" id="p3-ai" style="--btn-color:var(--neon-yellow);" onclick="MZ.p3AI()">🤖 AI Speed Run</button>
-        <button class="mz-btn" id="p3-play" style="--btn-color:var(--neon-yellow);" onclick="MZ.p3Player()">🕹️ Beat the AI</button>
-        <button class="mz-btn" style="--btn-color:var(--neon-yellow);" onclick="MZ.resetPanel(2)">↺ Reset</button>
-      </div>
-      <div class="maze-stats-row">
-        <div class="mz-stat"><div class="mz-stat-n" id="p3-time" style="color:var(--neon-yellow);">0.0s</div><div class="mz-stat-l">Time</div></div>
-        <div class="mz-stat"><div class="mz-stat-n" id="p3-best">--</div><div class="mz-stat-l">Best</div></div>
-        <div class="mz-stat"><div class="mz-stat-n" id="p3-solved">0</div><div class="mz-stat-l">Solved</div></div>
-      </div>
-      <div class="riddle-card" style="border-color:rgba(255,229,0,0.2);">
-        <h4 style="color:var(--neon-yellow);">🏆 Master Riddle</h4>
-        <p>"I speak without a mouth, hear without ears. No body — but I come alive with the wind."</p>
-        <div class="riddle-row">
-          <input type="text" class="riddle-inp" id="r3-inp" placeholder="Your answer..." />
-          <button class="riddle-go" onclick="MZ.checkRiddle(3)">→</button>
-        </div>
-        <div class="riddle-fb" id="r3-fb"></div>
-      </div>
-      <div class="dpad" id="dpad3" style="margin-top:16px;">
-        <div class="dpad-row"><button class="dp-btn" style="border-color:rgba(255,229,0,0.4);color:var(--neon-yellow);" ontouchstart="event.preventDefault();MZ.playerMove(2,-1,0)">▲</button></div>
-        <div class="dpad-row">
-          <button class="dp-btn" style="border-color:rgba(255,229,0,0.4);color:var(--neon-yellow);" ontouchstart="event.preventDefault();MZ.playerMove(2,0,-1)">◀</button>
-          <div style="width:50px;"></div>
-          <button class="dp-btn" style="border-color:rgba(255,229,0,0.4);color:var(--neon-yellow);" ontouchstart="event.preventDefault();MZ.playerMove(2,0,1)">▶</button>
-        </div>
-        <div class="dpad-row"><button class="dp-btn" style="border-color:rgba(255,229,0,0.4);color:var(--neon-yellow);" ontouchstart="event.preventDefault();MZ.playerMove(2,1,0)">▼</button></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- MEGA COMBINED MAZE MODAL                               -->
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <div id="mega-modal">
-    <div id="mega-modal-bar">
-      <h3>⚡ THE COMPLETE MAZE — All Chapters Combined</h3>
-      <span id="mega-moves-label">Moves: <b id="mega-moves">0</b></span>
-      <button id="mega-close" onclick="MZ.closeMega()">✕ Close</button>
-    </div>
-    <canvas id="mega-canvas"></canvas>
-    <div id="mega-modal-ctrl">
-      <button class="mz-btn on" id="mega-ai-btn" onclick="MZ.megaAI()" style="--btn-color:var(--neon-cyan);">🤖 AI</button>
-      <button class="mz-btn" id="mega-play-btn" onclick="MZ.megaPlayer()" style="--btn-color:var(--neon-cyan);">🕹️ Play</button>
-      <button class="mz-btn" onclick="MZ.megaReset()" style="--btn-color:var(--neon-cyan);">↺ New</button>
-      <div class="mega-stat">Time: <span id="mega-time">--</span></div>
-      <div class="mega-stat">Best: <span id="mega-best">--</span></div>
-      <div style="flex:1;font-size:11px;color:var(--text-muted);text-align:right;">Arrow keys / WASD · D-pad on mobile</div>
     </div>
   </div>
 
 
-  <!-- SLANT -->
-  <div class="slant-divider" style="background:#020820;">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="0,0 1440,0 1440,60" fill="#030510" />
-    </svg>
-  </div>
 
   <!-- ============ CONSULTING FORM ============ -->
   <section id="consulting">
@@ -4098,6 +2614,50 @@
     </div>
   </section>
 
+
+  <!-- ═══ WEB PORTFOLIO — ABOVE FOOTER ═══ -->
+  <section style="background:#020408;padding:60px 40px 40px;border-top:1px solid rgba(255,255,255,0.05);">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:32px;">
+        <div style="font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--neon-cyan);font-weight:700;margin-bottom:8px;">Built & Ranked</div>
+        <h3 style="font-family:'Bebas Neue',cursive;font-size:clamp(28px,4vw,44px);color:#fff;">WEB PORTFOLIO — <span style="color:var(--neon-cyan);">LIVE PROPERTIES</span></h3>
+        <p style="color:var(--text-muted);font-size:13px;margin-top:8px;max-width:560px;margin-left:auto;margin-right:auto;">Every domain below was built, ranked, or managed by Zachary Tye Wennstedt through Eye To Ad Media.</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:4px 20px;max-width:1100px;margin:0 auto;">
+        <a href="https://eyetoad.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">eyetoad.com</a>
+        <a href="https://agingsafelybaths.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">agingsafelybaths.com</a>
+        <a href="https://showers4less.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">showers4less.com</a>
+        <a href="https://seniorwalkintub.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">seniorwalkintub.com</a>
+        <a href="https://handicapbathtubs.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">handicapbathtubs.com</a>
+        <a href="https://walkintubschicago.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">walkintubschicago.com</a>
+        <a href="https://puertoplataseo.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">puertoplataseo.com</a>
+        <a href="https://seodominicanrepublic.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">seodominicanrepublic.com</a>
+        <a href="https://cabareterestaurants.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">cabareterestaurants.com</a>
+        <a href="https://cabaretebeachdominicanrepublic.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">cabaretebeachdominicanrepublic.com</a>
+        <a href="https://puertoplatarestaurants.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">puertoplatarestaurants.com</a>
+        <a href="https://dominicanrepublicvacationspots.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">dominicanrepublicvacationspots.com</a>
+        <a href="https://dominicanrepublicplacestovisit.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">dominicanrepublicplacestovisit.com</a>
+        <a href="https://dominicanrealestatetour.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">dominicanrealestatetour.com</a>
+        <a href="https://walkintubsarizona.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">walkintubsarizona.com</a>
+        <a href="https://walkintubsforelderly.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">walkintubsforelderly.com</a>
+        <a href="https://walkintubscalifornia.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">walkintubscalifornia.com</a>
+        <a href="https://utahwalkintubs.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">utahwalkintubs.com</a>
+        <a href="https://walkintubdenver.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">walkintubdenver.com</a>
+        <a href="https://walkintubwithshower.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">walkintubwithshower.com</a>
+        <a href="https://walkintubswithjets.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">walkintubswithjets.com</a>
+        <a href="https://madeinusawalkintubs.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">madeinusawalkintubs.com</a>
+        <a href="https://botoxlongmont.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">botoxlongmont.com</a>
+        <a href="https://seoexpertsdenver.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">seoexpertsdenver.com</a>
+        <a href="https://denverpaintcontractors.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">denverpaintcontractors.com</a>
+        <a href="https://cabaretecondosforsale.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">cabaretecondosforsale.com</a>
+        <a href="https://santodomingoseo.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">santodomingoseo.com</a>
+        <a href="https://monumentseo.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">monumentseo.com</a>
+        <a href="https://roll-in-showers.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">roll-in-showers.com</a>
+        <a href="https://bestseocompanyamerica.com" target="_blank" rel="noopener" style="color:rgba(136,146,176,0.65);font-size:13px;font-weight:600;text-decoration:none;padding:5px 0;transition:color .2s;" onmouseover="this.style.color='#00F5FF'" onmouseout="this.style.color='rgba(136,146,176,0.65)'">bestseocompanyamerica.com</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ FOOTER ============ -->
   <footer>
     <div class="footer-inner">
@@ -4853,463 +3413,357 @@
   </script>
 
 
-  <!-- ============ BACKGROUND MAZE ENGINE ============ -->
+  <!-- MAZE ENGINE ZM -->
   <script>
   (function(){
   'use strict';
-
-  // ──────────────────────────────────────────────
-  // CORE MAZE GENERATOR (recursive backtracker)
-  // ──────────────────────────────────────────────
-  function genMaze(cols, rows, seed) {
-    let s = (seed || Date.now()) >>> 0;
-    function rnd(n){ s=Math.imul(s^s>>>13,1540483477)^s>>>15; return (s>>>0)%n; }
-    // walls[r][c] bits: N=1 E=2 S=4 W=8
-    const W = Array.from({length:rows},()=>new Uint8Array(cols).fill(15));
-    const vis = Array.from({length:rows},()=>new Uint8Array(cols));
+  function mkRng(seed){let s=(seed||Date.now())>>>0;return()=>{s=Math.imul(s^s>>>13,1540483477)^s>>>15;return(s>>>0)/4294967296;};}
+  function gen(cols,rows,seed){
+    const rnd=mkRng(seed);
+    const W=Array.from({length:rows},()=>new Uint8Array(cols).fill(15));
+    const vis=Array.from({length:rows},()=>new Uint8Array(cols));
     const D=[{r:-1,c:0,b:1,o:4},{r:0,c:1,b:2,o:8},{r:1,c:0,b:4,o:1},{r:0,c:-1,b:8,o:2}];
-    function ok(r,c){return r>=0&&r<rows&&c>=0&&c<cols;}
-    vis[0][0]=1;
-    const stk=[{r:0,c:0}];
+    vis[0][0]=1;const stk=[{r:0,c:0}];
     while(stk.length){
-      const cur=stk[stk.length-1];
-      const sh=[...D].sort(()=>rnd(3)-1);
-      let moved=false;
-      for(const d of sh){
-        const nr=cur.r+d.r,nc=cur.c+d.c;
-        if(ok(nr,nc)&&!vis[nr][nc]){
-          vis[nr][nc]=1;
-          W[cur.r][cur.c]&=~d.b;
-          W[nr][nc]&=~d.o;
-          stk.push({r:nr,c:nc});
-          moved=true;break;
-        }
-      }
-      if(!moved)stk.pop();
+      const cur=stk[stk.length-1];const sh=[...D].sort(()=>rnd()-0.5);let mv=false;
+      for(const d of sh){const nr=cur.r+d.r,nc=cur.c+d.c;if(nr>=0&&nr<rows&&nc>=0&&nc<cols&&!vis[nr][nc]){vis[nr][nc]=1;W[cur.r][cur.c]&=~d.b;W[nr][nc]&=~d.o;stk.push({r:nr,c:nc});mv=true;break;}}
+      if(!mv)stk.pop();
     }
     return W;
   }
-
-  // BFS solver → path [{r,c}]
-  function solveBFS(W,cols,rows,sr,sc,er,ec){
+  function bfs(W,cols,rows,sr,sc,er,ec){
     const vis=Array.from({length:rows},()=>new Uint8Array(cols));
     const par=Array.from({length:rows},()=>Array(cols).fill(null));
     const D=[{r:-1,c:0,b:1},{r:0,c:1,b:2},{r:1,c:0,b:4},{r:0,c:-1,b:8}];
-    vis[sr][sc]=1;
-    const q=[{r:sr,c:sc}];
+    vis[sr][sc]=1;const q=[{r:sr,c:sc}];
     while(q.length){
       const cur=q.shift();
-      if(cur.r===er&&cur.c===ec){
-        const path=[];let n=cur;
-        while(n){path.unshift(n);n=par[n.r][n.c];}
-        return path;
-      }
-      for(const d of D){
-        const nr=cur.r+d.r,nc=cur.c+d.c;
-        if(nr>=0&&nr<rows&&nc>=0&&nc<cols&&!vis[nr][nc]&&!(W[cur.r][cur.c]&d.b)){
-          vis[nr][nc]=1;par[nr][nc]=cur;q.push({r:nr,c:nc});
-        }
-      }
+      if(cur.r===er&&cur.c===ec){const p=[];let n=cur;while(n){p.unshift(n);n=par[n.r][n.c];}return p;}
+      for(const d of D){const nr=cur.r+d.r,nc=cur.c+d.c;if(nr>=0&&nr<rows&&nc>=0&&nc<cols&&!vis[nr][nc]&&!(W[cur.r][cur.c]&d.b)){vis[nr][nc]=1;par[nr][nc]=cur;q.push({r:nr,c:nc});}}
     }
-    return [];
+    return[];
   }
 
-  // ──────────────────────────────────────────────
-  // DRAW UTILITIES
-  // ──────────────────────────────────────────────
-  function drawWalls(ctx,W,cols,rows,ox,oy,cs,color,glow){
-    ctx.save();
-    ctx.strokeStyle=color;
-    ctx.lineWidth=1.5;
-    ctx.shadowColor=glow||color;
-    ctx.shadowBlur=4;
-    for(let r=0;r<rows;r++){
-      for(let c=0;c<cols;c++){
-        const x=ox+c*cs,y=oy+r*cs;
-        if(W[r][c]&1){ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+cs,y);ctx.stroke();}
-        if(W[r][c]&2){ctx.beginPath();ctx.moveTo(x+cs,y);ctx.lineTo(x+cs,y+cs);ctx.stroke();}
-        if(W[r][c]&4){ctx.beginPath();ctx.moveTo(x,y+cs);ctx.lineTo(x+cs,y+cs);ctx.stroke();}
-        if(W[r][c]&8){ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x,y+cs);ctx.stroke();}
-      }
-    }
-    ctx.restore();
-  }
+  const PALS=[
+    ['rgba(0,245,255,0.65)','rgba(0,200,255,0.45)','rgba(100,255,218,0.5)'],
+    ['rgba(255,45,120,0.6)','rgba(200,0,200,0.48)','rgba(255,80,60,0.5)'],
+    ['rgba(255,229,0,0.6)','rgba(255,165,0,0.5)','rgba(200,255,0,0.48)'],
+  ];
+  const BEAM=['#00F5FF','#FF2D78','#FFE500'];
 
-  function drawBeam(ctx,trail,ox,oy,cs,color,trailLen){
-    if(!trail.length)return;
-    const len=Math.min(trail.length,trailLen||28);
-    for(let i=trail.length-len;i<trail.length;i++){
-      if(i<0)continue;
-      const t=trail[i];
-      const frac=(i-(trail.length-len))/len;
-      const r2=cs*0.38*frac;
-      const x=ox+t.c*cs+cs/2, y=oy+t.r*cs+cs/2;
-      ctx.beginPath();
-      ctx.arc(x,y,Math.max(r2,1),0,Math.PI*2);
-      ctx.fillStyle=color;
-      ctx.globalAlpha=frac*0.6;
-      ctx.fill();
-    }
-    ctx.globalAlpha=1;
-    // Glowing head
-    const h=trail[trail.length-1];
-    const hx=ox+h.c*cs+cs/2, hy=oy+h.r*cs+cs/2;
-    ctx.save();
-    ctx.shadowColor=color;ctx.shadowBlur=18;
-    ctx.beginPath();ctx.arc(hx,hy,cs*0.36,0,Math.PI*2);
-    ctx.fillStyle=color;ctx.fill();
-    ctx.shadowBlur=0;
-    // Sparkle
-    if(Math.random()<0.4){
-      ctx.strokeStyle='#fff';ctx.lineWidth=0.8;ctx.globalAlpha=0.5;
-      for(let a=0;a<4;a++){
-        const ang=a*Math.PI/2+(Date.now()*0.003);
-        ctx.beginPath();ctx.moveTo(hx,hy);
-        ctx.lineTo(hx+Math.cos(ang)*cs*0.55,hy+Math.sin(ang)*cs*0.55);
-        ctx.stroke();
-      }
-    }
-    ctx.restore();
-    ctx.globalAlpha=1;
-  }
-
-  // ──────────────────────────────────────────────
-  // BACKGROUND MAZE CONTROLLER
-  // ──────────────────────────────────────────────
-  function BgMaze(canvasId,opts){
-    const canvas=document.getElementById(canvasId);
-    if(!canvas)return;
-    const ctx=canvas.getContext('2d');
-    const O=Object.assign({
-      wallColor:'rgba(0,245,255,0.35)',
-      wallGlow:'rgba(0,245,255,0.15)',
-      beamColor:'#00F5FF',
-      bgColor:'rgba(1,10,30,0.04)',
-      cellSize:0, // auto
-      aiMoves: [0],  // counts
-      solvedCount: 0,
-      elMoves: null, elSolved: null, elStatus: null,
-      elCountdown: null, elShifts: null,
-      elTime: null, elBest: null,
-      shiftInterval: 10000,
-      speedMs: 55,
-    },opts);
-
-    let cols,rows,W,path,pathIdx,trail,aiMode,playerPos,solved,moveCount,solvedCount;
-    let shiftTimer=null,shiftSeconds=O.shiftInterval/1000,shiftCount=0;
-    let startTime=null,elapsed=0,bestTime=null,timerInterval=null;
-    let stepInterval=null;
-
-    function resize(){
-      const rect=canvas.parentElement.getBoundingClientRect();
-      const w=rect.width||window.innerWidth;
-      const h=canvas.parentElement.offsetHeight||600;
-      canvas.width=w; canvas.height=h;
-      const cs=O.cellSize||Math.max(18,Math.min(28,Math.floor(w/30)));
-      cols=Math.floor((w-4)/cs);
-      rows=Math.floor((h-4)/cs);
-      return cs;
-    }
-
-    function init(seed){
-      const cs=resize();
-      W=genMaze(cols,rows,seed||Date.now());
-      path=solveBFS(W,cols,rows,0,0,rows-1,cols-1);
-      pathIdx=0;trail=[];
-      playerPos={r:0,c:0};
-      solved=false;moveCount=0;
-      if(O.elMoves)O.elMoves.textContent='0';
-      if(O.elStatus)O.elStatus.textContent=aiMode?'AI RUNNING':'YOUR TURN';
-      if(startTime){clearInterval(timerInterval);startTime=null;}
-      if(aiMode&&O.elTime)O.elTime.textContent='--';
-    }
-
-    function startTimer(){
-      startTime=Date.now();
-      if(timerInterval)clearInterval(timerInterval);
-      timerInterval=setInterval(()=>{
-        elapsed=(Date.now()-startTime)/1000;
-        if(O.elTime)O.elTime.textContent=elapsed.toFixed(1)+'s';
-      },100);
-    }
-
-    function onSolve(){
-      solved=true;
-      solvedCount=(solvedCount||0)+1;
-      if(O.elSolved)O.elSolved.textContent=solvedCount;
-      if(O.elStatus)O.elStatus.textContent=aiMode?'✓ SOLVED!':'✓ YOU WIN!';
-      if(timerInterval){
-        clearInterval(timerInterval);
-        const t=(Date.now()-startTime)/1000;
-        if(!bestTime||t<bestTime){bestTime=t;if(O.elBest)O.elBest.textContent=bestTime.toFixed(1)+'s';}
-      }
-      setTimeout(()=>init(),2000);
-    }
-
-    // AI step
-    function stepAI(){
-      if(!aiMode||solved)return;
-      if(pathIdx<path.length){
-        trail.push({...path[pathIdx]});
-        if(trail.length>32)trail.shift();
-        pathIdx++;
-        moveCount++;
-        if(O.elMoves)O.elMoves.textContent=moveCount;
-        if(pathIdx>=path.length)onSolve();
-      }
-    }
-
-    function startAIInterval(){
-      if(stepInterval)clearInterval(stepInterval);
-      stepInterval=setInterval(stepAI,O.speedMs);
-    }
-
-    // Player move
-    this.move=function(dr,dc){
-      if(aiMode||solved)return;
-      const D=[{r:-1,c:0,b:1},{r:0,c:1,b:2},{r:1,c:0,b:4},{r:0,c:-1,b:8}];
-      const d=D.find(x=>x.r===dr&&x.c===dc);
-      if(!d)return;
-      const nr=playerPos.r+dr,nc=playerPos.c+dc;
-      if(nr<0||nr>=rows||nc<0||nc>=cols)return;
-      if(W[playerPos.r][playerPos.c]&d.b)return;
-      playerPos={r:nr,c:nc};
-      trail.push({...playerPos});
-      if(trail.length>32)trail.shift();
-      moveCount++;
-      if(O.elMoves)O.elMoves.textContent=moveCount;
-      if(!startTime)startTimer();
-      if(playerPos.r===rows-1&&playerPos.c===cols-1)onSolve();
-    };
-
-    this.setAI=function(){
-      aiMode=true;
-      if(O.aiBtn)O.aiBtn.classList.add('active');
-      if(O.playBtn)O.playBtn.classList.remove('active');
-      init();startAIInterval();
-    };
-    this.setPlayer=function(){
-      aiMode=false;
-      if(O.playBtn)O.playBtn.classList.add('active');
-      if(O.aiBtn)O.aiBtn.classList.remove('active');
-      if(stepInterval)clearInterval(stepInterval);
-      init();
-      if(O.elStatus)O.elStatus.textContent='YOUR TURN';
-    };
-    this.reset=function(){init();if(aiMode)startAIInterval();};
-    this.shiftNow=function(){
-      shiftCount++;
-      if(O.elShifts)O.elShifts.textContent=shiftCount;
-      const pr=aiMode?null:{r:Math.min(playerPos.r,rows-2),c:Math.min(playerPos.c,cols-2)};
-      init(Date.now()+shiftCount);
-      if(!aiMode&&pr)playerPos=pr;
-      if(aiMode)startAIInterval();
-      shiftSeconds=O.shiftInterval/1000;
-    };
-
-    // Shifting countdown
-    if(O.shiftInterval&&O.elCountdown){
-      setInterval(()=>{
-        shiftSeconds--;
-        if(O.elCountdown)O.elCountdown.textContent=Math.max(0,Math.ceil(shiftSeconds));
-        if(shiftSeconds<=0)this.shiftNow();
-      },1000);
-    }
-
-    // Keyboard
-    document.addEventListener('keydown',e=>{
-      if(aiMode)return;
-      const map={'ArrowUp':[-1,0],'ArrowDown':[1,0],'ArrowLeft':[0,-1],'ArrowRight':[0,1],
-                 'w':[-1,0],'s':[1,0],'a':[0,-1],'d':[0,1]};
-      if(map[e.key]){e.preventDefault();this.move(...map[e.key]);}
-    });
-
-    // DRAW LOOP
-    const draw=()=>{
-      const cs=O.cellSize||Math.max(18,Math.min(28,Math.floor(canvas.width/30)));
-      const ox=Math.floor((canvas.width-cols*cs)/2);
-      const oy=Math.floor((canvas.height-rows*cs)/2);
-
-      // Fade trail
-      ctx.fillStyle=O.bgColor;
-      ctx.fillRect(0,0,canvas.width,canvas.height);
-
-      if(!W){requestAnimationFrame(draw);return;}
-
-      // Solved flash
-      if(solved){
-        ctx.fillStyle='rgba(57,255,20,0.06)';
-        ctx.fillRect(0,0,canvas.width,canvas.height);
-      }
-
-      drawWalls(ctx,W,cols,rows,ox,oy,cs,O.wallColor,O.wallGlow);
-
-      // Start/end dots
-      ctx.save();
-      ctx.shadowBlur=12;
-      ctx.shadowColor='#39FF14';
-      ctx.fillStyle='rgba(57,255,20,0.5)';
-      ctx.beginPath();ctx.arc(ox+cs/2,oy+cs/2,cs*0.3,0,Math.PI*2);ctx.fill();
-      ctx.shadowColor='#FFE500';
-      ctx.fillStyle='rgba(255,229,0,0.7)';
-      ctx.beginPath();ctx.arc(ox+(cols-1)*cs+cs/2,oy+(rows-1)*cs+cs/2,cs*0.3,0,Math.PI*2);ctx.fill();
+  function drawWalls(ctx,W,cols,rows,ox,oy,cs,pi,seed,t){
+    const rnd=mkRng(seed+Math.floor(t*2));const pal=PALS[pi%3];
+    for(let r=0;r<rows;r++){for(let c=0;c<cols;c++){
+      const x=ox+c*cs,y=oy+r*cs;
+      const col=pal[Math.floor(rnd()*pal.length)];
+      const fl=Math.sin(t*1.8+(r*cols+c)*0.41)*0.5+0.5;
+      ctx.save();ctx.strokeStyle=col;ctx.lineWidth=fl>0.9?2.5:1.6;ctx.shadowColor=col;ctx.shadowBlur=fl>0.9?14:5;
+      if(W[r][c]&1){ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+cs,y);ctx.stroke();}
+      if(W[r][c]&2){ctx.beginPath();ctx.moveTo(x+cs,y);ctx.lineTo(x+cs,y+cs);ctx.stroke();}
+      if(W[r][c]&4){ctx.beginPath();ctx.moveTo(x,y+cs);ctx.lineTo(x+cs,y+cs);ctx.stroke();}
+      if(W[r][c]&8){ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x,y+cs);ctx.stroke();}
       ctx.restore();
+    }}
+  }
+  function drawGeo(ctx,cols,rows,ox,oy,cs,color,t){
+    ctx.save();
+    for(let r=3;r<rows-2;r+=5){for(let c=3;c<cols-2;c+=5){
+      const x=ox+c*cs+cs/2,y=oy+r*cs+cs/2,rad=cs*1.8,rot=t*0.03+(r+c)*0.18;
+      ctx.globalAlpha=0.13+Math.sin(t*0.7+r+c)*0.05;ctx.strokeStyle=color;ctx.lineWidth=0.8;
+      for(let a=0;a<6;a++){const ang=a*Math.PI/3+rot;ctx.beginPath();ctx.arc(x+Math.cos(ang)*rad,y+Math.sin(ang)*rad,rad,0,Math.PI*2);ctx.stroke();}
+      ctx.beginPath();ctx.arc(x,y,rad,0,Math.PI*2);ctx.stroke();
+      ctx.globalAlpha=0.08;ctx.strokeStyle='#FFE500';
+      ctx.beginPath();for(let i=0;i<5;i++){const a=rot*0.7+i*2*Math.PI/5-Math.PI/2;i===0?ctx.moveTo(x+Math.cos(a)*rad*0.75,y+Math.sin(a)*rad*0.75):ctx.lineTo(x+Math.cos(a)*rad*0.75,y+Math.sin(a)*rad*0.75);}ctx.closePath();ctx.stroke();
+    }}
+    ctx.globalAlpha=1;ctx.restore();
+  }
+  function drawBeam(ctx,trail,ox,oy,cs,color,t){
+    if(!trail.length)return;
+    const MAX=40,s=Math.max(0,trail.length-MAX);
+    for(let i=s;i<trail.length;i++){const p=trail[i],frac=(i-s)/(trail.length-s);ctx.beginPath();ctx.arc(ox+p.c*cs+cs/2,oy+p.r*cs+cs/2,Math.max(2,cs*0.22*frac),0,Math.PI*2);ctx.fillStyle=color;ctx.globalAlpha=frac*0.5;ctx.fill();}
+    ctx.globalAlpha=1;
+    const h=trail[trail.length-1],hx=ox+h.c*cs+cs/2,hy=oy+h.r*cs+cs/2;
+    ctx.save();ctx.shadowColor=color;ctx.shadowBlur=22;
+    ctx.beginPath();ctx.arc(hx,hy,cs*0.28,0,Math.PI*2);ctx.fillStyle=color;ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,0.9)';ctx.lineWidth=1.2;ctx.shadowBlur=8;
+    for(let a=0;a<4;a++){const ang=a*Math.PI/2+t*4;ctx.beginPath();ctx.moveTo(hx,hy);ctx.lineTo(hx+Math.cos(ang)*cs*0.55,hy+Math.sin(ang)*cs*0.55);ctx.stroke();}
+    ctx.restore();ctx.globalAlpha=1;
+  }
 
-      // Draw beam
-      const drawTrail=aiMode?trail:[...trail];
-      if(!aiMode&&trail.length>0){
-        // also draw solution ghost faintly
-        if(path.length){
-          ctx.save();ctx.globalAlpha=0.07;
-          for(let i=0;i<path.length-1;i++){
-            ctx.beginPath();
-            ctx.moveTo(ox+path[i].c*cs+cs/2,oy+path[i].r*cs+cs/2);
-            ctx.lineTo(ox+path[i+1].c*cs+cs/2,oy+path[i+1].r*cs+cs/2);
-            ctx.strokeStyle=O.beamColor;ctx.lineWidth=2;ctx.stroke();
-          }
-          ctx.restore();
-        }
-      }
-      drawBeam(ctx,drawTrail,ox,oy,cs,O.beamColor,32);
+  const panels=[];
+  const SEEDS=[13337,24680,98765];
+  const SPEEDS=[52,58,38];
+  const BG=['rgba(1,10,30,0.06)','rgba(12,0,26,0.06)','rgba(8,8,0,0.06)'];
 
-      // Player dot in play mode
-      if(!aiMode){
-        const px=ox+playerPos.c*cs+cs/2, py=oy+playerPos.r*cs+cs/2;
-        ctx.save();
-        ctx.shadowColor=O.beamColor;ctx.shadowBlur=20;
-        ctx.beginPath();ctx.arc(px,py,cs*0.4,0,Math.PI*2);
-        ctx.fillStyle=O.beamColor;ctx.fill();
-        ctx.restore();
-      }
-
-      requestAnimationFrame(draw);
+  function Panel(canvasId,pi){
+    const cv=document.getElementById(canvasId);if(!cv)return null;
+    const ctx=cv.getContext('2d');
+    let W,cols,rows,path,pidx,trail,aiMode,pos,solved,moves,solvedCt,seed;
+    let cs,ox,oy,stepTimer=null,startTime=null,timerTick=null,bestTime=null,shiftCt=0;
+    const t0=Date.now();
+    function resize(){
+      const sect=cv.parentElement;
+      cv.width=sect.offsetWidth||window.innerWidth;
+      cv.height=sect.offsetHeight||480;
+      cs=Math.max(32,Math.min(42,Math.floor(cv.width/11)));
+      cols=Math.floor((cv.width-4)/cs);rows=Math.floor((cv.height-4)/cs);
+      ox=Math.floor((cv.width-cols*cs)/2);oy=Math.floor((cv.height-rows*cs)/2);
+    }
+    function init(s){
+      seed=s||SEEDS[pi];resize();
+      W=gen(cols,rows,seed);path=bfs(W,cols,rows,0,0,rows-1,cols-1);
+      pidx=0;trail=[];pos={r:0,c:0};solved=false;moves=0;solvedCt=solvedCt||0;
+      if(startTime){clearInterval(timerTick);startTime=null;}upd();
+    }
+    function upd(){
+      const q=n=>document.getElementById(n);
+      if(pi===0){if(q('ch1-mv'))q('ch1-mv').textContent=moves;if(q('ch1-sv'))q('ch1-sv').textContent=solvedCt;if(q('ch1-st'))q('ch1-st').textContent=aiMode?'AI RUNNING':solved?'✓ SOLVED':'YOUR TURN';}
+      else if(pi===1){if(q('ch2-sv'))q('ch2-sv').textContent=solvedCt;}
+      else{if(q('ch3-sv'))q('ch3-sv').textContent=solvedCt;if(!solved&&startTime){elapsed=(Date.now()-startTime)/1000;if(q('ch3-tm'))q('ch3-tm').textContent=elapsed.toFixed(1)+'s';}}
+    }
+    function onSolve(){
+      solved=true;solvedCt++;
+      if(pi===2&&timerTick){clearInterval(timerTick);const t=(Date.now()-startTime)/1000;if(!bestTime||t<bestTime){bestTime=t;const be=document.getElementById('ch3-bt');if(be)be.textContent=bestTime.toFixed(1)+'s';}}
+      upd();setTimeout(()=>init(),2200);
+    }
+    function aiStep(){if(!aiMode||solved)return;if(pidx<path.length){trail.push({...path[pidx]});if(trail.length>40)trail.shift();pidx++;moves++;upd();if(pidx>=path.length)onSolve();}}
+    function startAI(){if(stepTimer)clearInterval(stepTimer);stepTimer=setInterval(aiStep,SPEEDS[pi]);}
+    const loop=()=>{
+      const t=(Date.now()-t0)/1000;
+      ctx.fillStyle=BG[pi];ctx.fillRect(0,0,cv.width,cv.height);
+      if(!W){requestAnimationFrame(loop);return;}
+      drawGeo(ctx,cols,rows,ox,oy,cs,BEAM[pi],t);
+      drawWalls(ctx,W,cols,rows,ox,oy,cs,pi,seed,t);
+      ctx.save();ctx.shadowBlur=14;
+      ctx.shadowColor='#39FF14';ctx.fillStyle='rgba(57,255,20,0.5)';ctx.beginPath();ctx.arc(ox+cs/2,oy+cs/2,cs*0.3,0,Math.PI*2);ctx.fill();
+      ctx.fillStyle='#fff';ctx.font=`bold ${Math.max(9,cs*0.3)}px Arial`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('S',ox+cs/2,oy+cs/2);
+      ctx.shadowColor='#FFE500';ctx.fillStyle='rgba(255,229,0,0.75)';ctx.beginPath();ctx.arc(ox+(cols-1)*cs+cs/2,oy+(rows-1)*cs+cs/2,cs*0.3,0,Math.PI*2);ctx.fill();
+      ctx.fillStyle='#000';ctx.fillText('E',ox+(cols-1)*cs+cs/2,oy+(rows-1)*cs+cs/2);
+      ctx.restore();
+      if(!aiMode&&path.length>1){ctx.save();ctx.globalAlpha=0.04;ctx.strokeStyle=BEAM[pi];ctx.lineWidth=2;ctx.beginPath();path.forEach((p,i)=>{const x=ox+p.c*cs+cs/2,y=oy+p.r*cs+cs/2;i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);});ctx.stroke();ctx.restore();}
+      drawBeam(ctx,trail,ox,oy,cs,BEAM[pi],t);
+      if(!aiMode){ctx.save();ctx.shadowColor=BEAM[pi];ctx.shadowBlur=26;ctx.beginPath();ctx.arc(ox+pos.c*cs+cs/2,oy+pos.r*cs+cs/2,cs*0.30,0,Math.PI*2);ctx.fillStyle=BEAM[pi];ctx.fill();ctx.restore();}
+      if(solved){ctx.save();ctx.globalAlpha=0.1;ctx.fillStyle=BEAM[pi];ctx.fillRect(0,0,cv.width,cv.height);ctx.restore();}
+      requestAnimationFrame(loop);
     };
-
-    // Init
-    aiMode=true;
     window.addEventListener('resize',()=>init());
-    init();
-    startAIInterval();
-    draw();
+    init();startAI();aiMode=true;loop();
+    return{
+      ai:function(){aiMode=true;init();startAI();},
+      play:function(){aiMode=false;if(stepTimer)clearInterval(stepTimer);init();if(pi===2){startTime=Date.now();timerTick=setInterval(upd,100);}},
+      move:function(dr,dc){
+        if(aiMode||solved)return;
+        const D=[{r:-1,c:0,b:1},{r:0,c:1,b:2},{r:1,c:0,b:4},{r:0,c:-1,b:8}];
+        const d=D.find(x=>x.r===dr&&x.c===dc);if(!d)return;
+        const nr=pos.r+dr,nc=pos.c+dc;
+        if(nr<0||nr>=rows||nc<0||nc>=cols||W[pos.r][pos.c]&d.b)return;
+        pos={r:nr,c:nc};trail.push({...pos});if(trail.length>40)trail.shift();
+        moves++;upd();
+        if(pi===2&&!startTime){startTime=Date.now();timerTick=setInterval(upd,100);}
+        if(pos.r===rows-1&&pos.c===cols-1)onSolve();
+      },
+      regen:function(){init();if(aiMode)startAI();},
+      shift:function(){shiftCt++;init(Date.now()+shiftCt);if(aiMode)startAI();}
+    };
   }
 
-  // ──────────────────────────────────────────────
-  // MEGA MAZE (stacked 3-in-1 tall canvas)
-  // ──────────────────────────────────────────────
-  function initMegaMaze(){
-    const canvas=document.getElementById('megaMazeCanvas');
-    if(!canvas)return;
-    const ctx=canvas.getContext('2d');
-    const W_px=canvas.parentElement.offsetWidth||window.innerWidth;
-    const cs=Math.max(14,Math.min(22,Math.floor(W_px/36)));
-    const cols=Math.floor(W_px/cs);
-    const rowsPerPanel=16;
-    const totalRows=rowsPerPanel*3;
-    const H_px=totalRows*cs+8;
-    canvas.width=W_px;canvas.height=H_px;
-    canvas.parentElement.style.height=H_px+'px';
+  // Swipe on chapter panels
+  [0,1,2].forEach(i=>{
+    const cv=document.getElementById('mz'+(i+1));if(!cv)return;
+    let sx=0,sy=0;
+    cv.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY;focus=i;},{passive:true});
+    cv.addEventListener('touchend',e=>{
+      const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+      if(Math.max(Math.abs(dx),Math.abs(dy))<14)return;
+      if(Math.abs(dx)>Math.abs(dy)){if(panels[i])panels[i].move(0,dx>0?1:-1);}
+      else{if(panels[i])panels[i].move(dy>0?1:-1,0);}
+    },{passive:true});
+  });
 
-    const seeds=[11111,22222,33333];
-    const panels=seeds.map((seed,i)=>{
-      const W=genMaze(cols,rowsPerPanel,seed);
-      const path=solveBFS(W,cols,rowsPerPanel,0,0,rowsPerPanel-1,cols-1);
-      return {W,path,pathIdx:0,trail:[],color:['#00F5FF','#FF2D78','#FFE500'][i],idx:i};
-    });
+  // Keyboard
+  let focus=0;
+  const KMAP={'ArrowUp':[-1,0],'ArrowDown':[1,0],'ArrowLeft':[0,-1],'ArrowRight':[0,1],'w':[-1,0],'s':[1,0],'a':[0,-1],'d':[0,1]};
+  document.addEventListener('keydown',e=>{
+    const modal=document.getElementById('zm-mega');
+    if(modal&&modal.style.display==='flex')return;
+    if(KMAP[e.key]){e.preventDefault();if(panels[focus])panels[focus].move(...KMAP[e.key]);}
+  });
+  [0,1,2].forEach(i=>{const s=document.getElementById('maze-ch'+(i+1));if(s)s.addEventListener('click',()=>{focus=i;});});
 
-    function step(){
-      panels.forEach(p=>{
-        if(p.pathIdx<p.path.length){
-          p.trail.push({...p.path[p.pathIdx]});
-          if(p.trail.length>40)p.trail.shift();
-          p.pathIdx++;
-        } else {
-          // Loop
-          p.pathIdx=0;p.trail=[];
-          p.W=genMaze(cols,rowsPerPanel,Date.now()+p.idx);
-          p.path=solveBFS(p.W,cols,rowsPerPanel,0,0,rowsPerPanel-1,cols-1);
-        }
-      });
-    }
-    setInterval(step,60);
+  // Chapter 2 shift countdown
+  let p2cd=12,p2sh=0;
+  setInterval(()=>{
+    p2cd--;const el=document.getElementById('ch2-cd');if(el)el.textContent=Math.max(0,p2cd);
+    if(p2cd<=0){p2cd=12;panels[1]&&panels[1].shift();p2sh++;const sh=document.getElementById('ch2-sh');if(sh)sh.textContent=p2sh;}
+  },1000);
 
-    function drawMega(){
-      ctx.fillStyle='rgba(1,6,20,0.12)';ctx.fillRect(0,0,canvas.width,canvas.height);
-      const colors=['rgba(0,245,255,0.2)','rgba(255,45,120,0.2)','rgba(255,229,0,0.2)'];
-      const glows=['rgba(0,245,255,0.08)','rgba(255,45,120,0.08)','rgba(255,229,0,0.08)'];
-      panels.forEach((p,i)=>{
-        const oy=i*rowsPerPanel*cs;
-        drawWalls(ctx,p.W,cols,rowsPerPanel,0,oy,cs,colors[i],glows[i]);
-        drawBeam(ctx,p.trail,0,oy,cs,p.color,40);
-        // Connector between panels
-        if(i<2){
-          ctx.save();
-          ctx.strokeStyle=p.color;ctx.lineWidth=2;ctx.globalAlpha=0.3;
-          ctx.shadowColor=p.color;ctx.shadowBlur=8;
-          ctx.beginPath();
-          ctx.moveTo(canvas.width/2,(i+1)*rowsPerPanel*cs-cs/2);
-          ctx.lineTo(canvas.width/2,(i+1)*rowsPerPanel*cs+cs/2);
-          ctx.stroke();
-          ctx.restore();
-        }
-      });
-      requestAnimationFrame(drawMega);
-    }
-    drawMega();
+  // ── MEGA MAZE ──────────────────────────────────────────────────
+  let mgW,mgCols,mgRows,mgPath,mgPidx,mgTrail,mgAI,mgPos,mgSolved;
+  let mgMoves=0,mgBest=null,mgStart=null,mgTimer=null,mgAnimID=null,mgStepTimer=null,mgSeed=0;
+
+  function mgCS(W){return Math.max(28,Math.min(44,Math.floor(W/16)));}
+
+  function mgInit(){
+    const cv=document.getElementById('zmg-canvas');if(!cv)return;
+    const modal=document.getElementById('zm-mega');
+    cv.width=window.innerWidth;
+    const usedH=(modal.querySelector('div:first-child').offsetHeight||52)+(modal.querySelector('div:last-child').offsetHeight||190);
+    cv.height=Math.max(300,window.innerHeight-usedH);
+    const cs2=mgCS(cv.width);
+    mgCols=Math.floor((cv.width-4)/cs2);mgRows=Math.floor((cv.height-4)/cs2);
+    mgSeed=Date.now();
+    mgW=gen(mgCols,mgRows,mgSeed);
+    mgPath=bfs(mgW,mgCols,mgRows,0,0,mgRows-1,mgCols-1);
+    mgPidx=0;mgTrail=[];mgPos={r:0,c:0};mgSolved=false;mgMoves=0;
+    if(mgStart){clearInterval(mgTimer);mgStart=null;}
+    document.getElementById('zmg-mv').textContent='0';
+    document.getElementById('zmg-bt').textContent=mgBest?mgBest.toFixed(1)+'s':'--';
   }
 
-  // ──────────────────────────────────────────────
-  // INSTANTIATE
-  // ──────────────────────────────────────────────
-  window.bgMaze1=new BgMaze('bgMaze1',{
-    wallColor:'rgba(0,245,255,0.3)',wallGlow:'rgba(0,245,255,0.1)',
-    beamColor:'#00F5FF',bgColor:'rgba(1,10,30,0.05)',speedMs:50,
-    elMoves:document.getElementById('bg1-moves'),
-    elSolved:document.getElementById('bg1-solved'),
-    elStatus:document.getElementById('bg1-status'),
-    aiBtn:document.getElementById('bg1-ai-btn'),
-    playBtn:document.getElementById('bg1-play-btn'),
+  function mgDraw(){
+    const cv=document.getElementById('zmg-canvas');if(!cv||!mgW)return;
+    const ctx=cv.getContext('2d');
+    const W=cv.width,H=cv.height;
+    const cs2=mgCS(W);
+    const ox=Math.floor((W-mgCols*cs2)/2),oy=Math.floor((H-mgRows*cs2)/2);
+    const tt=performance.now()/1000;
+    ctx.fillStyle='rgba(0,0,0,0.12)';ctx.fillRect(0,0,W,H);
+
+    // Rainbow multicolor walls
+    const rndW=mkRng(mgSeed+Math.floor(tt));
+    for(let r=0;r<mgRows;r++){for(let c=0;c<mgCols;c++){
+      const x=ox+c*cs2,y=oy+r*cs2;
+      const hue=(r*9+c*13+Math.floor(tt*25))%360;
+      const fl=Math.sin(tt*1.4+(r*mgCols+c)*0.28)*0.5+0.5;
+      const lum=fl>0.88?72:56;
+      const col=`hsl(${hue},100%,${lum}%)`;
+      ctx.save();ctx.strokeStyle=col;ctx.lineWidth=fl>0.88?2.5:1.8;ctx.shadowColor=col;ctx.shadowBlur=fl>0.88?10:4;
+      if(mgW[r][c]&1){ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+cs2,y);ctx.stroke();}
+      if(mgW[r][c]&2){ctx.beginPath();ctx.moveTo(x+cs2,y);ctx.lineTo(x+cs2,y+cs2);ctx.stroke();}
+      if(mgW[r][c]&4){ctx.beginPath();ctx.moveTo(x,y+cs2);ctx.lineTo(x+cs2,y+cs2);ctx.stroke();}
+      if(mgW[r][c]&8){ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x,y+cs2);ctx.stroke();}
+      ctx.restore();
+    }}
+
+    // Sacred geometry overlays
+    ctx.save();
+    for(let r=3;r<mgRows-2;r+=6){for(let c=3;c<mgCols-2;c+=6){
+      const x=ox+c*cs2+cs2/2,y=oy+r*cs2+cs2/2,rad=cs2*1.7,rot=tt*0.05+(r+c)*0.15;
+      ctx.globalAlpha=0.15+Math.sin(tt*0.8+r+c)*0.06;ctx.strokeStyle='#00F5FF';ctx.lineWidth=0.9;
+      for(let a=0;a<6;a++){const ang=a*Math.PI/3+rot;ctx.beginPath();ctx.arc(x+Math.cos(ang)*rad,y+Math.sin(ang)*rad,rad,0,Math.PI*2);ctx.stroke();}
+      ctx.beginPath();ctx.arc(x,y,rad,0,Math.PI*2);ctx.stroke();
+      ctx.globalAlpha=0.1;ctx.strokeStyle='#FFE500';
+      ctx.beginPath();for(let i=0;i<5;i++){const a=rot*0.7+i*2*Math.PI/5-Math.PI/2;i===0?ctx.moveTo(x+Math.cos(a)*rad*0.78,y+Math.sin(a)*rad*0.78):ctx.lineTo(x+Math.cos(a)*rad*0.78,y+Math.sin(a)*rad*0.78);}ctx.closePath();ctx.stroke();
+    }}
+    ctx.globalAlpha=1;ctx.restore();
+
+    // Start S / End E markers
+    ctx.save();ctx.shadowBlur=16;
+    ctx.shadowColor='#39FF14';ctx.fillStyle='rgba(57,255,20,0.6)';ctx.beginPath();ctx.arc(ox+cs2/2,oy+cs2/2,cs2*0.3,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#fff';ctx.font=`bold ${Math.max(10,cs2*0.32)}px Arial`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('S',ox+cs2/2,oy+cs2/2);
+    ctx.shadowColor='#FFE500';ctx.fillStyle='rgba(255,229,0,0.8)';ctx.beginPath();ctx.arc(ox+(mgCols-1)*cs2+cs2/2,oy+(mgRows-1)*cs2+cs2/2,cs2*0.3,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#000';ctx.fillText('E',ox+(mgCols-1)*cs2+cs2/2,oy+(mgRows-1)*cs2+cs2/2);
+    ctx.restore();
+
+    // Beam trail
+    if(mgTrail.length>1){
+      const MAX=50,s=Math.max(0,mgTrail.length-MAX);
+      for(let i=s;i<mgTrail.length;i++){const p=mgTrail[i],frac=(i-s)/(mgTrail.length-s);ctx.beginPath();ctx.arc(ox+p.c*cs2+cs2/2,oy+p.r*cs2+cs2/2,Math.max(2,cs2*0.22*frac),0,Math.PI*2);ctx.fillStyle='#00F5FF';ctx.globalAlpha=frac*0.5;ctx.fill();}
+      ctx.globalAlpha=1;
+    }
+
+    // Player/AI ball — proportional with outer ring
+    if(mgPos){
+      const hx=ox+mgPos.c*cs2+cs2/2,hy=oy+mgPos.r*cs2+cs2/2,hrad=cs2*0.28;
+      ctx.save();
+      ctx.strokeStyle='rgba(0,245,255,0.4)';ctx.lineWidth=2;ctx.shadowColor='#00F5FF';ctx.shadowBlur=18;
+      ctx.beginPath();ctx.arc(hx,hy,hrad+3,0,Math.PI*2);ctx.stroke();
+      ctx.fillStyle='#00F5FF';ctx.shadowBlur=24;ctx.beginPath();ctx.arc(hx,hy,hrad,0,Math.PI*2);ctx.fill();
+      ctx.strokeStyle='rgba(255,255,255,0.85)';ctx.lineWidth=1;ctx.shadowBlur=8;
+      for(let a=0;a<4;a++){const ang=a*Math.PI/2+tt*3;ctx.beginPath();ctx.moveTo(hx,hy);ctx.lineTo(hx+Math.cos(ang)*cs2*0.52,hy+Math.sin(ang)*cs2*0.52);ctx.stroke();}
+      ctx.restore();ctx.globalAlpha=1;
+    }
+    if(mgAnimID!==null)mgAnimID=requestAnimationFrame(mgDraw);
+  }
+
+  function mgStep(){
+    if(!mgAI||mgSolved)return;
+    if(mgPidx<mgPath.length){
+      mgTrail.push({...mgPath[mgPidx]});if(mgTrail.length>55)mgTrail.shift();
+      mgPidx++;mgMoves++;document.getElementById('zmg-mv').textContent=mgMoves;
+      if(mgPidx>=mgPath.length){
+        mgSolved=true;
+        if(mgStart){clearInterval(mgTimer);const t=(Date.now()-mgStart)/1000;if(!mgBest||t<mgBest){mgBest=t;document.getElementById('zmg-bt').textContent=mgBest.toFixed(1)+'s';}}
+        setTimeout(()=>{mgInit();if(mgStepTimer)clearInterval(mgStepTimer);mgStepTimer=setInterval(mgStep,30);},2000);
+      }
+    }
+  }
+
+  // Mega keyboard
+  document.addEventListener('keydown',e=>{
+    const modal=document.getElementById('zm-mega');
+    if(!modal||modal.style.display!=='flex')return;
+    if(mgAI)return;
+    if(KMAP[e.key]){e.preventDefault();ZM.megaMv(...KMAP[e.key]);}
   });
 
-  window.bgMaze2=new BgMaze('bgMaze2',{
-    wallColor:'rgba(255,45,120,0.3)',wallGlow:'rgba(255,45,120,0.1)',
-    beamColor:'#FF2D78',bgColor:'rgba(13,0,24,0.05)',speedMs:55,
-    shiftInterval:10000,
-    elCountdown:document.getElementById('bg2-countdown'),
-    elShifts:document.getElementById('bg2-shifts'),
-    elSolved:document.getElementById('bg2-solved'),
-    aiBtn:document.getElementById('bg2-ai-btn'),
-    playBtn:document.getElementById('bg2-play-btn'),
-  });
-
-  window.bgMaze3=new BgMaze('bgMaze3',{
-    wallColor:'rgba(255,229,0,0.28)',wallGlow:'rgba(255,229,0,0.1)',
-    beamColor:'#FFE500',bgColor:'rgba(10,7,0,0.05)',speedMs:40,
-    elTime:document.getElementById('bg3-time'),
-    elBest:document.getElementById('bg3-best'),
-    elSolved:document.getElementById('bg3-solved'),
-    aiBtn:document.getElementById('bg3-ai-btn'),
-    playBtn:document.getElementById('bg3-play-btn'),
-  });
-
-  initMegaMaze();
-
-  // ──────────────────────────────────────────────
-  // RIDDLES
-  // ──────────────────────────────────────────────
-  window.checkR2=function(){
-    const v=document.getElementById('r2-inp').value.trim().toLowerCase();
-    const el=document.getElementById('r2-fb');
-    if(['footsteps','steps','footstep'].includes(v)){el.style.color='#39FF14';el.textContent='✅ Footsteps! You nailed it.';}
-    else{el.style.color='#FF2D78';el.textContent='❌ Think about what you leave behind...';}
+  // Public API
+  window.ZM={
+    ai:function(i){if(panels[i]){panels[i].ai();}},
+    play:function(i){if(panels[i]){panels[i].play();focus=i;}},
+    move:function(i,dr,dc){if(panels[i]){panels[i].play();panels[i].move(dr,dc);}},
+    regen:function(i){if(panels[i])panels[i].regen();},
+    shiftNow:function(i){if(panels[i])panels[i].shift();},
+    riddle:function(n){
+      const ans={2:['footsteps','steps','footstep'],3:['echo','an echo']};
+      const v=document.getElementById('r'+n+'i').value.trim().toLowerCase();
+      const el=document.getElementById('r'+n+'fb');
+      if(ans[n].includes(v)){el.style.color='#39FF14';el.textContent='✅ Correct!';}
+      else{el.style.color='#FF2D78';el.textContent='❌ Keep thinking...';}
+    },
+    openMega:function(){
+      const m=document.getElementById('zm-mega');m.style.display='flex';
+      mgAI=true;mgAnimID=1;
+      setTimeout(()=>{
+        mgInit();
+        if(mgStepTimer)clearInterval(mgStepTimer);mgStepTimer=setInterval(mgStep,30);
+        // Swipe on mega canvas
+        const cv=document.getElementById('zmg-canvas');
+        let sx=0,sy=0;
+        cv.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});
+        cv.addEventListener('touchend',e=>{
+          const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+          if(Math.max(Math.abs(dx),Math.abs(dy))<14)return;
+          if(Math.abs(dx)>Math.abs(dy)){ZM.megaMv(0,dx>0?1:-1);}else{ZM.megaMv(dy>0?1:-1,0);}
+        },{passive:true});
+        mgDraw();
+      },50);
+    },
+    closeMega:function(){
+      document.getElementById('zm-mega').style.display='none';
+      mgAnimID=null;if(mgStepTimer)clearInterval(mgStepTimer);
+    },
+    megaAI:function(){mgAI=true;document.getElementById('zmg-ai').style.background='rgba(0,245,255,0.15)';document.getElementById('zmg-pl').style.background='rgba(0,0,0,0.4)';mgInit();if(mgStepTimer)clearInterval(mgStepTimer);mgStepTimer=setInterval(mgStep,30);},
+    megaPlay:function(){mgAI=false;document.getElementById('zmg-pl').style.background='rgba(0,245,255,0.15)';document.getElementById('zmg-ai').style.background='rgba(0,0,0,0.4)';if(mgStepTimer)clearInterval(mgStepTimer);mgInit();},
+    megaRegen:function(){mgInit();if(mgAI){if(mgStepTimer)clearInterval(mgStepTimer);mgStepTimer=setInterval(mgStep,30);}},
+    megaMv:function(dr,dc){
+      if(mgAI||mgSolved||!mgW)return;
+      const D=[{r:-1,c:0,b:1},{r:0,c:1,b:2},{r:1,c:0,b:4},{r:0,c:-1,b:8}];
+      const d=D.find(x=>x.r===dr&&x.c===dc);if(!d)return;
+      const nr=mgPos.r+dr,nc=mgPos.c+dc;
+      if(nr<0||nr>=mgRows||nc<0||nc>=mgCols||mgW[mgPos.r][mgPos.c]&d.b)return;
+      mgPos={r:nr,c:nc};mgTrail.push({...mgPos});if(mgTrail.length>55)mgTrail.shift();
+      mgMoves++;document.getElementById('zmg-mv').textContent=mgMoves;
+      if(!mgStart)mgStart=Date.now();
+      if(mgPos.r===mgRows-1&&mgPos.c===mgCols-1){
+        mgSolved=true;const t=(Date.now()-mgStart)/1000;
+        if(!mgBest||t<mgBest){mgBest=t;document.getElementById('zmg-bt').textContent=mgBest.toFixed(1)+'s';}
+        setTimeout(()=>mgInit(),2000);
+      }
+    }
   };
-  window.checkR3=function(){
-    const v=document.getElementById('r3-inp').value.trim().toLowerCase();
-    const el=document.getElementById('r3-fb');
-    if(['echo','an echo'].includes(v)){el.style.color='#39FF14';el.textContent='🏆 An echo! Maze Master!';}
-    else{el.style.color='#FF2D78';el.textContent='❌ It comes back to you...';}
-  };
 
-  // FAQ accordion (re-bind in case of DOM timing)
+  // FAQ accordion
   document.querySelectorAll('.faq-question').forEach(btn=>{
     btn.addEventListener('click',function(){
       const item=this.closest('.faq-item');
@@ -5319,8 +3773,13 @@
     });
   });
 
+  // Init panels
+  ['mz1','mz2','mz3'].forEach((id,i)=>{const p=Panel(id,i);if(p)panels.push(p);});
+
   })();
   </script>
+
+  
 
   <!-- YouTube IFrame API -->
   <script src="https://www.youtube.com/iframe_api"></script>
@@ -5438,4 +3897,122 @@
   }, 300);
   </script>
 </body>
-</html>
+</html>  // Shared cell size calculation for mega maze
+  function mgCS(W){ return Math.max(28, Math.min(42, Math.floor(W/18))); }
+
+  function mgInit(){
+    const cv=document.getElementById('zmg-canvas');if(!cv)return;
+    cv.width=window.innerWidth;
+    const barH=document.getElementById('zm-mega').querySelector('div:last-child').offsetHeight||190;
+    const topH=document.getElementById('zm-mega').querySelector('div:first-child').offsetHeight||52;
+    cv.height=window.innerHeight-barH-topH;
+    const cs2=mgCS(cv.width);
+    mgCols=Math.floor((cv.width-4)/cs2);mgRows=Math.floor((cv.height-4)/cs2);
+    mgSeed=Date.now();
+    mgW=gen(mgCols,mgRows,mgSeed);
+    mgPath=bfs(mgW,mgCols,mgRows,0,0,mgRows-1,mgCols-1);
+    mgPidx=0;mgTrail=[];mgPos={r:0,c:0};mgSolved=false;mgMoves=0;
+    if(mgStart){clearInterval(mgTimer);mgStart=null;}
+    document.getElementById('zmg-mv').textContent='0';
+    document.getElementById('zmg-bt').textContent=mgBest?mgBest.toFixed(1)+'s':'--';
+  }
+
+  function mgDraw(){
+    const cv=document.getElementById('zmg-canvas');if(!cv||!mgW)return;
+    const ctx=cv.getContext('2d');
+    const W=cv.width,H=cv.height;
+    const cs2=mgCS(W);
+    const ox=Math.floor((W-mgCols*cs2)/2),oy=Math.floor((H-mgRows*cs2)/2);
+    const tt=performance.now()/1000;
+    ctx.fillStyle='rgba(0,0,0,0.12)';ctx.fillRect(0,0,W,H);
+
+    // Multicolor walls — each cell gets a color from a rotating rainbow
+    const rndW=mkRng(mgSeed+Math.floor(tt));
+    for(let r=0;r<mgRows;r++){
+      for(let c=0;c<mgCols;c++){
+        const x=ox+c*cs2,y=oy+r*cs2;
+        // Rainbow hue rotation per cell
+        const hue=(r*7+c*11+Math.floor(tt*20))%360;
+        const fl=Math.sin(tt*1.4+(r*mgCols+c)*0.28)*0.5+0.5;
+        const lum=fl>0.88?70:55;
+        const col=`hsl(${hue},100%,${lum}%)`;
+        ctx.save();
+        ctx.strokeStyle=col;
+        ctx.lineWidth=fl>0.88?2.5:1.8;
+        ctx.shadowColor=col;ctx.shadowBlur=fl>0.88?10:4;
+        if(mgW[r][c]&1){ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+cs2,y);ctx.stroke();}
+        if(mgW[r][c]&2){ctx.beginPath();ctx.moveTo(x+cs2,y);ctx.lineTo(x+cs2,y+cs2);ctx.stroke();}
+        if(mgW[r][c]&4){ctx.beginPath();ctx.moveTo(x,y+cs2);ctx.lineTo(x+cs2,y+cs2);ctx.stroke();}
+        if(mgW[r][c]&8){ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x,y+cs2);ctx.stroke();}
+        ctx.restore();
+      }
+    }
+
+    // Sacred geometry — Flower of Life at intersections (more visible)
+    ctx.save();
+    for(let r=3;r<mgRows-2;r+=6){
+      for(let c=3;c<mgCols-2;c+=6){
+        const x=ox+c*cs2+cs2/2,y=oy+r*cs2+cs2/2;
+        const rad=cs2*1.6;
+        const rot=tt*0.06+(r+c)*0.15;
+        ctx.globalAlpha=0.14+Math.sin(tt*0.8+r+c)*0.06;
+        ctx.strokeStyle='#00F5FF';ctx.lineWidth=0.8;
+        for(let a=0;a<6;a++){
+          const ang=a*Math.PI/3+rot;
+          ctx.beginPath();ctx.arc(x+Math.cos(ang)*rad,y+Math.sin(ang)*rad,rad,0,Math.PI*2);ctx.stroke();
+        }
+        ctx.beginPath();ctx.arc(x,y,rad,0,Math.PI*2);ctx.stroke();
+        // Pentagon inside
+        ctx.globalAlpha=0.09;ctx.strokeStyle='#FFE500';
+        ctx.beginPath();
+        for(let i=0;i<5;i++){const a=rot*0.7+i*2*Math.PI/5-Math.PI/2;i===0?ctx.moveTo(x+Math.cos(a)*rad*0.8,y+Math.sin(a)*rad*0.8):ctx.lineTo(x+Math.cos(a)*rad*0.8,y+Math.sin(a)*rad*0.8);}
+        ctx.closePath();ctx.stroke();
+      }
+    }
+    ctx.globalAlpha=1;ctx.restore();
+
+    // Start dot (green) and End dot (gold)
+    ctx.save();
+    ctx.shadowBlur=16;ctx.shadowColor='#39FF14';ctx.fillStyle='rgba(57,255,20,0.6)';
+    ctx.beginPath();ctx.arc(ox+cs2/2,oy+cs2/2,cs2*0.3,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#fff';ctx.font=`bold ${Math.max(8,cs2*0.3)}px Arial`;ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText('S',ox+cs2/2,oy+cs2/2);
+    ctx.shadowColor='#FFE500';ctx.fillStyle='rgba(255,229,0,0.8)';
+    ctx.beginPath();ctx.arc(ox+(mgCols-1)*cs2+cs2/2,oy+(mgRows-1)*cs2+cs2/2,cs2*0.3,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#000';ctx.fillText('E',ox+(mgCols-1)*cs2+cs2/2,oy+(mgRows-1)*cs2+cs2/2);
+    ctx.restore();
+
+    // AI beam trail
+    if(mgTrail.length>1){
+      const MAX=50,s=Math.max(0,mgTrail.length-MAX);
+      for(let i=s;i<mgTrail.length;i++){
+        const p=mgTrail[i],frac=(i-s)/(mgTrail.length-s);
+        ctx.beginPath();ctx.arc(ox+p.c*cs2+cs2/2,oy+p.r*cs2+cs2/2,Math.max(2,cs2*0.25*frac),0,Math.PI*2);
+        ctx.fillStyle='#00F5FF';ctx.globalAlpha=frac*0.5;ctx.fill();
+      }
+      ctx.globalAlpha=1;
+    }
+
+    // Player/AI head — proportional to cell, with glow ring
+    if(mgPos){
+      const hx=ox+mgPos.c*cs2+cs2/2,hy=oy+mgPos.r*cs2+cs2/2;
+      const hrad=cs2*0.32; // smaller relative to cell
+      ctx.save();
+      // Outer glow ring
+      ctx.strokeStyle='rgba(0,245,255,0.4)';ctx.lineWidth=2;ctx.shadowColor='#00F5FF';ctx.shadowBlur=16;
+      ctx.beginPath();ctx.arc(hx,hy,hrad+4,0,Math.PI*2);ctx.stroke();
+      // Filled head
+      ctx.fillStyle='#00F5FF';ctx.shadowBlur=24;
+      ctx.beginPath();ctx.arc(hx,hy,hrad,0,Math.PI*2);ctx.fill();
+      // Sparkle cross
+      ctx.strokeStyle='rgba(255,255,255,0.9)';ctx.lineWidth=1.2;ctx.shadowBlur=8;
+      for(let a=0;a<4;a++){
+        const ang=a*Math.PI/2+tt*3;
+        ctx.beginPath();ctx.moveTo(hx,hy);ctx.lineTo(hx+Math.cos(ang)*cs2*0.55,hy+Math.sin(ang)*cs2*0.55);ctx.stroke();
+      }
+      ctx.restore();ctx.globalAlpha=1;
+    }
+
+    if(mgAnimID!==null)mgAnimID=requestAnimationFrame(mgDraw);
+  }
+
