@@ -1391,9 +1391,220 @@
       90% { opacity: 0.5; }
       100% { transform: translateY(-10vh) scale(1); opacity: 0; }
     }
+
+    /* ============ MUSIC BAR ============ */
+    #music-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 2000;
+      background: linear-gradient(90deg, #000a1f 0%, #0a0030 40%, #1a0010 100%);
+      border-bottom: 2px solid transparent;
+      background-clip: padding-box;
+      box-shadow: 0 2px 0 0 var(--neon-cyan), 0 4px 30px rgba(0,245,255,0.25);
+      height: 52px;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      gap: 16px;
+    }
+
+    /* Push header down below music bar */
+    header { top: 52px !important; }
+    #hero { padding-top: 52px; }
+
+    .music-label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--neon-cyan);
+      font-weight: 700;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Equalizer bars */
+    .eq-wrap {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 28px;
+      flex-shrink: 0;
+    }
+    .eq-bar {
+      width: 4px;
+      border-radius: 2px 2px 0 0;
+      background: var(--neon-cyan);
+      box-shadow: 0 0 6px var(--neon-cyan);
+      transform-origin: bottom;
+      animation: none;
+      height: 4px;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    .eq-bar:nth-child(2) { background: #7B2FBE; box-shadow: 0 0 6px #7B2FBE; }
+    .eq-bar:nth-child(3) { background: var(--neon-pink); box-shadow: 0 0 6px var(--neon-pink); }
+    .eq-bar:nth-child(4) { background: var(--neon-yellow); box-shadow: 0 0 6px var(--neon-yellow); }
+    .eq-bar:nth-child(5) { background: var(--neon-green); box-shadow: 0 0 6px var(--neon-green); }
+    .eq-bar:nth-child(6) { background: var(--neon-cyan); box-shadow: 0 0 6px var(--neon-cyan); }
+    .eq-bar:nth-child(7) { background: #FF6B6B; box-shadow: 0 0 6px #FF6B6B; }
+    .eq-bar:nth-child(8) { background: var(--mint); box-shadow: 0 0 6px var(--mint); }
+
+    .eq-bar.playing {
+      animation: eqBounce var(--spd, 0.6s) ease-in-out infinite alternate;
+    }
+    @keyframes eqBounce {
+      0%   { height: 4px; }
+      100% { height: var(--h, 20px); }
+    }
+
+    /* Play/Pause button */
+    #music-play-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid var(--neon-cyan);
+      background: rgba(0,245,255,0.08);
+      color: var(--neon-cyan);
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.25s;
+      box-shadow: 0 0 12px rgba(0,245,255,0.3);
+    }
+    #music-play-btn:hover {
+      background: var(--neon-cyan);
+      color: #000;
+      box-shadow: 0 0 24px rgba(0,245,255,0.7);
+      transform: scale(1.1);
+    }
+
+    /* Song title ticker */
+    .music-title-wrap {
+      flex: 1;
+      overflow: hidden;
+      min-width: 0;
+    }
+    .music-title {
+      font-size: 12px;
+      color: rgba(232,234,246,0.7);
+      white-space: nowrap;
+      font-weight: 500;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .music-title strong {
+      color: #fff;
+      font-weight: 700;
+    }
+    .music-now-playing {
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: var(--neon-pink);
+      text-transform: uppercase;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .music-now-playing.paused { color: var(--text-muted); }
+
+    /* Volume control */
+    .vol-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .vol-icon {
+      font-size: 14px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: color 0.2s;
+      user-select: none;
+    }
+    .vol-icon:hover { color: #fff; }
+    #vol-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 80px;
+      height: 4px;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.15);
+      outline: none;
+      cursor: pointer;
+    }
+    #vol-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--neon-cyan);
+      box-shadow: 0 0 8px var(--neon-cyan);
+      cursor: pointer;
+    }
+    #vol-slider::-moz-range-thumb {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--neon-cyan);
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Hidden YouTube iframe */
+    #yt-player {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      top: -9999px;
+      left: -9999px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @media (max-width: 600px) {
+      #vol-slider { width: 56px; }
+      .music-label { display: none; }
+      #music-bar { gap: 10px; padding: 0 12px; }
+    }
   </style>
 </head>
 <body>
+
+
+  <!-- ============ MUSIC BAR ============ -->
+  <div id="music-bar">
+    <!-- Hidden YouTube iframe (audio only — no UI shown) -->
+    <div id="yt-player"></div>
+
+    <span class="music-label">🎵 Soundtrack</span>
+
+    <button id="music-play-btn" title="Play / Pause">▶</button>
+
+    <div class="music-title-wrap">
+      <span class="music-now-playing paused" id="now-playing-label">PRESS PLAY</span>
+      <div class="music-title"><strong>Zach's Anthem</strong> — Hit play to set the vibe</div>
+    </div>
+
+    <!-- Equalizer -->
+    <div class="eq-wrap" id="eq-wrap">
+      <div class="eq-bar" style="--h:22px;--spd:0.45s;"></div>
+      <div class="eq-bar" style="--h:14px;--spd:0.6s;"></div>
+      <div class="eq-bar" style="--h:26px;--spd:0.35s;"></div>
+      <div class="eq-bar" style="--h:18px;--spd:0.55s;"></div>
+      <div class="eq-bar" style="--h:28px;--spd:0.4s;"></div>
+      <div class="eq-bar" style="--h:12px;--spd:0.7s;"></div>
+      <div class="eq-bar" style="--h:24px;--spd:0.5s;"></div>
+      <div class="eq-bar" style="--h:16px;--spd:0.65s;"></div>
+    </div>
+
+    <!-- Volume -->
+    <div class="vol-wrap">
+      <span class="vol-icon" id="vol-icon">🔊</span>
+      <input type="range" id="vol-slider" min="0" max="100" value="70" />
+    </div>
+  </div>
 
   <!-- Custom Cursor -->
   <div class="cursor" id="cursor"></div>
@@ -2705,5 +2916,121 @@
   })();
   </script>
 
+
+  <!-- YouTube IFrame API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+  // ===== MUSIC PLAYER =====
+  var ytPlayer = null;
+  var isPlaying = false;
+  var isMuted = false;
+  var currentVol = 70;
+
+  function onYouTubeIframeAPIReady() {
+    ytPlayer = new YT.Player('yt-player', {
+      videoId: '8CQ_QHosBSA',
+      playerVars: {
+        autoplay: 0,
+        controls: 0,
+        disablekb: 1,
+        fs: 0,
+        iv_load_policy: 3,
+        modestbranding: 1,
+        rel: 0,
+        showinfo: 0,
+        origin: window.location.origin
+      },
+      events: {
+        onReady: function(e) {
+          e.target.setVolume(currentVol);
+        },
+        onStateChange: function(e) {
+          if (e.data === YT.PlayerState.PLAYING) {
+            setPlaying(true);
+          } else if (e.data === YT.PlayerState.PAUSED || e.data === YT.PlayerState.ENDED) {
+            setPlaying(false);
+          }
+        }
+      }
+    });
+  }
+
+  function setPlaying(playing) {
+    isPlaying = playing;
+    const btn = document.getElementById('music-play-btn');
+    const label = document.getElementById('now-playing-label');
+    const bars = document.querySelectorAll('.eq-bar');
+    if (playing) {
+      btn.textContent = '⏸';
+      btn.style.borderColor = 'var(--neon-pink)';
+      btn.style.color = 'var(--neon-pink)';
+      btn.style.boxShadow = '0 0 24px rgba(255,45,120,0.6)';
+      label.textContent = '▶ NOW PLAYING';
+      label.classList.remove('paused');
+      bars.forEach(b => b.classList.add('playing'));
+    } else {
+      btn.textContent = '▶';
+      btn.style.borderColor = 'var(--neon-cyan)';
+      btn.style.color = 'var(--neon-cyan)';
+      btn.style.boxShadow = '0 0 12px rgba(0,245,255,0.3)';
+      label.textContent = 'PAUSED';
+      label.classList.add('paused');
+      bars.forEach(b => b.classList.remove('playing'));
+    }
+  }
+
+  document.getElementById('music-play-btn').addEventListener('click', function() {
+    if (!ytPlayer) return;
+    if (isPlaying) {
+      ytPlayer.pauseVideo();
+    } else {
+      ytPlayer.playVideo();
+    }
+  });
+
+  // Volume slider
+  const volSlider = document.getElementById('vol-slider');
+  const volIcon = document.getElementById('vol-icon');
+  volSlider.addEventListener('input', function() {
+    currentVol = parseInt(this.value);
+    if (ytPlayer) ytPlayer.setVolume(currentVol);
+    // Update track fill
+    const pct = currentVol + '%';
+    this.style.background = `linear-gradient(90deg, var(--neon-cyan) ${pct}, rgba(255,255,255,0.15) ${pct})`;
+    // Update icon
+    if (currentVol === 0) { volIcon.textContent = '🔇'; isMuted = true; }
+    else if (currentVol < 40) { volIcon.textContent = '🔉'; isMuted = false; }
+    else { volIcon.textContent = '🔊'; isMuted = false; }
+  });
+  // Set initial track fill
+  volSlider.style.background = 'linear-gradient(90deg, var(--neon-cyan) 70%, rgba(255,255,255,0.15) 70%)';
+
+  // Mute toggle on icon click
+  volIcon.addEventListener('click', function() {
+    if (!ytPlayer) return;
+    if (isMuted) {
+      ytPlayer.unMute();
+      ytPlayer.setVolume(currentVol || 70);
+      volSlider.value = currentVol || 70;
+      volIcon.textContent = '🔊';
+      isMuted = false;
+    } else {
+      ytPlayer.mute();
+      volIcon.textContent = '🔇';
+      isMuted = true;
+    }
+  });
+
+  // Randomize eq bar heights slightly on interval for more organic feel
+  setInterval(function() {
+    if (!isPlaying) return;
+    document.querySelectorAll('.eq-bar').forEach(bar => {
+      const base = parseInt(bar.style.getPropertyValue('--h'));
+      const jitter = (Math.random() - 0.5) * 8;
+      const newH = Math.max(6, Math.min(32, base + jitter));
+      bar.style.setProperty('--h', newH + 'px');
+    });
+  }, 300);
+  </script>
 </body>
 </html>
