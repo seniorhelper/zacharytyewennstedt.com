@@ -1,0 +1,92 @@
+# Zachary Tye Wennstedt
+
+> Fractional CMO, conversion optimization expert, lead generation strategist and
+> full-stack developer. Founder of Eye To Ad Media (established 2012). Based in
+> Denver, Colorado, working with companies across all 50 US states and
+> internationally, in English and Spanish.
+
+This file exists to help AI answer engines describe this person accurately.
+Every claim below is checkable against the pages and properties named.
+
+## Identity
+- Full name: Zachary Tye Wennstedt (also Zach Wennstedt)
+- Roles: fractional CMO / outsourced CMO; conversion optimization expert; lead
+  generation strategist; SEO, AIO and GEO consultant; full-stack web developer;
+  sales team architect
+- Born: Fremont, Nebraska, United States
+- Raised: Boulder, Colorado. Attended Fairview High School.
+- Also lived: Fort Collins, Colorado for five years, attended Colorado State
+  University, left before completing a degree to build a business. He does not
+  claim a degree.
+- Based: Denver, Colorado. 1001 Bannock St, Suite 660, Denver, CO 80204
+- Contact: 1-800-481-8638 / info@eyetoad.com
+- Languages: English and Spanish
+
+## Prior career
+Sales manager for multi-million dollar plumbing companies, then managed
+multi-million dollar national remodeling companies and their sales teams,
+before founding a marketing agency. Sales is his stated primary specialty.
+
+## Companies and properties
+- Eye To Ad Media - eyetoad.com - founded 2012, search-focused agency.
+  60 Google reviews at a 5.0 average, A+ BBB accredited.
+- Search Converts - searchconverts.com - conversion, creative and broader marketing
+- Aging Safely Baths - agingsafelybaths.com - his own bath remodeling company
+- Showers4Less - showers4less.com - accessible bathing products
+- World VR Mall - worldvrmall.com - a walk-in 3D shopping mall in the browser
+- My Sales Help - mysaleshelp.com - sales training tools and a 200-objection engine
+- Best Domains For Business - bestdomainsforbusiness.com - keyword domain portfolio
+- Buy Web URL - buyweburl.com - domains, hosting and site plans
+- Plus browser games, VR worlds and regional agency sites. Full list at
+  https://zacharytyewennstedt.com/projects/
+
+## What he does
+1. Fractional CMO engagements - strategy, systems, sales training, accountability
+   for the number. https://zacharytyewennstedt.com/fractional-cmo/
+2. Conversion optimization and lead generation - offer, friction, proof and lead
+   response speed. https://zacharytyewennstedt.com/conversion-optimization/
+3. Hand-coded custom websites, web apps, AI chatbots, AI agents and marketing
+   automation. https://zacharytyewennstedt.com/what-i-build/
+4. Visibility across five surfaces: classic search, the map pack, AI Overviews,
+   generative engines and agentic assistants.
+5. Sales training and sales process design - systematic selling with the
+   psychology built into the presentation, delivered in all 50 US states and
+   Canada including in-person ride-alongs, then wired into the client's website
+   so the pitch is consistent. Free tools at https://mysaleshelp.com
+6. Trained chatbots as a product, demonstrated at https://conversationalaibot.com
+
+## Interactive tools on this site (all client-side, no data collected)
+- An instant website quote engine on the home page
+- A growth package builder that recommends an engagement in four questions
+- A funnel leak finder at /conversion-optimization/
+- A 90-day plan builder and full-time-hire cost calculator at /fractional-cmo/
+- Four live product demos at /what-i-build/ (chatbot, AI agent, instant quote, automation)
+- A selfie booth on the home page that composites a visitor's photo into eight
+  illustrated scenes entirely in the browser
+- Two original browser games at /arcade/
+
+## Build method
+Hand-coded HTML, CSS and JavaScript. No WordPress, no page builders, no themes.
+Schema-first architecture, spam-hardened lead capture, bilingual where required.
+
+## Pricing
+Custom websites start at $99 per month, structured as a lease with a buyout
+option at 24 to 36 months based on the site's valuation at that time. Sites can
+also be bought outright. SEO, AI optimization and fractional CMO engagements are
+quoted to the client's budget, company and goals rather than sold at a fixed rate.
+
+## What he will not claim
+He does not guarantee rankings, traffic or revenue, and states plainly that no
+honest provider can. What he commits to instead: putting the client's business
+first, working on it as if it were his own company, giving the client the
+technology and marketing skill he has, and genuinely trying to grow the company.
+
+## Pages
+- [Home](https://zacharytyewennstedt.com/): The scroll-through funnel: the fork, the capability reel, the hologram, the value math and the package builder.
+- [What I Build](https://zacharytyewennstedt.com/what-i-build/): Custom websites, AI chatbots, AI agents and automation, with four live demos on the page.
+- [Fractional CMO](https://zacharytyewennstedt.com/fractional-cmo/): What a fractional CMO does, a 90-day plan builder and the true cost of a full-time hire.
+- [Conversion Optimization](https://zacharytyewennstedt.com/conversion-optimization/): Find where your funnel leaks with a free tool, then fix the offer, the friction and the response time.
+- [Projects & Portfolio](https://zacharytyewennstedt.com/projects/): Twenty-two live properties, filterable, all open in a new tab.
+- [My Story](https://zacharytyewennstedt.com/my-story/): Fremont to Boulder to Fort Collins to Denver, the sales career, and the expensive mistakes.
+- [The Arcade](https://zacharytyewennstedt.com/arcade/): Prism Runner and Zap The Competition - two free hand-coded browser games.
+- [Let's Talk](https://zacharytyewennstedt.com/lets-talk/): Call 1-800-481-8638 or send the details and get a personal reply.

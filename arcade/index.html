@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Arcade &mdash; Two Free Browser Games | Zachary Tye Wennstedt</title>
+<meta name="description" content="Prism Runner and Zap The Competition: two original free browser games, hand-coded on a canvas with no engine and no download. Playable on desktop and phone.">
+<meta name="author" content="Zachary Tye Wennstedt">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<link rel="canonical" href="https://zacharytyewennstedt.com/arcade/">
+<meta property="og:site_name" content="Zachary Tye Wennstedt">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Arcade &mdash; Two Free Browser Games | Zachary Tye Wennstedt">
+<meta property="og:description" content="Prism Runner and Zap The Competition: two original free browser games, hand-coded on a canvas with no engine and no download. Playable on desktop and phone.">
+<meta property="og:url" content="https://zacharytyewennstedt.com/arcade/">
+<meta property="og:image" content="https://zacharytyewennstedt.com/images/zachary-tye-wennstedt-wide.webp">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Arcade &mdash; Two Free Browser Games | Zachary Tye Wennstedt">
+<meta name="twitter:description" content="Prism Runner and Zap The Competition: two original free browser games, hand-coded on a canvas with no engine and no download. Playable on desktop and phone.">
+<meta name="twitter:image" content="https://zacharytyewennstedt.com/images/zachary-tye-wennstedt-wide.webp">
+<meta name="geo.region" content="US-CO">
+<meta name="geo.placename" content="Denver, Colorado">
+<meta name="theme-color" content="#fffdf8">
+<link rel="icon" href="/images/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+<link rel="apple-touch-icon" href="/images/favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;900&family=Space+Grotesk:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ztw.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "@id": "https://zacharytyewennstedt.com/arcade/#webpage",
+   "url": "https://zacharytyewennstedt.com/arcade/",
+   "name": "The Arcade | Zachary Tye Wennstedt",
+   "inLanguage": "en-US"
+  },
+  {
+   "@type": "VideoGame",
+   "name": "Prism Runner",
+   "url": "https://zacharytyewennstedt.com/arcade/#prism",
+   "description": "A free browser runner where every platform exists in one of two realities. Shift between them, even in mid-air, to land on ground that was not there when you jumped.",
+   "genre": [
+    "Platformer",
+    "Endless runner"
+   ],
+   "gamePlatform": [
+    "Web browser",
+    "Desktop",
+    "Mobile"
+   ],
+   "applicationCategory": "Game",
+   "operatingSystem": "Any browser",
+   "playMode": "SinglePlayer",
+   "isAccessibleForFree": true,
+   "author": {
+    "@id": "https://zacharytyewennstedt.com/#zach"
+   },
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   }
+  },
+  {
+   "@type": "VideoGame",
+   "name": "Zap The Competition",
+   "url": "https://zacharytyewennstedt.com/arcade/#zap",
+   "description": "A free browser arcade shooter where you clear the competitors crowding the search results above you.",
+   "genre": [
+    "Arcade",
+    "Shooter"
+   ],
+   "gamePlatform": [
+    "Web browser",
+    "Desktop",
+    "Mobile"
+   ],
+   "applicationCategory": "Game",
+   "operatingSystem": "Any browser",
+   "playMode": "SinglePlayer",
+   "isAccessibleForFree": true,
+   "author": {
+    "@id": "https://zacharytyewennstedt.com/#zach"
+   },
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://zacharytyewennstedt.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Arcade",
+     "item": "https://zacharytyewennstedt.com/arcade/"
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div id="mbar">
+  <button id="mplay" type="button" aria-label="Play background music">&#9654;</button>
+  <canvas id="eq" aria-hidden="true"></canvas>
+  <div class="mvol">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a6.8 6.8 0 0 1 0 13.4v2.1a8.9 8.9 0 0 0 0-17.6z"/></svg>
+    <label for="mvol" style="position:absolute;left:-9999px">Volume</label>
+    <input type="range" id="mvol" min="0" max="100" value="70">
+  </div>
+  <div class="mnow"><b>Now Playing</b><span>Press play &middot; it sets the mood</span></div>
+  <div id="ytp" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px"></div>
+</div>
+<header>
+  <div class="hdr">
+    <a class="brand" href="/" aria-label="Zachary Tye Wennstedt - home"><img src="/images/ztw-logo-760.webp" alt="Zachary Tye Wennstedt" width="760" height="277"></a>
+    <nav class="main" aria-label="Primary"><a href="/what-i-build/">What I Build</a><a href="/fractional-cmo/">Fractional CMO</a><a href="/conversion-optimization/">Conversion</a><a href="/projects/">Projects</a><a href="/my-story/">My Story</a><a href="/arcade/" aria-current="page">Arcade</a><a href="/lets-talk/" class="cta">Let&rsquo;s Talk</a></nav>
+    <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div id="scrim"></div>
+<nav id="mnav" aria-label="Mobile">
+  <div class="mhd"><img src="/images/ztw-logo-760.webp" alt="Zachary Tye Wennstedt" width="760" height="277"><button class="x" type="button" aria-label="Close menu">&times;</button></div>
+  <a href="/what-i-build/">What I Build</a><a href="/fractional-cmo/">Fractional CMO</a><a href="/conversion-optimization/">Conversion</a><a href="/projects/">Projects</a><a href="/my-story/">My Story</a><a href="/arcade/">Arcade</a><a href="/lets-talk/" class="cta">Let&rsquo;s Talk</a>
+</nav>
+<style>
+#ah{background:linear-gradient(165deg,#07061a 0%,#160a3d 40%,#2d0a3f 72%,#06172e 100%);color:#e9e7f7;padding:clamp(40px,4.6vw,66px) 0 clamp(26px,3vw,40px);position:relative;overflow:hidden}
+#ahCv{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.7}
+#ah .wrap{position:relative;z-index:2}
+#ah h1{color:#fff;font-size:clamp(32px,5.4vw,66px)}
+#ah h1 em{font-style:normal;background:linear-gradient(100deg,var(--cyan),var(--mag));-webkit-background-clip:text;background-clip:text;color:transparent}
+#ah .lede{color:#b6b2d6}
+.gsec{background:#05040f;padding:clamp(34px,4vw,60px) 0}
+.gbox{max-width:900px;margin:0 auto;background:#0b0a22;border:1px solid rgba(255,255,255,.12);border-radius:22px;overflow:hidden;box-shadow:0 30px 70px -30px rgba(0,0,0,.85)}
+.ghd{padding:20px 24px;border-bottom:1px solid rgba(255,255,255,.1);display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.ghd h2{color:#fff;margin:0;font-size:21px;flex:1;min-width:180px}
+.score{font-family:var(--fd);font-weight:800;font-size:12px;letter-spacing:.1em;color:#9d99c9;display:flex;gap:16px}
+.score b{color:#fff}
+.gstage{position:relative;background:#07061a;aspect-ratio:16/9}
+.gstage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+.gover{position:absolute;inset:0;display:grid;place-items:center;background:rgba(5,4,15,.86);text-align:center;padding:20px;z-index:3}
+.gover.hide{display:none}
+.gover h3{color:#fff;font-size:clamp(22px,3.6vw,34px);margin-bottom:8px}
+.gover p{color:#b6b2d6;font-size:15px;max-width:440px;margin:0 auto 20px}
+.gpad{display:flex;gap:12px;padding:16px 20px;border-top:1px solid rgba(255,255,255,.1);justify-content:center;flex-wrap:wrap}
+.gpad button{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:14px;padding:16px 26px;font-family:var(--fd);font-weight:800;font-size:12px;letter-spacing:.1em;cursor:pointer;min-width:96px;-webkit-user-select:none;user-select:none;touch-action:manipulation}
+.gpad button:active{background:rgba(255,255,255,.2);transform:scale(.97)}
+.gpad .hot{background:linear-gradient(120deg,var(--cyan),var(--violet));border-color:transparent}
+.ghelp{padding:16px 24px 22px;font-size:13.5px;color:#8e8ab4;line-height:1.7;border-top:1px solid rgba(255,255,255,.08)}
+.ghelp b{color:#fff}
+.pitch{background:linear-gradient(160deg,#141034,#2b1a6b);border-radius:24px;padding:clamp(26px,4vw,44px);color:#fff;margin-top:20px}
+.pitch h2{color:#fff}
+@media(max-width:700px){.gpad button{padding:15px 18px;min-width:78px;font-size:11px}}
+</style>
+<main id="main">
+<section id="ah">
+<canvas id="ahCv" aria-hidden="true"></canvas>
+<div class="wrap narrow" style="text-align:center">
+  <p class="eyebrow" style="color:var(--cyan)">Two original games &middot; free &middot; nothing to install</p>
+  <h1>Nobody asked me<br>to build <em>these.</em></h1>
+  <p class="lede">Which is rather the point. I write games for the same reason I hand-code websites &mdash; because the only way to know what a browser can really do is to keep pushing until it complains. Both of these run on your phone.</p>
+</div>
+</section>
+
+<section class="gsec" id="prism">
+<div class="wrap">
+  <div class="gbox">
+    <div class="ghd">
+      <h2>Prism Runner</h2>
+      <div class="score"><span>SCORE <b id="pScore">0</b></span><span>DISTANCE <b id="pDist">0m</b></span><span>BEST <b id="pBest">0</b></span></div>
+    </div>
+    <div class="gstage">
+      <canvas id="prismCv" width="960" height="540" aria-label="Prism Runner game" role="img"></canvas>
+      <div class="gover" id="prismOver">
+        <div>
+          <h3 id="pOverTitle">Two realities. One runner.</h3>
+          <p id="pOverText">Only the platforms glowing in your current reality are solid. The others are ghosts. Shift between them &mdash; including in mid-air &mdash; to land on ground that was not there when you jumped.</p>
+          <button type="button" class="btn btn-p" id="pBtn">Start running</button>
+        </div>
+      </div>
+    </div>
+    <div class="gpad">
+      <button type="button" id="pJump" class="hot">JUMP</button>
+      <button type="button" id="pShift">SHIFT</button>
+    </div>
+    <p class="ghelp"><b>Desktop:</b> space or up arrow to jump, shift or down arrow to change reality. <b>Phone:</b> tap the left half of the screen to jump, the right half to shift, or use the buttons. Gold platforms exist in both realities and are always safe. Prisms only count while you are in their reality.</p>
+  </div>
+</div>
+</section>
+
+<section class="gsec" id="zap" style="background:#07061a">
+<div class="wrap">
+  <div class="gbox">
+    <div class="ghd">
+      <h2>Zap The Competition</h2>
+      <div class="score"><span>SCORE <b id="zScore">0</b></span><span>LIVES <b id="zLives">3</b></span><span>BEST <b id="zBest">0</b></span></div>
+    </div>
+    <div class="gstage">
+      <canvas id="zapCv" width="960" height="540" aria-label="Zap The Competition game" role="img"></canvas>
+      <div class="gover" id="zapOver">
+        <div>
+          <h3 id="zOverTitle">They are crowding your listing.</h3>
+          <p id="zOverText">Cheap SEO shops, page builders and guaranteed-number-one merchants are descending on your search results. Clear them before they reach the bottom. It is the most cathartic thing on this website.</p>
+          <button type="button" class="btn btn-p" id="zBtn">Defend the results page</button>
+        </div>
+      </div>
+    </div>
+    <div class="gpad">
+      <button type="button" id="zLeft">&#9664;</button>
+      <button type="button" id="zFire" class="hot">FIRE</button>
+      <button type="button" id="zRight">&#9654;</button>
+    </div>
+    <p class="ghelp"><b>Desktop:</b> arrow keys to move, F or enter to fire. <b>Phone:</b> drag anywhere on the screen to move and tap to fire, or use the buttons. Each wave gets a little faster. Three make it past you and it is over.</p>
+  </div>
+</div>
+</section>
+
+<section class="sec">
+<div class="wrap narrow">
+  <div class="pitch">
+    <p class="eyebrow" style="color:var(--cyan)">Why a marketing consultant has an arcade</p>
+    <h2>Because the demo is the argument.</h2>
+    <p style="color:#c3bfe0;font-size:16.5px;line-height:1.75">Anybody can write &ldquo;we build engaging interactive experiences&rdquo; on a services page. Very few can hand you one and let you play it on the bus. Both of these are a few hundred lines of hand-written JavaScript and a canvas &mdash; no engine, no plugin, no download &mdash; which is exactly the same toolkit behind the quoting engines, configurators and 3D worlds I build for clients who need people to stay on a page.</p>
+    <p style="color:#c3bfe0;font-size:16.5px;line-height:1.75">If the thing that would set your business apart is something nobody in your industry has bothered to build, that is usually the conversation I enjoy most.</p>
+    <p style="margin:26px 0 0;display:flex;gap:13px;flex-wrap:wrap">
+      <a href="/lets-talk/" class="btn btn-p">Tell me your strange idea &rarr;</a>
+      <a href="/projects/" class="btn btn-g">See the bigger worlds</a>
+    </p>
+  </div>
+</div>
+</section>
+</main><footer>
+<div class="wrap">
+  <div class="fgrid">
+    <div class="fcol">
+      <img class="flogo" src="/images/ztw-logo-760.webp" alt="Zachary Tye Wennstedt" width="760" height="277" loading="lazy">
+      <p style="font-size:14px;line-height:1.7;color:#a9a4cf;margin-bottom:14px">Fractional CMO, conversion optimization expert and lead generation strategist. I hand-build the websites, AI and systems that make a company the answer.</p>
+      <p style="font-size:14px;line-height:1.8;margin:0">
+        <a href="tel:+18004818638" style="color:#fff;font-family:var(--fd);font-size:16px">1-800-481-8638</a><br>
+        <a href="#" data-mail="text" rel="nofollow">email me</a><br>
+        1001 Bannock St #660<br>Denver, CO 80204
+      </p>
+    </div>
+    <div class="fcol"><h4>Work With Me</h4><ul>
+      <li><a href="/fractional-cmo/">Fractional CMO</a></li>
+      <li><a href="/conversion-optimization/">Conversion Optimization</a></li>
+      <li><a href="/what-i-build/">Websites &amp; Web Apps</a></li>
+      <li><a href="/what-i-build/#agents">AI Chatbots &amp; Agents</a></li>
+      <li><a href="/lets-talk/">Start a Conversation</a></li>
+    </ul></div>
+    <div class="fcol"><h4>Look Around</h4><ul>
+      <li><a href="/my-story/">My Story</a></li>
+      <li><a href="/projects/">Projects &amp; Portfolio</a></li>
+      <li><a href="/arcade/">The Arcade</a></li>
+      <li><a href="/sitemap.html">Sitemap</a></li>
+    </ul></div>
+    <div class="fcol"><h4>My Companies</h4><ul>
+      <li><a href="https://eyetoad.com" target="_blank" rel="noopener">Denver SEO &mdash; Eye To Ad Media</a></li>
+      <li><a href="https://searchconverts.com" target="_blank" rel="noopener">Search Converts</a></li>
+      <li><a href="https://mysaleshelp.com" target="_blank" rel="noopener">Sales training tools</a></li>
+      <li><a href="https://worldvrmall.com" target="_blank" rel="noopener">World VR Mall</a></li>
+      <li><a href="https://bestdomainsforbusiness.com" target="_blank" rel="noopener">Keyword domains for sale</a></li>
+      <li><a href="https://buyweburl.com" target="_blank" rel="noopener">Find a domain name</a></li>
+    </ul></div>
+  </div>
+  <div class="fbot">
+    <span>&copy; 2026 Zachary Tye Wennstedt. All rights reserved.</span>
+    <span>Hand-coded in Denver, Colorado. No page builders were harmed.</span>
+  </div>
+  <p class="heart">Built by a dad who still answers his own phone. <a href="/lets-talk/">&#10084;</a></p>
+</div>
+</footer>
+<script>
+(function(){"use strict";var D=document,W=window;var RM=W.matchMedia&&W.matchMedia("(prefers-reduced-motion:reduce)").matches;
+
+/* ambient hero */
+(function(){var c=D.getElementById('ahCv');if(!c)return;var x=c.getContext('2d'),w,h,t=0,dpr=Math.min(W.devicePixelRatio||1,2);
+function sz(){var r=c.getBoundingClientRect();w=Math.max(2,r.width|0);h=Math.max(2,r.height|0);c.width=w*dpr;c.height=h*dpr;x.setTransform(dpr,0,0,dpr,0,0);}
+sz();var rt;W.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(sz,150);});
+var G=[];for(var i=0;i<18;i++)G.push({x:Math.random(),y:Math.random(),s:14+Math.random()*30,r:Math.random()*6.3,v:(Math.random()-.5)*.25,h:i%2?188:320});
+function f(){t+=1/60;x.clearRect(0,0,w,h);
+ for(var i=0;i<G.length;i++){var p=G[i],px=p.x*w+Math.sin(t*.2+i)*18,py=((p.y+t*.008)%1.1-.05)*h;
+  x.save();x.translate(px,py);x.rotate(p.r+t*p.v);
+  x.strokeStyle='hsl('+p.h+',95%,66%)';x.globalAlpha=.3;x.lineWidth=1.4;
+  x.beginPath();x.moveTo(0,-p.s);x.lineTo(p.s*.6,0);x.lineTo(0,p.s);x.lineTo(-p.s*.6,0);x.closePath();x.stroke();
+  x.globalAlpha=.08;x.fillStyle='hsl('+p.h+',95%,60%)';x.fill();x.restore();}
+ x.globalAlpha=1;if(!RM)requestAnimationFrame(f);}
+if(RM)f();else requestAnimationFrame(f);})();
+
+/* ============================================================
+   PRISM RUNNER - every platform lives in one of two realities
+   ============================================================ */
+var PRISM=(function(){
+var W0=960,H0=540;
+var c=D.getElementById('prismCv');if(!c)return null;
+var x=c.getContext('2d');
+var G=0.56,JV=-11.4,SPD=3.6,PX=150,GROUNDY=H0-70;
+var MAXAIR=2*(-JV)/G;                 /* frames aloft on a full jump */
+var MAXGAP=Math.floor(SPD*MAXAIR*0.50);/* deliberately conservative */
+var MAXRISE=Math.floor((JV*JV)/(2*G)*0.55);
+var COL=[['#00d9f5','#0b3d4a'],['#ff2d78','#4a0f28']];
+var st,plats,prisms,run=false,best=0;
+try{best=parseInt(localStorage.getItem('prismBest')||'0',10)||0;}catch(e){}
+
+function gap(){return 54+Math.random()*(MAXGAP-54);}
+function add(gx,gy,force){
+  var dy=(Math.random()-0.5)*2*MAXRISE;
+  var ny=Math.max(180,Math.min(GROUNDY,gy+dy));
+  var w=100+Math.random()*120;
+  /* a ghost platform is only ever placed across a real gap, so the player
+     always gets airborne - and a chance to shift - before they need it */
+  var r=(force!=null)?force:(Math.random()<0.28?2:(Math.random()<0.5?0:1));
+  plats.push({x:gx,y:ny,w:w,r:r});
+  if(Math.random()<0.6)prisms.push({x:gx+w/2,y:ny-46,r:(r===2)?(Math.random()<0.5?0:1):r,got:false});
+  return ny;
+}
+function mk(){
+  plats=[];prisms=[];
+  var py=GROUNDY;
+  /* opening runway, in BOTH realities so nobody dies in the first second */
+  plats.push({x:-60,y:py,w:520,r:2});
+  var px=460+gap();
+  for(var i=0;i<16;i++){
+    py=add(px,py,i<3?2:null);          /* three safe platforms to learn on */
+    var last=plats[plats.length-1];
+    px=last.x+last.w+gap();
+  }
+  st.gen=function(){
+    var last=plats[plats.length-1];
+    add(last.x+last.w+gap(),last.y);
+  };
+}
+function reset(){
+  st={y:GROUNDY-30,vy:0,onGround:true,coyote:9,reality:0,dist:0,score:0,dead:false,t:0,scroll:0,flash:0,gen:null};
+  mk();run=true;hud();
+  D.getElementById('prismOver').classList.add('hide');
+}
+function hud(){
+  D.getElementById('pScore').textContent=st.score;
+  D.getElementById('pDist').textContent=Math.floor(st.dist/10)+'m';
+  D.getElementById('pBest').textContent=best;
+}
+function jump(){if(!run||st.dead)return;
+  /* coyote time: a jump still counts for a few frames after walking off an edge */
+  if(st.onGround||st.coyote>0){st.vy=JV;st.onGround=false;st.coyote=0;}}
+function shift(){if(!run||st.dead)return;st.reality=st.reality?0:1;st.flash=10;}
+function solid(p){return p.r===2||p.r===st.reality;}
+
+function step(){
+  if(!run||st.dead)return;
+  st.t++;st.scroll+=SPD;st.dist+=SPD;
+  if(st.flash>0)st.flash--;
+  st.vy+=G;st.y+=st.vy;
+  var wx=PX+st.scroll;                 /* player position in world space */
+  /* land on a solid platform */
+  st.onGround=false;
+  for(var i=0;i<plats.length;i++){
+    var p=plats[i];if(!solid(p))continue;
+    if(wx+14>p.x&&wx-14<p.x+p.w){
+      if(st.vy>=0&&st.y>=p.y-30&&st.y<=p.y+22){st.y=p.y-30;st.vy=0;st.onGround=true;}
+    }
+  }
+  st.coyote=st.onGround?9:Math.max(0,st.coyote-1);
+  /* prisms */
+  for(var k=0;k<prisms.length;k++){
+    var q=prisms[k];if(q.got)continue;
+    if(Math.abs(q.x-wx)<26&&Math.abs(q.y-(st.y+14))<38&&(q.r===st.reality)){q.got=true;st.score+=10;hud();}
+  }
+  /* extend the level, drop what is behind us */
+  while(plats[plats.length-1].x<st.scroll+W0+400)st.gen();
+  while(plats.length&&plats[0].x+plats[0].w<st.scroll-200)plats.shift();
+  while(prisms.length&&prisms[0].x<st.scroll-200)prisms.shift();
+  if(st.y>H0+60)die();
+  if(st.t%30===0)hud();
+}
+function die(){
+  st.dead=true;run=false;
+  if(st.score>best){best=st.score;try{localStorage.setItem('prismBest',String(best));}catch(e){}}
+  hud();
+  var o=D.getElementById('prismOver');
+  D.getElementById('pOverTitle').textContent=st.score>=120?'Now that is a run.':(st.score>=40?'Not bad.':'Reality shifted without you.');
+  D.getElementById('pOverText').textContent='You covered '+Math.floor(st.dist/10)+' metres and collected '+(st.score/10)+' prisms. Remember: you can shift in mid-air, and only prisms in your current reality count.';
+  D.getElementById('pBtn').textContent='Run it again';
+  o.classList.remove('hide');
+}
+function draw(){
+  var g=x.createLinearGradient(0,0,0,H0);
+  if(st.reality===0){g.addColorStop(0,'#04141c');g.addColorStop(1,'#07283a');}
+  else{g.addColorStop(0,'#1a0418');g.addColorStop(1,'#380a2a');}
+  x.fillStyle=g;x.fillRect(0,0,W0,H0);
+  /* parallax */
+  x.globalAlpha=.16;x.fillStyle=COL[st.reality][0];
+  for(var b=0;b<9;b++){var bx=((b*230-st.scroll*0.28)%(W0+320))-160;x.fillRect(bx,H0-210-((b*53)%130),90,260);}
+  x.globalAlpha=1;
+  /* platforms */
+  for(var i=0;i<plats.length;i++){
+    var p=plats[i],sx=p.x-st.scroll;
+    if(sx>W0+80||sx+p.w<-80)continue;
+    var on=solid(p);
+    if(p.r===2){x.fillStyle=on?'#ffd60a':'#6a5a12';}
+    else{x.fillStyle=on?COL[p.r][0]:COL[p.r][1];}
+    x.globalAlpha=on?1:.30;
+    x.fillRect(sx,p.y,p.w,16);
+    x.globalAlpha=on?.28:.12;
+    x.fillRect(sx,p.y+16,p.w,44);
+    x.globalAlpha=1;
+  }
+  /* prisms */
+  for(var k=0;k<prisms.length;k++){
+    var q=prisms[k];if(q.got)continue;
+    var qx=q.x-st.scroll;if(qx<-40||qx>W0+40)continue;
+    var act=q.r===st.reality;
+    x.save();x.translate(qx,q.y+Math.sin(st.t*0.06+k)*5);x.rotate(st.t*0.03);
+    x.globalAlpha=act?1:.22;x.fillStyle=COL[q.r][0];
+    x.beginPath();x.moveTo(0,-13);x.lineTo(10,0);x.lineTo(0,13);x.lineTo(-10,0);x.closePath();x.fill();
+    x.restore();x.globalAlpha=1;
+  }
+  /* the runner */
+  var py=st.y;
+  x.fillStyle='#ffffff';
+  x.fillRect(PX-12,py,24,30);
+  x.fillStyle=COL[st.reality][0];
+  x.fillRect(PX-12,py,24,7);
+  x.fillRect(PX-12,py+23,24,7);
+  if(st.flash>0){x.globalAlpha=st.flash/26;x.fillStyle=COL[st.reality][0];
+    x.beginPath();x.arc(PX,py+15,44+ (10-st.flash)*3,0,6.2832);x.fill();x.globalAlpha=1;}
+  /* reality readout */
+  x.fillStyle='rgba(255,255,255,.78)';x.font='700 15px "Space Grotesk",sans-serif';x.textAlign='left';
+  x.fillText('REALITY '+(st.reality===0?'A':'B'),18,32);
+  x.fillStyle=COL[st.reality][0];x.fillRect(18,40,96,4);
+}
+function loop(){step();draw();if(!RM)requestAnimationFrame(loop);}
+/* controls */
+D.addEventListener('keydown',function(e){
+  if(!run&&!st)return;
+  if(e.code==='Space'||e.code==='ArrowUp'||e.code==='KeyW'){e.preventDefault();jump();}
+  if(e.code==='ShiftLeft'||e.code==='ShiftRight'||e.code==='ArrowDown'||e.code==='KeyS'){e.preventDefault();shift();}
+});
+c.addEventListener('pointerdown',function(e){
+  var r=c.getBoundingClientRect();
+  if((e.clientX-r.left)/r.width>0.6)shift();else jump();
+});
+D.getElementById('pJump').addEventListener('pointerdown',function(e){e.preventDefault();jump();});
+D.getElementById('pShift').addEventListener('pointerdown',function(e){e.preventDefault();shift();});
+D.getElementById('pBtn').addEventListener('click',reset);
+c.width=W0;c.height=H0;
+st={y:GROUNDY-30,vy:0,onGround:true,coyote:9,reality:0,dist:0,score:0,dead:true,t:0,scroll:0,flash:0,gen:null};
+mk();draw();hud();
+if(!RM)requestAnimationFrame(loop);
+return {reset:reset,jump:jump,shift:shift,state:function(){return st;},plats:function(){return plats;},
+        limits:function(){return {MAXGAP:MAXGAP,MAXRISE:MAXRISE,reach:SPD*MAXAIR,climb:(JV*JV)/(2*G)};}};
+})();
+W.PRISM=PRISM;
+
+/* ============================================================
+   ZAP THE COMPETITION
+   ============================================================ */
+var ZAP=(function(){
+var W0=960,H0=540;
+var c=D.getElementById('zapCv');if(!c)return null;
+var x=c.getContext('2d');
+var st,run=false,best=0,keys={};
+try{best=parseInt(localStorage.getItem('zapBest')||'0',10)||0;}catch(e){}
+var NAMES=['CHEAP SEO CO','PAGE BUILDER','SEO GURU','TEMPLATE INC','#1 GUARANTEED','OFFSHORE LTD','DIY WEBSITE'];
+function reset(){
+  st={px:W0/2,shots:[],foes:[],score:0,lives:3,t:0,wave:1,dead:false,cool:0};
+  run=true;hud();D.getElementById('zapOver').classList.add('hide');spawn();
+}
+function spawn(){
+  var n=Math.min(9,3+st.wave);
+  for(var i=0;i<n;i++)st.foes.push({x:60+Math.random()*(W0-160),y:-60-Math.random()*300,
+    w:120,h:34,vy:.55+Math.random()*.5+st.wave*.07,n:NAMES[(i+st.wave)%NAMES.length],hp:1});
+}
+function hud(){
+  D.getElementById('zScore').textContent=st.score;
+  D.getElementById('zLives').textContent=st.lives;
+  D.getElementById('zBest').textContent=best;
+}
+function fire(){if(!run||st.dead||st.cool>0)return;st.cool=11;st.shots.push({x:st.px,y:H0-72});}
+function step(){
+  if(!run||st.dead)return;
+  st.t++;if(st.cool>0)st.cool--;
+  if(keys.l)st.px-=7;if(keys.r)st.px+=7;
+  st.px=Math.max(36,Math.min(W0-36,st.px));
+  for(var i=st.shots.length-1;i>=0;i--){st.shots[i].y-=12;if(st.shots[i].y<-20)st.shots.splice(i,1);}
+  for(var f=st.foes.length-1;f>=0;f--){
+    var o=st.foes[f];o.y+=o.vy;
+    for(var s=st.shots.length-1;s>=0;s--){
+      var sh=st.shots[s];
+      if(sh.x>o.x&&sh.x<o.x+o.w&&sh.y>o.y&&sh.y<o.y+o.h){
+        st.shots.splice(s,1);st.foes.splice(f,1);st.score+=10;hud();break;}
+    }
+    if(o&&o.y>H0-64){st.foes.splice(f,1);st.lives--;hud();if(st.lives<=0)die();}
+  }
+  if(!st.foes.length){st.wave++;spawn();}
+  if(st.t%30===0)hud();
+}
+function die(){
+  st.dead=true;run=false;
+  if(st.score>best){best=st.score;try{localStorage.setItem('zapBest',String(best));}catch(e){}}
+  hud();
+  D.getElementById('zOverTitle').textContent=st.score>=200?'The results page is yours.':'They got past you.';
+  D.getElementById('zOverText').textContent='You cleared '+(st.score/10)+' of them across '+st.wave+' waves. In real life this takes rather longer, and I do it with schema instead of a laser.';
+  D.getElementById('zBtn').textContent='Go again';
+  D.getElementById('zapOver').classList.remove('hide');
+}
+function draw(){
+  x.fillStyle='#07061a';x.fillRect(0,0,W0,H0);
+  x.globalAlpha=.5;x.fillStyle='#141034';
+  for(var g=0;g<12;g++)x.fillRect(0,g*48,W0,1);
+  x.globalAlpha=1;
+  x.fillStyle='#1d1a3f';x.fillRect(0,H0-56,W0,56);
+  x.fillStyle='#00c489';x.font='700 13px "Space Grotesk",sans-serif';x.textAlign='left';
+  x.fillText('YOUR LISTING',18,H0-24);
+  for(var f=0;f<st.foes.length;f++){
+    var o=st.foes[f];
+    x.fillStyle='#2a2444';x.fillRect(o.x,o.y,o.w,o.h);
+    x.fillStyle='#ff2d78';x.fillRect(o.x,o.y,4,o.h);
+    x.fillStyle='#cfc9ee';x.font='600 12px "Space Grotesk",sans-serif';x.textAlign='left';
+    x.fillText(o.n,o.x+12,o.y+22);
+  }
+  x.fillStyle='#ffd60a';
+  for(var s=0;s<st.shots.length;s++)x.fillRect(st.shots[s].x-2,st.shots[s].y,4,16);
+  x.fillStyle='#00d9f5';
+  x.beginPath();x.moveTo(st.px,H0-78);x.lineTo(st.px+22,H0-50);x.lineTo(st.px-22,H0-50);x.closePath();x.fill();
+  x.fillStyle='#fff';x.fillRect(st.px-4,H0-70,8,8);
+  x.fillStyle='rgba(255,255,255,.75)';x.font='700 14px "Space Grotesk",sans-serif';x.textAlign='right';
+  x.fillText('WAVE '+st.wave,W0-18,30);
+}
+function loop(){step();draw();if(!RM)requestAnimationFrame(loop);}
+D.addEventListener('keydown',function(e){
+  if(e.code==='ArrowLeft'){keys.l=1;}if(e.code==='ArrowRight'){keys.r=1;}
+  if(e.code==='KeyF'||e.code==='Enter'){fire();}
+});
+D.addEventListener('keyup',function(e){
+  if(e.code==='ArrowLeft')keys.l=0;if(e.code==='ArrowRight')keys.r=0;
+});
+function hold(id,on,off){
+  var b=D.getElementById(id);
+  b.addEventListener('pointerdown',function(e){e.preventDefault();on();});
+  ['pointerup','pointerleave','pointercancel'].forEach(function(ev){b.addEventListener(ev,function(){if(off)off();});});
+}
+hold('zLeft',function(){keys.l=1;},function(){keys.l=0;});
+hold('zRight',function(){keys.r=1;},function(){keys.r=0;});
+hold('zFire',fire);
+c.addEventListener('pointermove',function(e){if(!run)return;var r=c.getBoundingClientRect();st.px=(e.clientX-r.left)/r.width*W0;});
+c.addEventListener('pointerdown',function(){fire();});
+D.getElementById('zBtn').addEventListener('click',reset);
+c.width=W0;c.height=H0;
+st={px:W0/2,shots:[],foes:[],score:0,lives:3,t:0,wave:1,dead:true,cool:0};
+draw();hud();
+if(!RM)requestAnimationFrame(loop);
+return {reset:reset,fire:fire,state:function(){return st;}};
+})();
+W.ZAP=ZAP;
+
+})();
+</script>
+<script src="/js/ztw.js" defer></script>
+<script src="/js/zach.js" defer></script>
+</body>
+</html>
