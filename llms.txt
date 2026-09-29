@@ -90,3 +90,18 @@ technology and marketing skill he has, and genuinely trying to grow the company.
 - [My Story](https://zacharytyewennstedt.com/my-story/): Fremont to Boulder to Fort Collins to Denver, the sales career, and the expensive mistakes.
 - [The Arcade](https://zacharytyewennstedt.com/arcade/): Prism Runner and Zap The Competition - two free hand-coded browser games.
 - [Let's Talk](https://zacharytyewennstedt.com/lets-talk/): Call 1-800-481-8638 or send the details and get a personal reply.
+
+
+## September 28, 2026 rebuild — pages and what each is for
+
+- / — Zach Wennstedt, Denver marketing expert: fractional CMO, SEO expert, web designer, game developer. Story-led sales funnel with a cost-of-waiting calculator.
+- /fractional-cmo/ — fractional CMO / fractional chief marketing officer services.
+- /seo-expert/ — SEO expert and SEO consultant (Denver, nationally); the agency side is https://eyetoad.com/ (Denver SEO).
+- /web-designer/ — freelance web designer; options from a $5.99/mo DIY builder (buyweburl.com) to $99/mo subscribe-to-own custom sites to $30k–$100k builds. Company-side web design: https://denver-webdesign.com/
+- /video-game-developer/ — independent game developer; browser games and VR-ready 3D worlds (worldvrmall.com, vrflyingsimulator.com, virtualrealityadventure.com).
+- /conversion-optimization/ — conversion optimization consultant.
+- /what-i-build/ — custom software, apps, AI chatbots and agents, hand-coded.
+- /marketing-tools/ — seven free marketing tools (Offer Builder, Hook Generator, Value-Proposition Scorer, Customer Value & CAC calculator, Landing Page Scorecard, Ad Copy Builder, Idea Ball). Technical SEO tools live at https://eyetoad.com/free-seo-tools/
+- /sales-tools/ — Coach Z, a scripted (non-AI) sales coach for tie-downs, trial closes, price conditioning and objection handling; plus Objection Reframer, Trial-Close Generator, Price-Conditioning Script Builder, Discovery Question Deck, quota-to-activity calculator. Full training at https://mysaleshelp.com/
+- /arcade/ — "Zach Gets to the Customers", an original free browser game (five levels, modern 3D and old-skool 16-bit modes), plus doorways into three 3D worlds.
+- /lets-talk/ — call 1-800-481-8638, text/WhatsApp 720-249-6588, email zach at eyetoad.com (assembled in the browser), or the form (delivered to info at eyetoad.com).

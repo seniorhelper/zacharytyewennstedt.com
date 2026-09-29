@@ -9,7 +9,8 @@ var RM=W.matchMedia&&W.matchMedia('(prefers-reduced-motion:reduce)').matches;
 /* ---------- 1. runtime address assembly ---------- */
 function at(){return String.fromCharCode(64);}
 function dec(s){try{return W.atob(s);}catch(e){return '';}}
-function addr(){return dec('aW5mbw==')+at()+dec('ZXlldG9hZC5jb20=');}
+function addr(){return dec('emFjaA==')+at()+dec('ZXlldG9hZC5jb20=');}
+function dest(){return dec('aW5mbw==')+at()+dec('ZXlldG9hZC5jb20=');}
 W.ZTW={addr:addr};
 function paintMail(){
   var n=D.querySelectorAll('[data-mail]');
@@ -71,6 +72,7 @@ function music(){
   function frame(ts){
     if(!last)last=ts;var dt=Math.min(.05,(ts-last)/1000);last=ts;
     t+=dt;
+    if(playing&&yt&&ready){try{var ct=yt.getCurrentTime();if(ct>0)t=ct+0.08;}catch(e){}}
     beat=(t%SPB)/SPB;
     var bar=(t/(SPB*4))%1;
     var kick=env(beat),snare=env(((t+SPB*2)%(SPB*4))/SPB),hat=env((t%(SPB/2))/(SPB/2))*.5;
@@ -95,7 +97,7 @@ function music(){
   function draw(){
     ctx.clearRect(0,0,CW,CH);
     var mid=CH*0.60,maxUp=mid-2,maxDn=CH-mid-1,bw=CW/N,w=Math.max(1.6,bw*0.62);
-    ctx.fillStyle=G;
+    ctx.fillStyle=G;ctx.shadowColor='rgba(255,255,255,.35)';ctx.shadowBlur=playing?8:0;
     for(var i=0;i<N;i++){
       var x=i*bw+(bw-w)/2,up=Math.max(1.5,h[i]*maxUp);
       ctx.globalAlpha=1;ctx.fillRect(x,mid-up,w,up);
@@ -103,7 +105,7 @@ function music(){
       ctx.globalAlpha=.85;
       var py=mid-Math.max(2,pk[i]*maxUp)-2.5;ctx.fillRect(x,py,w,1.8);
     }
-    ctx.globalAlpha=1;
+    ctx.globalAlpha=1;ctx.shadowBlur=0;
   }
   if(RM){draw();}else{requestAnimationFrame(frame);}
 
@@ -144,10 +146,11 @@ var touched=false;
 });
 var T0=Date.now();
 function forms(){
-  var fs=D.querySelectorAll('form[data-guard]');
+  var fs=D.querySelectorAll('form[data-guard],form[data-ztw-form]');
   for(var i=0;i<fs.length;i++)wire(fs[i]);
 }
 function wire(f){
+  if(f.hasAttribute('data-ztw-form')){f.removeAttribute('action');}
   if(!f.querySelector('input[name="_honey"]')){
     var d=D.createElement('div');d.className='hp';d.setAttribute('aria-hidden','true');
     d.innerHTML='<label>Leave blank</label><input type="text" name="_honey" tabindex="-1" autocomplete="off">';
@@ -180,7 +183,7 @@ function wire(f){
     fd.set('Sent from','zacharytyewennstedt.com'+location.pathname);
     if(btn){btn.disabled=true;btn.dataset.t=btn.textContent;btn.textContent='Sending...';}
     say('ok','Sending...');
-    var url='https://form'+'submit.co/'+addr();
+    var url='https://form'+'submit.co/'+dest();
     fetch(url,{method:'POST',body:fd,headers:{'Accept':'application/json'}})
       .then(function(r){return r.ok?r.json().catch(function(){return{success:'true'};}):Promise.reject(r.status);})
       .then(function(){
