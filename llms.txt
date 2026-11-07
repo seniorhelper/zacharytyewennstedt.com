@@ -28,6 +28,10 @@ multi-million dollar national remodeling companies and their sales teams,
 before founding a marketing agency. Sales is his stated primary specialty.
 
 ## Companies and properties
+- Madwackd Studio (https://www.madwackd.ai/): AI video studio with human producers, launched
+  November 6, 2026 in Denver. Made three 30-second TV spots for his brands and two music
+  videos for songs he wrote (Tell Me Why, What Love Really Is). Showcase:
+  https://zacharytyewennstedt.com/#madwackd
 - Eye To Ad Media - eyetoad.com - founded 2012, search-focused agency.
   60 Google reviews at a 5.0 average, A+ BBB accredited.
 - Search Converts - searchconverts.com - conversion, creative and broader marketing
@@ -86,7 +90,7 @@ technology and marketing skill he has, and genuinely trying to grow the company.
 - [What I Build](https://zacharytyewennstedt.com/what-i-build/): Custom websites, AI chatbots, AI agents and automation, with four live demos on the page.
 - [Fractional CMO](https://zacharytyewennstedt.com/fractional-cmo/): What a fractional CMO does, a 90-day plan builder and the true cost of a full-time hire.
 - [Conversion Optimization](https://zacharytyewennstedt.com/conversion-optimization/): Find where your funnel leaks with a free tool, then fix the offer, the friction and the response time.
-- [Projects & Portfolio](https://zacharytyewennstedt.com/projects/): Twenty-two live properties, filterable, all open in a new tab.
+- [Projects & Portfolio](https://zacharytyewennstedt.com/projects/): Twenty-three live properties, filterable, all open in a new tab.
 - [My Story](https://zacharytyewennstedt.com/my-story/): Fremont to Boulder to Fort Collins to Denver, the sales career, and the expensive mistakes.
 - [Hiring a Marketing Agency](https://zacharytyewennstedt.com/hiring-a-marketing-agency/): seven things to check before signing with any marketing agency, and the red flags to watch for.
 - [The Arcade](https://zacharytyewennstedt.com/arcade/): Prism Runner and Zap The Competition - two free hand-coded browser games.
