@@ -184,8 +184,15 @@ function wire(f){
     if(btn){btn.disabled=true;btn.dataset.t=btn.textContent;btn.textContent='Sending...';}
     say('ok','Sending...');
     var url='https://form'+'submit.co/'+dest();
-    fetch(url,{method:'POST',body:fd,headers:{'Accept':'application/json'}})
-      .then(function(r){return r.ok?r.json().catch(function(){return{success:'true'};}):Promise.reject(r.status);})
+    /* Copy 1: Eye To Ad lead server (saves first, shows on the lead viewer). Copy 2: FormSubmit email.
+       Either one landing counts as sent, so a lead is never lost if one leg is down. */
+    var ld=new FormData();fd.forEach(function(v,k){if(k.charAt(0)!=='_'||k==='_subject')ld.append(k,v);});
+    ld.append('site','zacharytyewennstedt.com');ld.append('page',location.pathname.slice(0,300));ld.append('_t',String(T0));
+    ld.append('lead_device',W.innerWidth<760?'phone':'desktop');
+    function ok(r){return r.ok?r:Promise.reject(r.status);}
+    var p1=fetch('https://clients.eyetoad.com/lead/send.php',{method:'POST',body:ld,headers:{'Accept':'application/json'}}).then(ok);
+    var p2=fetch(url,{method:'POST',body:fd,headers:{'Accept':'application/json'}}).then(ok);
+    new Promise(function(res,rej){var n=0;function no(){if(++n===2)rej();}p1.then(res,no);p2.then(res,no);})
       .then(function(){
         say('ok','Got it. Your message is on its way to me and I answer everything personally, usually same day. If it is urgent, call 1-800-481-8638.');
         f.reset();if(btn){btn.disabled=false;btn.textContent=btn.dataset.t;}
