@@ -177,22 +177,17 @@ function wire(f){
     if(bad.length){say('bad','Please fill in the highlighted fields so I can reply.');bad[0].focus();return;}
     var fd=new FormData(f);
     fd.delete('_honey');
-    fd.set('_captcha','false');
-    fd.set('_template','table');
     if(!fd.get('_subject'))fd.set('_subject',f.getAttribute('data-subject')||'zacharytyewennstedt.com enquiry');
-    fd.set('Sent from','zacharytyewennstedt.com'+location.pathname);
+    /* Eye To Ad lead net: saves the lead first (lead viewer), then emails the alert. No third-party form service. */
+    fd.append('site','zacharytyewennstedt.com');fd.append('page',location.pathname.slice(0,300));fd.append('_t',String(T0));
+    fd.append('lead_device',W.innerWidth<760?'phone':'desktop');
+    try{var q=new URLSearchParams(location.search);['utm_source','utm_medium','utm_campaign','gclid'].forEach(function(k){var v=q.get(k);if(v)fd.append('lead_'+k,v.slice(0,120));});
+      if(D.referrer&&D.referrer.indexOf(location.host)<0)fd.append('lead_referrer',D.referrer.slice(0,200));}catch(e){}
     if(btn){btn.disabled=true;btn.dataset.t=btn.textContent;btn.textContent='Sending...';}
     say('ok','Sending...');
-    var url='https://form'+'submit.co/'+dest();
-    /* Copy 1: Eye To Ad lead server (saves first, shows on the lead viewer). Copy 2: FormSubmit email.
-       Either one landing counts as sent, so a lead is never lost if one leg is down. */
-    var ld=new FormData();fd.forEach(function(v,k){if(k.charAt(0)!=='_'||k==='_subject')ld.append(k,v);});
-    ld.append('site','zacharytyewennstedt.com');ld.append('page',location.pathname.slice(0,300));ld.append('_t',String(T0));
-    ld.append('lead_device',W.innerWidth<760?'phone':'desktop');
-    function ok(r){return r.ok?r:Promise.reject(r.status);}
-    var p1=fetch('https://clients.eyetoad.com/lead/send.php',{method:'POST',body:ld,headers:{'Accept':'application/json'}}).then(ok);
-    var p2=fetch(url,{method:'POST',body:fd,headers:{'Accept':'application/json'}}).then(ok);
-    new Promise(function(res,rej){var n=0;function no(){if(++n===2)rej();}p1.then(res,no);p2.then(res,no);})
+    fetch('https://clients.eyetoad.com/lead/send.php',{method:'POST',body:fd,headers:{'Accept':'application/json'}})
+      .then(function(r){return r.ok?r.json():Promise.reject(r.status);})
+      .then(function(j){return j&&j.ok?j:Promise.reject('notok');})
       .then(function(){
         say('ok','Got it. Your message is on its way to me and I answer everything personally, usually same day. If it is urgent, call 1-800-481-8638.');
         f.reset();if(btn){btn.disabled=false;btn.textContent=btn.dataset.t;}
