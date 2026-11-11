@@ -175,7 +175,7 @@
 <header>
   <div class="hdr">
     <a class="brand" href="/" aria-label="Zachary Tye Wennstedt - home"><img src="/images/ztw-logo-760.webp" alt="Zachary Tye Wennstedt" width="760" height="277"></a>
-    <nav class="main" aria-label="Primary"><a href="/fractional-cmo/">Fractional CMO</a><a href="/seo-expert/">SEO Expert</a><a href="/web-designer/">Web Designer</a><a href="/marketing-tools/">Tools</a><a href="/projects/">Projects</a><a href="/arcade/">Arcade</a><a href="tel:+18004818638" class="htel" aria-label="Call 1-800-481-8638">&#9742; 1-800-481-8638</a><a href="/lets-talk/" class="cta">Let&rsquo;s Talk</a></nav><a href="tel:+18004818638" class="htel-m" aria-label="Call 1-800-481-8638">&#9742;</a>
+    <nav class="main" aria-label="Primary"><a href="/fractional-cmo/">Fractional CMO</a><a href="/seo-expert/">SEO Expert</a><a href="/web-designer/">Web Designer</a><a href="/marketing-tools/">Tools</a><a href="/projects/">Projects</a><a href="/arcade/">Arcade</a><a href="tel:+18004818638" class="htel" aria-label="Call 1-800-481-8638">&#9742; 1-800-481-8638</a><a href="#together" class="cta">Work with me</a></nav><a href="tel:+18004818638" class="htel-m" aria-label="Call 1-800-481-8638">&#9742;</a>
     <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
   </div>
 </header>
@@ -194,7 +194,8 @@
   <a href="/my-story/">My Story</a>
   <a href="/arcade/">The Arcade</a>
   <a href="tel:+18004818638" class="tel">Call 1-800-481-8638</a>
-  <a href="/lets-talk/" class="cta">Let&rsquo;s Talk</a>
+  <a href="/#together" class="cta">Let&rsquo;s work together</a>
+  <a href="/lets-talk/">Let&rsquo;s Talk (project details)</a>
 </nav>
 <style>
 /* ================= page scenes ================= */
@@ -416,6 +417,111 @@ input[type=range].vs::-moz-range-thumb{width:24px;height:24px;border-radius:50%;
 @media(max-width:700px){.hero-chip{display:none}}
 </style>
 <main id="main">
+<!-- ============ TOGETHER : collab request, showcase slot, films (added 2026-11-10) ============ -->
+<style id="tg-css">
+.tg{background:radial-gradient(900px 500px at 90% -10%,rgba(255,45,120,.20),transparent),radial-gradient(800px 480px at -10% 110%,rgba(0,217,245,.14),transparent),#0d0a1f;color:#e9e6ff;padding:clamp(40px,6vw,76px) 0 clamp(48px,7vw,88px)}
+.tg .kick{font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#ffd60a;margin:0 0 10px}
+.tg h2{color:#fff;font-family:var(--fd);font-size:clamp(30px,4.6vw,52px);line-height:1.05;margin:0 0 14px}
+.tg-grad{background:linear-gradient(100deg,#ff2d78,#ff7a00 55%,#ffd60a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tg-lede{color:#d2cff0;font-size:clamp(16px,1.6vw,18px);line-height:1.65;max-width:62ch;margin:0 0 26px}
+.tg-top{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:34px;align-items:start}
+.tg-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:22px}
+.tg .fg label{color:#a9a4cf}
+.tg .fg input,.tg .fg textarea{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.2);color:#fff}
+.tg .fg input::placeholder,.tg .fg textarea::placeholder{color:#8f8ab5}
+.tg .fg textarea{min-height:96px}
+.tg-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.tg-pills{border:0;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.tg-pills legend{font-family:var(--fd);font-weight:700;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#a9a4cf;margin:0 0 8px;padding:0}
+.tg-pills label{cursor:pointer}
+.tg-pills input{position:absolute;opacity:0;width:1px;height:1px}
+.tg-pills span{display:inline-block;padding:9px 14px;border-radius:999px;border:1.5px solid rgba(255,255,255,.28);color:#e9e6ff;font-size:15px;line-height:1.2}
+.tg-pills input:checked+span{background:linear-gradient(115deg,#ff2d78,#ff7a00);border-color:transparent;color:#fff}
+.tg-pills input:focus-visible+span{outline:3px solid #00d9f5;outline-offset:2px}
+.tg .btn-p{width:100%;justify-content:center;border:0;cursor:pointer;font-size:17px}
+.tg-fine{color:#a9a4cf;font-size:13.5px;line-height:1.5;margin:4px 0 0}
+.tg-fine a{color:#ff8fbf}
+.tg .fmsg{color:#fff}
+.tg-player{border-radius:16px;overflow:hidden;background:#000;aspect-ratio:16/9;border:1px solid rgba(255,255,255,.14);box-shadow:0 24px 60px -20px rgba(255,45,120,.55)}
+.tg-player video{display:block;width:100%;height:100%;object-fit:cover}
+.tg-soon{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px;height:100%;padding:20px;background:radial-gradient(500px 260px at 50% 0%,rgba(255,45,120,.35),transparent),#140f2e}
+.tg-soon b{color:#fff;font-family:var(--fd);font-size:clamp(18px,2.2vw,24px)}
+.tg-soon span{color:#c3bfe0;font-size:15px}
+.tg-cap{color:#a9a4cf;font-size:14px;line-height:1.5;margin:10px 2px 0}
+.tg-cap a{color:#ff8fbf}
+.tg-films{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:46px}
+.tg-films figure{margin:0}
+.tg-films figcaption{padding:12px 2px 0}
+.tg-films figcaption b{display:block;color:#fff;font-size:18px;margin-bottom:4px}
+.tg-films figcaption span{color:#c3bfe0;font-size:15px;line-height:1.55}
+.tg-films figcaption a{color:#ff8fbf}
+.tg-h3{color:#fff;font-family:var(--fd);font-size:clamp(20px,2.4vw,26px);margin:46px 0 0}
+.tg-links{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 0}
+.tg-links a{color:#fff;border:1.5px solid rgba(255,255,255,.3);border-radius:999px;padding:8px 14px;font-size:14.5px;text-decoration:none}
+.tg-links a:hover{background:rgba(255,255,255,.1)}
+@media(max-width:900px){.tg-top{grid-template-columns:1fr}}
+@media(max-width:640px){.tg-films,.tg-row{grid-template-columns:1fr}.tg-card{padding:18px}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[
+{"@type":"VideoObject","name":"The Earth Movie - official trailer","description":"Official trailer for The Earth Movie, Zachary Tye Wennstedt's first independent film: a comedy with real allegories about all of us.","thumbnailUrl":"https://zacharytyewennstedt.com/images/films/the-earth-movie-trailer-poster-960.webp","uploadDate":"2026-11-08","contentUrl":"https://www.theearthmovie.com/assets/media/earth-trailer-v5c-720.mp4","creator":{"@type":"Person","name":"Zachary Tye Wennstedt","url":"https://zacharytyewennstedt.com/"}},
+{"@type":"VideoObject","name":"TOAD - Eye To Ad Media commercial","description":"A 1 minute 44 second commercial for Eye To Ad Media, the Denver marketing agency Zachary Tye Wennstedt founded in 2012.","thumbnailUrl":"https://zacharytyewennstedt.com/images/films/toad-eye-to-ad-poster-640.webp","uploadDate":"2026-11-09","duration":"PT1M44S","contentUrl":"https://eyetoad.com/media/toad/toad-104-720.mp4","creator":{"@type":"Person","name":"Zachary Tye Wennstedt","url":"https://zacharytyewennstedt.com/"}}]}</script>
+<section id="together" class="tg" aria-labelledby="tg-h">
+<div class="wrap">
+  <div class="tg-top">
+    <div>
+      <p class="kick">Hi, I&rsquo;m Zach. Thank you for being here.</p>
+      <h2 id="tg-h">Let&rsquo;s make something <span class="tg-grad">good together.</span></h2>
+      <p class="tg-lede">If you came from the video, welcome. I&rsquo;m looking for good people to build with: collaborators, partners, clients, creators, investors and friends. Kindness first, always. Tell me a little about you and I&rsquo;ll write back myself.</p>
+      <form class="fform tg-card" id="collab-form" data-guard data-subject="zacharytyewennstedt.com - let's work together" aria-label="Let's work together">
+        <fieldset class="tg-pills">
+          <legend>I&rsquo;d love to&hellip;</legend>
+          <label><input type="radio" name="interest" value="Collaborate" checked><span>Collaborate</span></label>
+          <label><input type="radio" name="interest" value="Work with you (client)"><span>Work with you</span></label>
+          <label><input type="radio" name="interest" value="Partner up"><span>Partner up</span></label>
+          <label><input type="radio" name="interest" value="Create with madwackd.ai"><span>Create with madwackd.ai</span></label>
+          <label><input type="radio" name="interest" value="Talk about investing"><span>Talk investing</span></label>
+          <label><input type="radio" name="interest" value="Just say hi"><span>Just say hi</span></label>
+        </fieldset>
+        <div class="tg-row">
+          <div class="fg"><label for="tg-name">Your name *</label><input type="text" id="tg-name" name="name" required autocomplete="name" maxlength="120" placeholder="First and last"></div>
+          <div class="fg"><label for="tg-email">Email *</label><input type="email" id="tg-email" name="email" required autocomplete="email" maxlength="160" placeholder="you@example.com"></div>
+        </div>
+        <div class="fg"><label for="tg-phone">Phone (optional)</label><input type="tel" id="tg-phone" name="phone" autocomplete="tel" maxlength="40" placeholder="If you&rsquo;d rather talk"></div>
+        <div class="fg"><label for="tg-msg">What&rsquo;s on your mind?</label><textarea id="tg-msg" name="message" maxlength="3000" placeholder="An idea, a project, a link to your work, or just hello."></textarea></div>
+        <button type="submit" class="btn btn-p">Send it to Zach &rarr;</button>
+        <p class="tg-fine">I read every message myself. Your details stay with me and are never sold. Prefer the phone? <a href="tel:+18004818638">1-800-481-8638</a>.</p>
+      </form>
+    </div>
+    <div class="tg-show">
+      <!-- SHOWCASE SLOT: when the new madwackd.ai showcase video is ready, replace the .tg-soon div with
+           <video controls preload="none" playsinline width="1280" height="720" poster="..." aria-label="madwackd.ai showcase"><source src="..." type="video/mp4"></video> -->
+      <div class="tg-player" id="showcase-slot">
+        <div class="tg-soon"><b>New madwackd.ai showcase</b><span>Coming very soon. A wild, fun look at what we make.</span></div>
+      </div>
+      <p class="tg-cap">Made at <a href="https://www.madwackd.ai/" target="_blank" rel="noopener">madwackd.ai</a>, my AI creator studio. Want to make something there with me? Pick &ldquo;Create with madwackd.ai&rdquo; in the form.</p>
+    </div>
+  </div>
+
+  <h3 class="tg-h3" id="films">A couple of things I&rsquo;ve made</h3>
+  <div class="tg-films">
+    <figure>
+      <div class="tg-player"><video controls preload="none" playsinline width="1280" height="720" poster="/images/films/the-earth-movie-trailer-poster-960.webp" aria-label="The Earth Movie official trailer, with sound"><source src="https://www.theearthmovie.com/assets/media/earth-trailer-v5c-720.mp4" type="video/mp4"></video></div>
+      <figcaption><b>The Earth Movie &middot; official trailer</b><span>My first indie film. A comedy with some real allegories about all of us tucked inside. Turn the sound on. <a href="https://www.theearthmovie.com/" target="_blank" rel="noopener">theearthmovie.com</a></span></figcaption>
+    </figure>
+    <figure>
+      <div class="tg-player"><video controls preload="none" playsinline width="1280" height="720" poster="/images/films/toad-eye-to-ad-poster-640.webp" aria-label="TOAD, the Eye To Ad Media commercial, 1 minute 44 seconds"><source src="https://eyetoad.com/media/toad/toad-104-720.mp4" type="video/mp4"></video></div>
+      <figcaption><b>TOAD &middot; Eye To Ad Media</b><span>A 1:44 spot for the marketing agency I started in 2012, starring our toad. <a href="https://eyetoad.com/" target="_blank" rel="nofollow noopener">eyetoad.com</a></span></figcaption>
+    </figure>
+  </div>
+  <div class="tg-links" aria-label="Where else to find me">
+    <a href="https://www.madwackd.ai/" target="_blank" rel="noopener">madwackd.ai &middot; creator studio</a>
+    <a href="https://eyetoad.com/" target="_blank" rel="nofollow noopener">Eye To Ad Media</a>
+    <a href="https://www.theearthmovie.com/" target="_blank" rel="noopener">The Earth Movie</a>
+    <a href="/my-story/">My story</a>
+  </div>
+</div>
+</section>
+
 
 <!-- ============ SCENE 1 : DAWN ============ -->
 <section id="hero">
